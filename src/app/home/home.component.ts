@@ -10,5 +10,5 @@ export class HomeComponent {
     return this.oAuthService.hasValidAccessToken();
   }
 
-  constructor(private oAuthService: OAuthService) {}
+  constructor(private oAuthService: OAuthService) { }
 }

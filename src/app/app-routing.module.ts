@@ -2,7 +2,7 @@ import { IDENTITY_ROUTES } from '@abp/ng.identity';
 import { ACCOUNT_ROUTES } from '@abp/ng.account';
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { ABP } from '@abp/ng.core';
+import { ABP, eLayoutType } from '@abp/ng.core';
 import { TENANT_MANAGEMENT_ROUTES } from '@abp/ng.tenant-management';
 
 const routes: Routes = [
@@ -12,6 +12,16 @@ const routes: Routes = [
     data: {
       routes: {
         name: '::Menu:Home',
+      } as ABP.Route,
+    },
+  },
+  {
+    path: 'ckeditor',
+    loadChildren: () => import('./demo-ckeditor/demo-ckeditor.module').then(m => m.DemoCkeditorModule),
+    data: {
+      routes: {
+        name: '::Menu:Ckeditor',
+        layout: eLayoutType.application
       } as ABP.Route,
     },
   },
@@ -37,4 +47,4 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule {}
+export class AppRoutingModule { }

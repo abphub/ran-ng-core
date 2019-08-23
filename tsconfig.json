@@ -18,6 +18,20 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "ckeditor": [
+        "dist/ckeditor"
+      ],
+      "ckeditor/*": [
+        "dist/ckeditor/*"
+      ],
+      "assets-finder": [
+        "dist/assets-finder"
+      ],
+      "assets-finder/*": [
+        "dist/assets-finder/*"
+      ]
+    }
   }
 }
