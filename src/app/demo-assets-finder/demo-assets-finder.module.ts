@@ -3,28 +3,28 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
-import { DemoCkeditorComponent } from './demo-ckeditor.component';
-import { CkeditorModule } from 'projects/ckeditor/src/public-api';
+import { AssetsFinderModule } from 'projects/assets-finder/src/public-api';
+import { DemoAssetsFinderComponent } from './demo-assets-finder.component';
 
 @NgModule({
     imports: [
         CommonModule,
         ReactiveFormsModule,
-        CkeditorModule,
+        AssetsFinderModule,
         ThemeBasicModule,
         RouterModule.forChild([
             {
                 path: '',
                 component: ApplicationLayoutComponent,
-                children: [{ path: '', component: DemoCkeditorComponent }],
+                children: [{ path: '', component: DemoAssetsFinderComponent }],
             }
         ]),
     ],
     declarations: [
-        DemoCkeditorComponent
+        DemoAssetsFinderComponent
     ],
     exports: [
         RouterModule
     ]
 })
-export class DemoCkeditorModule { }
+export class DemoAssetsFinderModule { }
