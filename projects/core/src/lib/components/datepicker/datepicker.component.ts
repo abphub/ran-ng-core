@@ -1,6 +1,7 @@
 import { AfterViewInit, Component, ElementRef, forwardRef, Input, ViewChild } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import * as moment from 'moment';
+import * as moment_ from 'moment';
+const moment = moment_;
 
 export type DatePicker = 'year' | 'month' | 'date' | 'time' | 'datetime';
 
@@ -36,8 +37,8 @@ export class DatePickerComponent implements AfterViewInit, ControlValueAccessor 
         this.laydateRender();
     }
 
-    @Input() max: moment.Moment;
-    @Input() min: moment.Moment;
+    @Input() max: moment_.Moment;
+    @Input() min: moment_.Moment;
 
     formats: Array<IDatePickerType> = [{
         type: 'year', momentFormat: 'YYYY', LayDateFormat: 'yyyy'
@@ -54,14 +55,14 @@ export class DatePickerComponent implements AfterViewInit, ControlValueAccessor 
     touched: () => void;
     onchange: <T>(newData: T) => void;
 
-    date: moment.Moment | number | string;
+    date: moment_.Moment | number | string;
     laydatePlugin: any;
 
     ngAfterViewInit() {
         this.laydateRender();
     }
 
-    writeValue(value: moment.Moment | number | string): void {
+    writeValue(value: moment_.Moment | number | string): void {
         this.date = value;
         if (value) {
             const format = this.formats.find(n => n.type === this.type);

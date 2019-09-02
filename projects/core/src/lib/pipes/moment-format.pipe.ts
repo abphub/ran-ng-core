@@ -1,9 +1,10 @@
 import { Pipe, PipeTransform } from '@angular/core';
-import * as moment from 'moment';
+import * as moment_ from 'moment';
+const moment = moment_;
 
 @Pipe({ name: 'momentFormat' })
 export class MomentFormatPipe implements PipeTransform {
-    transform(value: moment.MomentInput, format: string) {
+    transform(value: moment_.MomentInput, format: string) {
         if (!value) {
             return '';
         }

@@ -1,7 +1,7 @@
 {
   "name": "@ran/ng.core",
   "version": "0.0.1",
-  "devDependencies": {
+  "dependencies": {
     "@ckeditor/ckeditor5-build-decoupled-document": "^12.3.1",
     "@ckeditor/ckeditor5-engine": "^13.2.1",
     "moment": "^2.24.0"
