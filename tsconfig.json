@@ -31,6 +31,12 @@
       ],
       "assets-finder/*": [
         "dist/assets-finder/*"
+      ],
+      "core": [
+        "dist/core"
+      ],
+      "core/*": [
+        "dist/core/*"
       ]
     }
   }
