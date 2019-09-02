@@ -1,7 +1,7 @@
 import { HttpClient } from '@angular/common/http';
 import { AfterViewInit, Component, ElementRef, forwardRef, Input, ViewChild } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { CkeditorService, CkeditorType } from './ckeditor.service';
+import { CkeditorService, CkeditorType } from './ckeditor5.service';
 import { Ckeditor5DownloadFile } from './ckeditor5-download-file';
 import { Ckeditor5ImageUploadAdapter } from './ckeditor5-image-upload-adapter';
 import '@ckeditor/ckeditor5-build-decoupled-document/build/translations/zh-cn';

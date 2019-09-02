@@ -10,5 +10,4 @@ import { Ckeditor5Component } from './ckeditor5.component';
         Ckeditor5Component
     ]
 })
-export class Ckeditor5Module {
-}
+export class Ckeditor5Module {}

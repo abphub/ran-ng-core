@@ -169,7 +169,7 @@
       "projectType": "library",
       "root": "projects/assets-finder",
       "sourceRoot": "projects/assets-finder/src",
-      "prefix": "lib",
+      "prefix": "ran",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
@@ -204,7 +204,7 @@
       "projectType": "library",
       "root": "projects/core",
       "sourceRoot": "projects/core/src",
-      "prefix": "lib",
+      "prefix": "ran",
       "architect": {
         "build": {
           "builder": "@angular-devkit/build-ng-packagr:build",
