@@ -6,7 +6,7 @@ import { Directive, ViewContainerRef } from '@angular/core';
 @Directive({
     selector: '[ranAppAnchor]'
 })
-export class AnchorDirective {
+export class RanAnchorDirective {
 
     constructor(
         public viewContainerRef: ViewContainerRef

@@ -20,17 +20,11 @@
       "dom"
     ],
     "paths": {
-      "ckeditor": [
-        "dist/ckeditor"
+      "theme-basic": [
+        "dist/theme-basic"
       ],
-      "ckeditor/*": [
-        "dist/ckeditor/*"
-      ],
-      "assets-finder": [
-        "dist/assets-finder"
-      ],
-      "assets-finder/*": [
-        "dist/assets-finder/*"
+      "theme-basic/*": [
+        "dist/theme-basic/*"
       ],
       "core": [
         "dist/core"

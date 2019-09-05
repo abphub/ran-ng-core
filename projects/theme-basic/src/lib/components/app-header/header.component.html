@@ -1,0 +1,48 @@
+<mat-toolbar color="primary">
+
+    <div class="px-2" (click)='setSidebarState()'>
+        <i class="fa fa-indent"></i>
+    </div>
+
+    <a class="logo" target="_blank">
+        <span>站点管理系统</span>
+    </a>
+    <span class="mr-auto"></span>
+
+    <ul class="d-flex list-unstyled mb-0">
+        <!--帮助文档-->
+        <li>
+            <a class="p-3" matTooltip="快速导航">
+                <i class="fa fa-search"></i>
+            </a>
+        </li>
+        <!--帮助文档-->
+        <li>
+            <a class="p-3" matTooltip="帮助文档">
+                <i class="fa fa-question-circle"></i>
+            </a>
+        </li>
+        <!--帮助文档-->
+        <!--消息中心-->
+        <li>
+            <a class="p-3" matTooltip="消息中心" (click)='setDrawbarState()'>
+                <i class="fa fa-bell" matBadge="{{unReadCount}}" matBadgeColor="accent"
+                    [matBadgeHidden]="unReadCount===0"></i>
+            </a>
+        </li>
+        <!--消息中心-->
+
+        <!--个人-->
+        <li>
+            <a class="px-2" [matMenuTriggerFor]="appMenu">
+                <img class="rounded-circle" [src]="pictureAvatar" style="max-width: 40px;">
+                <span class="p-2">{{userName|async|json}}</span>
+            </a>
+            <mat-menu #appMenu="matMenu" panelClass="profile-menu">
+                <button type="button" mat-menu-item class="pl-3 pr-5" (click)="logout()">
+                    <i class="icon icon-logout pr-2"></i>注销
+                </button>
+            </mat-menu>
+        </li>
+    </ul>
+</mat-toolbar>

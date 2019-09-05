@@ -19,11 +19,11 @@ export interface IDatePickerType {
     ],
     providers: [{
         provide: NG_VALUE_ACCESSOR,
-        useExisting: forwardRef(() => DatePickerComponent),
+        useExisting: forwardRef(() => RanDatePickerComponent),
         multi: true
     }]
 })
-export class DatePickerComponent implements AfterViewInit, ControlValueAccessor {
+export class RanDatePickerComponent implements AfterViewInit, ControlValueAccessor {
 
     @ViewChild('htmlInputElement', { static: true }) htmlInputElement: ElementRef<HTMLInputElement>;
 

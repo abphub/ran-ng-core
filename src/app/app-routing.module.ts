@@ -26,6 +26,16 @@ const routes: Routes = [
     },
   },
   {
+    path: 'theme',
+    loadChildren: () => import('./demo-theme-basic/demo-theme-basic.module').then(m => m.DemoThemeBasicModule),
+    data: {
+      routes: {
+        name: '::Menu:ThemeBasic',
+        layout: eLayoutType.application
+      } as ABP.Route,
+    },
+  },
+  {
     path: 'account',
     loadChildren: () => import('./lazy-libs/account-wrapper.module').then(m => m.AccountWrapperModule),
     data: { routes: ACCOUNT_ROUTES },

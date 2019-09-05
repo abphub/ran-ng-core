@@ -6,11 +6,11 @@ import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
     templateUrl: './checkbox.component.html',
     providers: [{
         provide: NG_VALUE_ACCESSOR,
-        useExisting: forwardRef(() => CheckboxComponent),
+        useExisting: forwardRef(() => RanCheckboxComponent),
         multi: true
     }]
 })
-export class CheckboxComponent implements OnInit, ControlValueAccessor {
+export class RanCheckboxComponent implements OnInit, ControlValueAccessor {
 
     touched: () => void;
     onchange: <T>(newData: T) => void;

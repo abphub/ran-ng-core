@@ -1,21 +1,24 @@
-import { ApplicationLayoutComponent, ThemeBasicModule } from '@abp/ng.theme.basic';
+import { CoreModule, DynamicLayoutComponent } from '@abp/ng.core';
+import { ThemeSharedModule } from '@abp/ng.theme.shared';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { CoreDirectivesModule, RanCkeditor5Module } from '@ran-ng/core';
 import { DemoCkeditorComponent } from './demo-ckeditor.component';
-import { CkeditorModule } from 'projects/ckeditor/src/public-api';
 
 @NgModule({
     imports: [
+        CoreDirectivesModule,
+        RanCkeditor5Module,
+        CoreModule,
         CommonModule,
         ReactiveFormsModule,
-        CkeditorModule,
-        ThemeBasicModule,
+        ThemeSharedModule,
         RouterModule.forChild([
             {
                 path: '',
-                component: ApplicationLayoutComponent,
+                component: DynamicLayoutComponent,
                 children: [{ path: '', component: DemoCkeditorComponent }],
             }
         ]),

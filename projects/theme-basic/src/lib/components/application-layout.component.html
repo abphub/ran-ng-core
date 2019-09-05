@@ -1,0 +1,25 @@
+<ran-app-container>
+    <ran-app-header></ran-app-header>
+    <mat-sidenav-container class="h-100">
+        <!-- 左侧导航 -->
+        <mat-sidenav class="mat-sidebar" mode="side" [opened]='sidebarState$ | async'>
+            <ran-app-sidebar></ran-app-sidebar>
+        </mat-sidenav>
+        <!-- 左侧导航 -->
+
+        <!-- 右侧抽屉 -->
+        <mat-sidenav class="mat-drawbar" position="end" [opened]='drawbarState$ | async'>
+            <ran-app-drawer></ran-app-drawer>
+        </mat-sidenav>
+        <!-- 右侧抽屉 -->
+
+        <!-- 内容 -->
+        <mat-sidenav-content>
+            <div [@routeAnimations]="outlet && outlet.activatedRoute && outlet.activatedRoute.routeConfig.path"
+                style="padding-top: 5rem;" class="container">
+                <router-outlet #outlet="outlet"></router-outlet>
+            </div>
+        </mat-sidenav-content>
+        <!-- 内容 -->
+    </mat-sidenav-container>
+</ran-app-container>

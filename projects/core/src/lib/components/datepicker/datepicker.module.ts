@@ -1,13 +1,13 @@
 
 import { NgModule } from '@angular/core';
-import { DatePickerComponent } from './datepicker.component';
+import { RanDatePickerComponent } from './datepicker.component';
 
 @NgModule({
     declarations: [
-        DatePickerComponent
+        RanDatePickerComponent
     ],
     exports: [
-        DatePickerComponent
+        RanDatePickerComponent
     ]
 })
-export class DatePickerModule { }
+export class RanDatePickerModule { }

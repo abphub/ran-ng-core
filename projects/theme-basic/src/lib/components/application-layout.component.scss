@@ -1,0 +1,16 @@
+:host {
+    position: absolute;
+    display: inline-block;
+    top: 64px;
+    width: 100%;
+    height: calc(100% - 64px);
+
+    .mat-sidebar {
+        width: 230px;
+    }
+
+    .mat-drawbar {
+        width: 400px;
+        top: 0;
+    }
+}

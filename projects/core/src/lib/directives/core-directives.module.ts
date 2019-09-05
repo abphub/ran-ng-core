@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
-import { AnchorDirective } from './auchor.directive';
+import { RanAnchorDirective } from './auchor.directive';
 
 @NgModule({
     declarations: [
-        AnchorDirective
+        RanAnchorDirective
     ],
     exports: [
-        AnchorDirective
+        RanAnchorDirective
     ]
 })
 export class CoreDirectivesModule { }

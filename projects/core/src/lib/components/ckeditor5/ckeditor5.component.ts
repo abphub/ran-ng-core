@@ -2,10 +2,13 @@ import { HttpClient } from '@angular/common/http';
 import { AfterViewInit, Component, ElementRef, forwardRef, Input, ViewChild } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { CkeditorService, CkeditorType } from './ckeditor5.service';
-import { Ckeditor5DownloadFile } from './ckeditor5-download-file';
 import { Ckeditor5ImageUploadAdapter } from './ckeditor5-image-upload-adapter';
-import '@ckeditor/ckeditor5-build-decoupled-document/build/translations/zh-cn';
+import { Ckeditor5DownloadFile } from './ckeditor5-download-file';
 import * as DecoupledEditor from '@ckeditor/ckeditor5-build-decoupled-document';
+import '@ckeditor/ckeditor5-build-decoupled-document/build/translations/zh-cn';
+
+
+const Editor = DecoupledEditor;
 
 @Component({
     selector: 'ran-ckeditor5',
@@ -13,11 +16,11 @@ import * as DecoupledEditor from '@ckeditor/ckeditor5-build-decoupled-document';
     styleUrls: ['./ckeditor5.component.scss'],
     providers: [{
         provide: NG_VALUE_ACCESSOR,
-        useExisting: forwardRef(() => Ckeditor5Component),
+        useExisting: forwardRef(() => RanCkeditor5Component),
         multi: true
     }],
 })
-export class Ckeditor5Component implements AfterViewInit, ControlValueAccessor {
+export class RanCkeditor5Component implements AfterViewInit, ControlValueAccessor {
 
     @ViewChild('ckeditor', { static: false })
     ckeditorElement: ElementRef;
@@ -44,7 +47,7 @@ export class Ckeditor5Component implements AfterViewInit, ControlValueAccessor {
     @Input()
     attachmentRuleName: string;
 
-    private ckeditor: DecoupledEditor;
+    private ckeditor;
     onchange: (newData: any) => void;
     touched: () => void;
 
@@ -73,7 +76,6 @@ export class Ckeditor5Component implements AfterViewInit, ControlValueAccessor {
     }
 
     ngAfterViewInit() {
-
         let toobarConfig = [];
         if (this.toolbarConfig && this.toolbarConfig.length) {
             toobarConfig = this.toolbarConfig;
@@ -82,7 +84,7 @@ export class Ckeditor5Component implements AfterViewInit, ControlValueAccessor {
             toobarConfig = ckeditorType.config;
         }
 
-        DecoupledEditor.create(this.ckeditorElement.nativeElement, {
+        Editor.create(this.ckeditorElement.nativeElement, {
             language: 'zh-cn',
             toolbar: toobarConfig,
             mediaEmbed: {
@@ -120,7 +122,6 @@ export class Ckeditor5Component implements AfterViewInit, ControlValueAccessor {
         }).then(editor => {
 
             this.ckeditor = editor;
-
             /**
              * 设置初始值
              */
@@ -151,8 +152,8 @@ export class Ckeditor5Component implements AfterViewInit, ControlValueAccessor {
                 if (rtfContent) {
                     return;
                 }
-
                 const downloadFile = new Ckeditor5DownloadFile({
+                    editor,
                     attachmentRuleName: this.attachmentRuleName,
                     entityId: this.entityId,
                     ckeditorData: data

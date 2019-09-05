@@ -1,13 +1,12 @@
 
-import DocumentFragment from '@ckeditor/ckeditor5-engine/src/view/documentfragment';
-import DomConverter from '@ckeditor/ckeditor5-engine/src/view/domconverter';
-import { NBSP_FILLER } from '@ckeditor/ckeditor5-engine/src/view/filler';
+// import UpcastWriter from '@ckeditor/ckeditor5-engine/src/view/upcastwriter';
+
 import ViewMatcher from '@ckeditor/ckeditor5-engine/src/view/matcher';
-import UpcastWriter from '@ckeditor/ckeditor5-engine/src/view/upcastwriter';
 import { FileService } from './file.service';
 import { IDownLoadFile, IFileDto } from './file';
 
 interface ICkeditor5DownloadFile extends IDownLoadFile {
+    editor: any;
     entityId: string;
     attachmentRuleName: string;
     ckeditorData: { content: any, dataTransfer: any };
@@ -15,22 +14,22 @@ interface ICkeditor5DownloadFile extends IDownLoadFile {
 
 export class Ckeditor5DownloadFile implements ICkeditor5DownloadFile {
 
-    private domConverter = new DomConverter({ blockFiller: NBSP_FILLER });
+    editor: any;
     entityId: string;
     attachmentRuleName: string;
     ckeditorData: { content: any, dataTransfer: any };
     fileService: FileService;
 
     constructor(data: ICkeditor5DownloadFile) {
+        this.editor = data.editor;
         this.entityId = data.entityId;
         this.attachmentRuleName = data.attachmentRuleName;
         this.ckeditorData = data.ckeditorData;
     }
 
     getBody(): Promise<any> {
-        const upcastWriter = new UpcastWriter();
         const htmlDocumentView = this.getFragment();
-        const imageElements = this.getImageElements(htmlDocumentView, upcastWriter);
+        const imageElements = this.getImageElements(htmlDocumentView, this.editor.model);
 
         const promises: Promise<void>[] = [];
 
@@ -40,7 +39,7 @@ export class Ckeditor5DownloadFile implements ICkeditor5DownloadFile {
             const src = item.getAttribute('src');
             if (src) {
                 promises.push(this.downloadFile(src).then(result => {
-                    upcastWriter.setAttribute('src', result.webUrl, item);
+                    this.editor.model.setAttribute('src', result.webUrl, item);
                 }));
             }
         }
@@ -73,11 +72,11 @@ export class Ckeditor5DownloadFile implements ICkeditor5DownloadFile {
         while (nodes.length > 0) {
             fragment.appendChild(nodes[0]);
         }
-        return this.domConverter.domToView(fragment);
+        return this.editor.editing.view.domConverter.domToView(fragment);
     }
 
 
-    private getImageElements(documentFragment: DocumentFragment, upcastWriter: UpcastWriter) {
+    private getImageElements(documentFragment: DocumentFragment, upcastWriter) {
         const range = upcastWriter.createRangeIn(documentFragment);
         const imageElementsMatcher = new ViewMatcher({
             name: 'img'

@@ -1,10 +1,10 @@
-{{form.value|json}}
 <form [formGroup]="form">
     <div class="card">
         <div class="card-header">
             基于ckeditor5自研发组件演示
         </div>
         <div class="card-body">
+            {{form.value|json}}
             <p class="border-bottom pb-2">基础版</p>
             <ran-ckeditor5 formControlName="ckeditorBaseData"></ran-ckeditor5>
         </div>
@@ -15,6 +15,10 @@
         <div class="card-body">
             <p class="border-bottom pb-2">document版</p>
             <ran-ckeditor5 type="document" formControlName="ckeditorDocumentData"></ran-ckeditor5>
+        </div>
+
+        <div ranAppAnchor>
+            
         </div>
     </div>
 </form>

@@ -1,6 +1,6 @@
 
 import { NgModule } from '@angular/core';
-import { CheckboxComponent } from './checkbox.component';
+import { RanCheckboxComponent } from './checkbox.component';
 import { MatCheckboxModule } from '@angular/material';
 
 @NgModule({
@@ -8,11 +8,11 @@ import { MatCheckboxModule } from '@angular/material';
         MatCheckboxModule
     ],
     declarations: [
-        CheckboxComponent
+        RanCheckboxComponent
     ],
     exports: [
-        CheckboxComponent
+        RanCheckboxComponent
     ]
 })
-export class CheckboxModule {
+export class RanCheckboxModule {
 }
