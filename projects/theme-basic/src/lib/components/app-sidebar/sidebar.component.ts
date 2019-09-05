@@ -26,11 +26,6 @@ export class AppSidebarComponent {
                 return acc;
             }
 
-            // 只取站点的所有导航
-            if (!val.path && !val.path.startsWith('/site')) {
-                return acc;
-            }
-
             if (val.children && val.children.length) {
                 val.children = this.getVisibleRoutes(val.children);
             }

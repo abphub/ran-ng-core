@@ -32,11 +32,19 @@
         </li>
         <!--消息中心-->
 
+        <!--消息中心-->
+        <li>
+            <a class="p-3" matTooltip="主导航" (click)='setDrawbarState()'>
+                <i class="fa fa-dashboard"></i>
+            </a>
+        </li>
+        <!--消息中心-->
+
         <!--个人-->
         <li>
             <a class="px-2" [matMenuTriggerFor]="appMenu">
                 <img class="rounded-circle" [src]="pictureAvatar" style="max-width: 40px;">
-                <span class="p-2">{{userName|async|json}}</span>
+                <span class="p-2">{{userName|async}}</span>
             </a>
             <mat-menu #appMenu="matMenu" panelClass="profile-menu">
                 <button type="button" mat-menu-item class="pl-3 pr-5" (click)="logout()">

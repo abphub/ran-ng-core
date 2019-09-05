@@ -1,15 +1,18 @@
 {
   "name": "@ran-ng/theme-basic",
-  "version": "0.2.3",
+  "version": "0.2.5",
   "dependencies": {
     "@abp/ng.core": "^0.8.3",
-    "@abp/ng.theme.shared":"^0.8.3",
-    "@ngxs/store": "^3.5.0"
+    "@abp/ng.theme.shared": "^0.8.3",
+    "@ngxs/store": "^3.5.0",
+    "@ngxs/router-plugin": "^3.5.1",
+    "angular-oauth2-oidc": "^8.0.1"
   },
   "peerDependencies": {
     "@angular/common": "^8.2.0",
     "@angular/core": "^8.2.0",
-    "@angular/material": "^8.1.3"
+    "@angular/material": "^8.1.3",
+    "rxjs": "~6.4.0"
   },
   "publishConfig": {
     "access": "public"

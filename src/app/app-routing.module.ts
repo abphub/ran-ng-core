@@ -21,8 +21,9 @@ const routes: Routes = [
     data: {
       routes: {
         name: '::Menu:Ckeditor',
-        layout: eLayoutType.application
-      } as ABP.Route,
+        layout: eLayoutType.application,
+        wrapper: true
+      } as ABP.FullRoute,
     },
   },
   {
@@ -31,8 +32,9 @@ const routes: Routes = [
     data: {
       routes: {
         name: '::Menu:ThemeBasic',
-        layout: eLayoutType.application
-      } as ABP.Route,
+        layout: eLayoutType.application,
+        wrapper: true
+      } as ABP.FullRoute,
     },
   },
   {

@@ -6,12 +6,16 @@
     "umdModuleIds": {
       "@abp/ng.core": "^0.8.3",
       "@abp/ng.theme.shared": "^0.8.3",
-      "@ngxs/store": "^3.5.0"
+      "@ngxs/store": "^3.5.0",
+      "@ngxs/router-plugin": "^3.5.1",
+      "angular-oauth2-oidc": "^8.0.1"
     }
   },
   "whitelistedNonPeerDependencies": [
     "@abp/ng.core",
     "@abp/ng.theme.shared",
-    "@ngxs/store"
+    "@ngxs/store",
+    "@ngxs/router-plugin",
+    "angular-oauth2-oidc"
   ]
 }
