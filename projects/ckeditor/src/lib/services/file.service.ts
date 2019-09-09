@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Rest, RestService } from '@abp/ng.core';
 import { Observable } from 'rxjs';
-import { IDownLoadFile, IFileDto } from './file';
+import { IDownLoadFile, IFileDto } from '../models/file';
 
 @Injectable({
     providedIn: 'root'

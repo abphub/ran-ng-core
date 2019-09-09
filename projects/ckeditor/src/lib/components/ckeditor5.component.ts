@@ -1,11 +1,11 @@
 import { HttpClient } from '@angular/common/http';
-import { AfterViewInit, Component, ElementRef, forwardRef, Input, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, forwardRef, Input, ViewChild, ViewEncapsulation } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
-import { CkeditorService, CkeditorType } from './ckeditor5.service';
-import { Ckeditor5ImageUploadAdapter } from './ckeditor5-image-upload-adapter';
-import { Ckeditor5DownloadFile } from './ckeditor5-download-file';
 import * as DecoupledEditor from '@ckeditor/ckeditor5-build-decoupled-document';
 import '@ckeditor/ckeditor5-build-decoupled-document/build/translations/zh-cn';
+import { Ckeditor5DownloadFile } from '../models/ckeditor5-download-file';
+import { Ckeditor5ImageUploadAdapter } from '../models/ckeditor5-image-upload-adapter';
+import { CkeditorService, CkeditorType } from '../services/ckeditor5.service';
 
 
 const Editor = DecoupledEditor;
@@ -14,6 +14,7 @@ const Editor = DecoupledEditor;
     selector: 'ran-ckeditor5',
     template: `<div role="ckeditor" #ckeditor></div>`,
     styleUrls: ['./ckeditor5.component.scss'],
+    encapsulation: ViewEncapsulation.None,
     providers: [{
         provide: NG_VALUE_ACCESSOR,
         useExisting: forwardRef(() => RanCkeditor5Component),

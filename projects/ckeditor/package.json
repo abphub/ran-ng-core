@@ -1,0 +1,13 @@
+{
+  "name": "@ran-ng/ckeditor",
+  "version": "0.2.1",
+  "dependencies": {
+    "@abp/ng.core": "^0.8.3",
+    "@ckeditor/ckeditor5-build-decoupled-document": "^12.3.1",
+    "@ckeditor/ckeditor5-engine": "^13.2.1"
+  },
+  "peerDependencies": {
+    "@angular/common": "^8.2.0",
+    "@angular/core": "^8.2.0"
+  }
+}

@@ -6,7 +6,7 @@
         <!-- 无数据时 -->
         <div class="border-bottom bg-white" *ngIf="!totalCount">
             <p class="p-2 m-0 text-black-50 d-flex justify-content-center align-items-center">
-                <i class="mr-1 icon icon-frown icon-md"></i> {{ 'NoData' |abpLocalization }}
+                <i class="mr-1 icon icon-frown icon-md"></i> {{ '::NoData' |abpLocalization }}
             </p>
         </div>
 
@@ -16,8 +16,8 @@
         <!-- 总数 -->
         <div class="p-3 text-right bg-white" *ngIf="!paginator">
             <p class="m-0 text-black-50">
-                {{ 'TotalRecordsCount' |abpLocalization:'totalCount' }}
-            </p>
+                {{ '::TotalCount' | abpLocalization: totalCount }}
+            </p> 
         </div>
     </div>
 </div>

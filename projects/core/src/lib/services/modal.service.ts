@@ -14,9 +14,7 @@ interface IModalConfig {
     config: MatDialogConfig<{}>;
 }
 
-@Injectable({
-    providedIn: 'root'
-})
+@Injectable()
 export class ModalService {
 
     private _config: Array<IModalConfig> = [{

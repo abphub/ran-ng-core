@@ -1,21 +1,25 @@
 
 export namespace RAN {
 
-    export interface IModificationAuditedObject<T> {
+    export interface EntityDto<T> {
+        id: T;
+    }
+
+    export interface IModificationAuditedDto<T> {
         lastModificationTime?: T;
         lastModifierId?: string;
     }
-    export interface ICreationAuditedObject<T> {
+    export interface ICreationAuditedDto<T> {
         creationTime?: T;
         creatorId?: string;
     }
 
-    export interface IDeletionAuditedObject<T> {
+    export interface IDeletionAuditedDto<T> {
         deletionTime?: T;
         isDeleted?: boolean;
         deleterId?: string;
     }
 
-    export type IFullAuditedObject<T> =
-        IModificationAuditedObject<T> & ICreationAuditedObject<T> & IDeletionAuditedObject<T>;
+    export type IFullAuditedDto<T> =
+        IModificationAuditedDto<T> & ICreationAuditedDto<T> & IDeletionAuditedDto<T>;
 }

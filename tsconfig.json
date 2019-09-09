@@ -31,6 +31,12 @@
       ],
       "core/*": [
         "dist/core/*"
+      ],
+      "ckeditor": [
+        "dist/ckeditor"
+      ],
+      "ckeditor/*": [
+        "dist/ckeditor/*"
       ]
     }
   }

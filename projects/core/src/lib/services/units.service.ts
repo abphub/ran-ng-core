@@ -1,8 +1,6 @@
 import { Injectable, ViewContainerRef, Type, ComponentRef, ComponentFactoryResolver } from '@angular/core';
 
-@Injectable({
-    providedIn: 'root'
-})
+@Injectable()
 export class UnitsService {
 
     constructor(

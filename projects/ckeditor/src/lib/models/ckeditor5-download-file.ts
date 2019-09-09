@@ -1,9 +1,7 @@
 
-// import UpcastWriter from '@ckeditor/ckeditor5-engine/src/view/upcastwriter';
-
 import ViewMatcher from '@ckeditor/ckeditor5-engine/src/view/matcher';
-import { FileService } from './file.service';
 import { IDownLoadFile, IFileDto } from './file';
+import { FileService } from '../services/file.service';
 
 interface ICkeditor5DownloadFile extends IDownLoadFile {
     editor: any;

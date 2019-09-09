@@ -4,15 +4,11 @@
   "lib": {
     "entryFile": "src/public-api.ts",
     "umdModuleIds": {
-      "@ckeditor/ckeditor5-build-decoupled-document": "^12.3.1",
-      "@ckeditor/ckeditor5-engine": "^13.2.1",
       "moment": "^2.24.0"
     }
   },
   "deleteDestPath": false,
   "whitelistedNonPeerDependencies": [
-    "@ckeditor/ckeditor5-build-decoupled-document",
-    "@ckeditor/ckeditor5-engine",
     "moment"
   ]
 }

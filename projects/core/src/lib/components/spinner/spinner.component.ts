@@ -5,7 +5,7 @@ import { Component, Input, OnChanges } from '@angular/core';
     templateUrl: './spinner.component.html',
     styleUrls: ['./spinner.component.scss']
 })
-export class SpinnerComponent implements OnChanges {
+export class RanSpinnerComponent implements OnChanges {
 
     _loading = false;
     @Input() loading = false;
