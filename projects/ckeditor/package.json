@@ -9,5 +9,8 @@
   "peerDependencies": {
     "@angular/common": "^8.2.0",
     "@angular/core": "^8.2.0"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

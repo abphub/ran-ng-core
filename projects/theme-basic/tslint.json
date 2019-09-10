@@ -12,6 +12,8 @@
       "element",
       "ran",
       "kebab-case"
-    ]
+    ],
+    "variable-name":false,
+    "no-namespace":false
   }
 }

@@ -9,9 +9,22 @@ export class PageTableComponent implements AfterContentInit {
     @ContentChild(MatPaginator, { static: true }) paginator: MatPaginator;
 
     @Input() isLoading = true;
-    @Input() totalCount = 0;
+
+    // tslint:disable-next-line:
+    private _totalCount = 0;
+    @Input()
+    public get totalCount(): number {
+        return this._totalCount;
+    }
+    public set totalCount(value: number) {
+        this._totalCount = value;
+        if (value !== undefined && value !== null) {
+            this.stringTotalCount = value.toString();
+        }
+    }
 
     showTotalCount = false;
+    stringTotalCount: string;
 
     ngAfterContentInit() {
         this.showTotalCount = this.paginator ? false : true;
