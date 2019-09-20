@@ -2,10 +2,15 @@ import { CoreModule } from '@abp/ng.core';
 import { ThemeSharedModule } from '@abp/ng.theme.shared';
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
-import { MatBadgeModule, MatListModule, MatMenuModule, MatSidenavModule, MatToolbarModule } from '@angular/material';
+import {
+    MatBadgeModule, MatListModule, MatMenuModule,
+    MatSidenavModule, MatToolbarModule, MatButtonModule,
+    MatTooltipModule
+} from '@angular/material';
 import { NgxsModule } from '@ngxs/store';
-import { AppContainerComponent } from './components/app-container/container.component';
+import { CoreModule as RanCoreModule } from '@ran-ng/core';
 import { AccountLayoutComponent } from './components/account-layout.component';
+import { AppContainerComponent } from './components/app-container/container.component';
 import { AppDrawerComponent } from './components/app-drawer/drawer.component';
 import { AppHeaderComponent } from './components/app-header/header.component';
 import { PageContentComponent } from './components/app-page/page-content.component';
@@ -30,15 +35,18 @@ export const RAN_LAYOUTS = [ApplicationLayoutComponent, AccountLayoutComponent, 
         PageTableComponent
     ],
     imports: [
+        NgxsModule.forFeature([RanLayoutState]),
         CoreModule,
+        RanCoreModule,
         ThemeSharedModule,
         CommonModule,
         MatSidenavModule,
         MatListModule,
         MatToolbarModule,
         MatBadgeModule,
+        MatButtonModule,
         MatMenuModule,
-        NgxsModule.forFeature([RanLayoutState]),
+        MatTooltipModule,
     ],
     exports: [
         ...RAN_LAYOUTS,

@@ -1,10 +1,15 @@
 import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { MatCheckboxModule } from '@angular/material';
-import { RanCheckboxComponent, RanDatePickerComponent, RanSpinnerComponent } from './components';
-import { RanAppAnchorDirective } from './directives';
-import { RanDefaultDataPipe, RanHtmlPipe, RanJoinPipe, RanMomentFormatPipe } from './pipes';
-import { ModalService, UnitsService } from './services';
+import { RanCheckboxComponent } from './components/checkbox/checkbox.component';
+import { RanSpinnerComponent } from './components/spinner/spinner.component';
+import { RanAppAnchorDirective } from './directives/auchor.directive';
+import { RanDefaultDataPipe } from './pipes/default-data.pipe';
+import { RanHtmlPipe } from './pipes/innerhtml.pipe';
+import { RanJoinPipe } from './pipes/join.pipe';
+import { RanMomentFormatPipe } from './pipes/moment-format.pipe';
+import { ModalService } from './services/modal.service';
+import { UnitsService } from './services/units.service';
 
 @NgModule({
     imports: [
@@ -13,7 +18,6 @@ import { ModalService, UnitsService } from './services';
     ],
     declarations: [
         RanCheckboxComponent,
-        RanDatePickerComponent,
         RanSpinnerComponent,
         RanAppAnchorDirective,
         RanDefaultDataPipe,
@@ -23,7 +27,6 @@ import { ModalService, UnitsService } from './services';
     ],
     exports: [
         RanCheckboxComponent,
-        RanDatePickerComponent,
         RanSpinnerComponent,
         RanAppAnchorDirective,
         RanDefaultDataPipe,

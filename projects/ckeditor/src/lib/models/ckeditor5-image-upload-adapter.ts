@@ -1,41 +1,54 @@
-import { HttpClient } from '@angular/common/http';
+import { Rest, RestService, ConfigState } from '@abp/ng.core';
+import { Injector } from '@angular/core';
+import { Store } from '@ngxs/store';
 
 export class Ckeditor5ImageUploadAdapter {
 
     private requestUrl: string;
     private loader: any;
-    private http: HttpClient;
+    private store: Store;
+    private rest: RestService;
 
     constructor(
         loader: any,
-        entityId: string,
-        attachmentRuleName: string,
-        http: HttpClient
+        injector: Injector,
+        providerKey: string,
+        providerName: string,
     ) {
-        if (!entityId) {
-            throw new Error('暂无支持上传图片的EntityId,请先配置');
+        if (!providerKey) {
+            throw new Error('暂无支持上传图片的providerKey,请先配置');
         }
-        if (!attachmentRuleName) {
-            throw new Error('暂无支持上传图片的attachmentRuleName,请先配置');
+        if (!providerName) {
+            providerName = 'ckeditor-content-image';
         }
+
         this.loader = loader;
-        this.http = http;
-        this.requestUrl = `/attachment/UploadFile?attachmentRuleName=ckeditor-content-image&entityId=${entityId}`;
+        this.store = injector.get(Store);
+        this.rest = injector.get(RestService);
+
+        this.requestUrl = `/api/assets/files/upload?providerKey=${providerKey}&folderName=${providerName}`;
     }
 
     upload() {
-        return new Promise((resolve, reject) => {
+        return new Promise((resolve) => {
             this.loader.file.then((file => {
+
                 const data = new FormData();
                 data.append('file', file);
-                this.http.post(this.requestUrl, data).subscribe((response: { result: any }) => {
-                    const result = response.result;
-                    if (result.code !== 200 && result.code !== 204 && result.code !== 0) {
-                        reject(result.message);
-                        throw new Error(result.message);
+
+                const request: Rest.Request<FormData> = {
+                    method: 'POST',
+                    url: this.requestUrl,
+                    body: data,
+                };
+
+                this.rest.request<FormData, { webUrl: string }>(request).subscribe(result => {
+                    if (!result.webUrl) {
+                        throw new Error('ckeditor5上传文件失败，请检查配置后重新上传');
                     }
+
                     resolve({
-                        default: `${result.file.webUrl}`
+                        default: this.store.selectSnapshot(ConfigState.getApiUrl()) + result.webUrl
                     });
                 });
             }));

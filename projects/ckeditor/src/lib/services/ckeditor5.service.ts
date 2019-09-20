@@ -19,7 +19,7 @@ export class CkeditorService {
         config: [
             'heading', '|',
             'bold', 'italic', 'underline', 'strikethrough', 'link', 'numberedList', 'bulletedList', 'insertTable', '|',
-            'undo', 'redo',
+            'undo', 'redo'
         ]
     }, {
         displayName: 'classic',

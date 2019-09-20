@@ -1,37 +1,51 @@
-import { ApplicationConfiguration, ConfigState, GetAppConfiguration } from '@abp/ng.core';
-import { Component } from '@angular/core';
-import { RouterState } from '@angular/router';
+import { ApplicationConfiguration, Config, ConfigState, GetAppConfiguration, ABP } from '@abp/ng.core';
+import { Component, OnInit } from '@angular/core';
+import { RouterState, Router } from '@angular/router';
 import { Navigate } from '@ngxs/router-plugin';
 import { Select, Store } from '@ngxs/store';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { Observable } from 'rxjs';
-import { SetDrawbarState, SetSidebarState } from '../../actions/layout.action';
 import { map } from 'rxjs/operators';
+import { SetDrawbarState, SetSidebarState, SetMainNavgitionState } from '../../actions/layout.action';
 
 @Component({
     selector: 'ran-app-header',
     styleUrls: ['./header.component.scss'],
     templateUrl: './header.component.html'
 })
-export class AppHeaderComponent {
+export class AppHeaderComponent implements OnInit {
 
     @Select(ConfigState.getOne('currentUser'))
     currentUser$: Observable<ApplicationConfiguration.CurrentUser>;
+
+    @Select(ConfigState.getOne('routes'))
+    routes$: Observable<ABP.FullRoute[]>;
+
+    unReadCount = 0;
+
+    get visibleRoutes$(): Observable<ABP.FullRoute[]> {
+        return this.routes$.pipe(map(m => m.filter(n => !n.invisible)));
+    }
+
+    get appInfo(): Config.Application {
+        return this.store.selectSnapshot(ConfigState.getApplicationInfo);
+    }
 
     get userName() {
         return this.currentUser$.pipe(map(m => m.userName));
     }
 
-    get pictureAvatar() {
-        return '';
-    }
-
-    unReadCount = 0;
-
     constructor(
         private store: Store,
+        private router: Router,
         private oauthService: OAuthService
     ) {
+    }
+
+    ngOnInit() {
+        this.visibleRoutes$.subscribe(result => {
+            console.log(result);
+        });
     }
 
     setSidebarState() {
@@ -41,6 +55,12 @@ export class AppHeaderComponent {
     setDrawbarState() {
         this.store.dispatch(new SetDrawbarState());
     }
+
+    setMainNavgition(item: ABP.FullRoute) {
+        this.store.dispatch(new SetMainNavgitionState(item));
+        this.router.navigateByUrl(item.url);
+    }
+
 
     logout() {
         this.oauthService.logOut();

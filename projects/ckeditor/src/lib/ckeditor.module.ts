@@ -1,11 +1,16 @@
 import { NgModule } from '@angular/core';
-import { RanCkeditor5Component } from './components/ckeditor5.component';
-
+import { Ckeditor5Component } from './components/ckeditor5.component';
+import { Ckeditor5ToolbarComponent } from './components/ckeditor5-toolbar.component';
 
 
 @NgModule({
-  imports: [],
-  declarations: [RanCkeditor5Component],
-  exports: [RanCkeditor5Component]
+  declarations: [
+    Ckeditor5ToolbarComponent,
+    Ckeditor5Component
+  ],
+  exports: [
+    Ckeditor5ToolbarComponent,
+    Ckeditor5Component
+  ]
 })
-export class RanCkeditorModule { }
+export class CkeditorModule { }

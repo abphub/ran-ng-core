@@ -1,36 +1,33 @@
-import { HttpClient } from '@angular/common/http';
-import { AfterViewInit, Component, ElementRef, forwardRef, Input, ViewChild, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, forwardRef, Injector, Input, ViewChild, ViewEncapsulation } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import * as DecoupledEditor from '@ckeditor/ckeditor5-build-decoupled-document';
 import '@ckeditor/ckeditor5-build-decoupled-document/build/translations/zh-cn';
-import { Ckeditor5DownloadFile } from '../models/ckeditor5-download-file';
 import { Ckeditor5ImageUploadAdapter } from '../models/ckeditor5-image-upload-adapter';
+import { MEDIA_PROVIDERS } from '../models/ckeditor5-media-providers';
 import { CkeditorService, CkeditorType } from '../services/ckeditor5.service';
+import { Ckeditor5ToolbarComponent } from './ckeditor5-toolbar.component';
 
 
-const Editor = DecoupledEditor;
+const DocumentEditor = DecoupledEditor;
+
+const CKEDITOR_NG_VALUE_ACCESSOR = {
+    provide: NG_VALUE_ACCESSOR,
+    // tslint:disable-next-line: no-use-before-declare
+    useExisting: forwardRef(() => Ckeditor5Component),
+    multi: true
+};
 
 @Component({
     selector: 'ran-ckeditor5',
-    template: `<div role="ckeditor" #ckeditor></div>`,
+    templateUrl: './ckeditor5.component.html',
     styleUrls: ['./ckeditor5.component.scss'],
+    providers: [CKEDITOR_NG_VALUE_ACCESSOR],
     encapsulation: ViewEncapsulation.None,
-    providers: [{
-        provide: NG_VALUE_ACCESSOR,
-        useExisting: forwardRef(() => RanCkeditor5Component),
-        multi: true
-    }],
 })
-export class RanCkeditor5Component implements AfterViewInit, ControlValueAccessor {
+export class Ckeditor5Component implements AfterViewInit, ControlValueAccessor {
 
     @ViewChild('ckeditor', { static: false })
-    ckeditorElement: ElementRef;
-
-    /**
-     * ckeditor工具栏，可参考ckeditor文档自定义功能
-     */
-    @Input()
-    toolbarConfig: string[];
+    ckeditorElement: ElementRef<HTMLDivElement>;
 
     /**
      * 组件提供类型，不定义toolbarConfig的情况下使用
@@ -39,24 +36,45 @@ export class RanCkeditor5Component implements AfterViewInit, ControlValueAccesso
     @Input()
     type: CkeditorType;
 
+    @Input()
+    toolbarComponent: Ckeditor5ToolbarComponent | HTMLDivElement;
+
     /**
-     * 非基础类型
-     * 必须配置entityId和attachmentRuleName用于上传图片
+     * ckeditor工具栏，可参考ckeditor文档自定义功能
      */
     @Input()
-    entityId: string;
-    @Input()
-    attachmentRuleName: string;
+    toolbarConfig: string[];
 
-    private ckeditor;
+    /**
+     * 上传路径
+     */
+    @Input()
+    uploadBaseUrl: string;
+
+    /**
+     * 含有上传图片功能的ckeditor5需要配置providerKey用于上传图片
+     */
+    @Input()
+    providerKey: string;
+
+    /**
+     * 上传规则
+     * 如果未配置，则默认为ckeditor-content-image
+     * 如果配置，则上传时按照配置之后的上传，
+     */
+    @Input()
+    providerName: string;
+
     onchange: (newData: any) => void;
     touched: () => void;
 
     data: string;
 
+    private ckeditor;
+
     constructor(
+        private injector: Injector,
         private ckeditorService: CkeditorService,
-        private http: HttpClient
     ) {
     }
 
@@ -68,57 +86,12 @@ export class RanCkeditor5Component implements AfterViewInit, ControlValueAccesso
         }
     }
 
-    registerOnChange(fn: (newData: any) => void): void {
-        this.onchange = fn;
-    }
-
-    registerOnTouched(fn: any) {
-        this.touched = fn;
-    }
-
     ngAfterViewInit() {
-        let toobarConfig = [];
-        if (this.toolbarConfig && this.toolbarConfig.length) {
-            toobarConfig = this.toolbarConfig;
-        } else {
-            const ckeditorType = this.ckeditorService.getConfig(this.type);
-            toobarConfig = ckeditorType.config;
-        }
-
-        Editor.create(this.ckeditorElement.nativeElement, {
+        DocumentEditor.create(this.ckeditorElement.nativeElement, {
             language: 'zh-cn',
-            toolbar: toobarConfig,
+            toolbar: this.getToobarConfig(),
             mediaEmbed: {
-                extraProviders: [
-                    {
-                        /**
-                         * 为腾讯视频定义的插入视频规则
-                         */
-                        name: 'txp',
-                        url: /^https:\/\/v\.qq\.com\/x\/cover\/(\w+)\/(\w+)\.html/,
-                        html: match => {
-                            return `<div class="ck_media__wrapper_txq">
-                                    <iframe src="https:/v.qq.com/txp/iframe/player.html?vid=${match[2]}" frameborder="0" >
-                                    </iframe>
-                                </div>`;
-                        }
-                    },
-                    {
-                        /**
-                         * 自定义组件上传规则，需要修改
-                         * Default/articles/2018/11/06/bxtjyizv.o2f.mp4
-                         * http://fx.kk66.cn:82/page/watchvideo?src=video-url
-                         */
-                        name: 'nuke',
-                        url: /^Default\/(\w+)\/(\w+)\/(\w+)\/(\w+)/,
-                        html: match => {
-                            const basehref = '';
-                            return `<div class="ck_media__wrapper_nuke">
-                                    <video src="${basehref}/${match.input}"></video>
-                                </div>`;
-                        }
-                    }
-                ]
+                extraProviders: MEDIA_PROVIDERS
             }
         }).then(editor => {
 
@@ -131,16 +104,25 @@ export class RanCkeditor5Component implements AfterViewInit, ControlValueAccesso
             /**
              * 添加工具栏
              */
-            editor.ui.view.editable.element.parentElement.insertBefore(
-                editor.ui.view.toolbar.element,
-                editor.ui.view.editable.element
-            );
+            if (this.toolbarComponent) {
+                this.toolbarComponent.appendChild(editor.ui.view.toolbar.element);
+            } else {
+                editor.ui.view.editable.element.parentElement.insertBefore(
+                    editor.ui.view.toolbar.element,
+                    editor.ui.view.editable.element
+                );
+            }
 
             /**
              * 自定义上传图片
              */
             editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
-                return new Ckeditor5ImageUploadAdapter(loader, this.entityId, this.attachmentRuleName, this.http);
+                return new Ckeditor5ImageUploadAdapter(
+                    loader,
+                    this.injector,
+                    this.providerKey,
+                    this.providerName,
+                );
             };
 
             editor.plugins.get('Clipboard').on('inputTransformation', (event, data) => {
@@ -153,17 +135,17 @@ export class RanCkeditor5Component implements AfterViewInit, ControlValueAccesso
                 if (rtfContent) {
                     return;
                 }
-                const downloadFile = new Ckeditor5DownloadFile({
-                    editor,
-                    attachmentRuleName: this.attachmentRuleName,
-                    entityId: this.entityId,
-                    ckeditorData: data
-                });
-                event.stop();
-                downloadFile.getBody().then(body => {
-                    const modelFragment = editor.data.toModel(body);
-                    editor.model.insertContent(modelFragment, editor.model.document.selection);
-                });
+                // const downloadFile = new Ckeditor5DownloadFile({
+                //     editor,
+                //     attachmentRuleName: this.attachmentRuleName,
+                //     entityId: this.entityId,
+                //     ckeditorData: data
+                // });
+                // event.stop();
+                // downloadFile.getBody().then(body => {
+                //     const modelFragment = editor.data.toModel(body);
+                //     editor.model.insertContent(modelFragment, editor.model.document.selection);
+                // });
             });
 
             editor.model.document.on('change:data', () => {
@@ -175,5 +157,25 @@ export class RanCkeditor5Component implements AfterViewInit, ControlValueAccesso
         }).catch(error => {
             console.error(error);
         });
+    }
+
+    private getToobarConfig(): string[] {
+        let toobarConfig = [];
+        if (this.toolbarConfig && this.toolbarConfig.length) {
+            toobarConfig = this.toolbarConfig;
+        } else {
+            const ckeditorType = this.ckeditorService.getConfig(this.type);
+            toobarConfig = ckeditorType.config;
+        }
+
+        return toobarConfig;
+    }
+
+    registerOnChange(fn: (newData: any) => void): void {
+        this.onchange = fn;
+    }
+
+    registerOnTouched(fn: any) {
+        this.touched = fn;
     }
 }

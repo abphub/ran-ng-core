@@ -6,21 +6,32 @@
                 基于ckeditor5自研发组件演示
             </div>
             <div class="card-body">
-                {{form.value|json}}
                 <p class="border-bottom pb-2">基础版</p>
                 <ran-ckeditor5 formControlName="ckeditorBaseData"></ran-ckeditor5>
             </div>
             <div class="card-body">
                 <p class="border-bottom pb-2">classic版</p>
-                <ran-ckeditor5 type="classic" formControlName="ckeditorClassicData"></ran-ckeditor5>
+                <ran-ckeditor5 type="classic" formControlName="ckeditorClassicData"
+                    providerKey='4fa0ba11-e3ee-90cc-ceba-39efbf692e9d' providerName='post-article-images'>
+                </ran-ckeditor5>
             </div>
             <div class="card-body">
                 <p class="border-bottom pb-2">document版</p>
                 <ran-ckeditor5 type="document" formControlName="ckeditorDocumentData"></ran-ckeditor5>
             </div>
-
-            <div ranAppAnchor>
-
+            <div class="card-body">
+                <p class="border-bottom pb-2">ckeditor和toolbar分离</p>
+                <ran-ckeditor5-toolbar #ckeditorToolbar></ran-ckeditor5-toolbar>
+                <div class="form-group">
+                    <label class="col-form-label">标题</label>
+                    <input type="text" class="form-control" placeholder="标题">
+                </div>
+                <div class="form-group">
+                    <label class="col-form-label">内容</label>
+                    <ran-ckeditor5 type="document" [toolbarComponent]='ckeditorToolbar'
+                        formControlName="ckeditorToolbarData">
+                    </ran-ckeditor5>
+                </div>
             </div>
         </div>
     </form>

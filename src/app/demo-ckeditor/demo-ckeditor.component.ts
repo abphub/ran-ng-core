@@ -1,6 +1,5 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
-import { FormGroup, FormControl } from '@angular/forms';
-import { RanAnchorDirective } from '@ran-ng/core';
+import { Component, OnInit } from '@angular/core';
+import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
     selector: 'ran-demo-ckeditor',
@@ -8,16 +7,14 @@ import { RanAnchorDirective } from '@ran-ng/core';
 })
 export class DemoCkeditorComponent implements OnInit {
 
-    @ViewChild(RanAnchorDirective, { static: true }) c: RanAnchorDirective;
-
     form: FormGroup;
 
     ngOnInit() {
-        console.log(this.c);
         this.form = new FormGroup({
             ckeditorBaseData: new FormControl(''),
             ckeditorClassicData: new FormControl(''),
-            ckeditorDocumentData: new FormControl('')
+            ckeditorDocumentData: new FormControl(''),
+            ckeditorToolbarData: new FormControl('所见即所得'),
         });
     }
 }

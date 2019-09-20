@@ -2,8 +2,8 @@ export const environment = {
   production: false,
   hmr: false,
   application: {
-    name: 'Blogging',
-    logoUrl: '',
+    name: '燃点网络核心平台',
+    logoUrl: 'http://ran.xyz/tenant-resources/Default/images/logo.png',
   },
   oAuthConfig: {
     issuer: 'https://localhost:44369',

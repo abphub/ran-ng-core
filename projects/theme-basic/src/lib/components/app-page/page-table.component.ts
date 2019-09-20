@@ -3,7 +3,10 @@ import { MatPaginator } from '@angular/material';
 
 @Component({
     selector: 'ran-page-table',
-    templateUrl: './page-table.component.html'
+    templateUrl: './page-table.component.html',
+    styles: [
+        ':host{ position: relative;width: 100%;display: inline-block;}'
+    ]
 })
 export class PageTableComponent implements AfterContentInit {
     @ContentChild(MatPaginator, { static: true }) paginator: MatPaginator;

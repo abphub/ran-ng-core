@@ -1,8 +1,9 @@
-import { ABP, ConfigState } from '@abp/ng.core';
+import { ABP } from '@abp/ng.core';
 import { Component, TrackByFunction } from '@angular/core';
 import { Select } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
+import { RanLayoutState } from '../../states';
 
 @Component({
     selector: 'ran-app-sidebar',
@@ -10,11 +11,11 @@ import { map } from 'rxjs/operators';
 })
 export class AppSidebarComponent {
 
-    @Select(ConfigState.getOne('routes'))
-    routes$: Observable<ABP.FullRoute[]>;
+    @Select(RanLayoutState.getMainNavigationState)
+    route$: Observable<ABP.FullRoute>;
 
     get visibleRoutes$(): Observable<ABP.FullRoute[]> {
-        return this.routes$.pipe(map(routes => this.getVisibleRoutes(routes)));
+        return this.route$.pipe(map(m => m.children));
     }
 
     trackByFn: TrackByFunction<ABP.FullRoute> = (_, item) => item.name;
@@ -32,13 +33,5 @@ export class AppSidebarComponent {
 
             return [...acc, val];
         }, []);
-    }
-
-    logout() {
-
-    }
-
-    toggleDrawbar() {
-
     }
 }
