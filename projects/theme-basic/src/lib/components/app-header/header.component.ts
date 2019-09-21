@@ -58,9 +58,12 @@ export class AppHeaderComponent implements OnInit {
 
     setMainNavgition(item: ABP.FullRoute) {
         this.store.dispatch(new SetMainNavgitionState(item));
-        this.router.navigateByUrl(item.url);
+        if (item.wrapper && item.children.length) {
+            this.router.navigateByUrl(item.children[0].path);
+        } else {
+            this.router.navigateByUrl(item.url);
+        }
     }
-
 
     logout() {
         this.oauthService.logOut();
@@ -70,5 +73,15 @@ export class AppHeaderComponent implements OnInit {
             }),
         );
         this.store.dispatch(new GetAppConfiguration());
+    }
+
+    private getNavgition(routes: ABP.FullRoute[]) {
+        for (const { url, children } of routes) {
+            if (children && children.length) {
+                return this.getNavgition(children);
+            }
+
+            return url;
+        }
     }
 }

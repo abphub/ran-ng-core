@@ -1,3 +1,4 @@
+import { AccountModule } from '@abp/ng.account';
 import { CoreModule } from '@abp/ng.core';
 import { ThemeSharedModule } from '@abp/ng.theme.shared';
 import { NgModule } from '@angular/core';
@@ -20,6 +21,9 @@ import { SharedModule } from './shared/shared.module';
     AppRoutingModule,
     SharedModule,
     ThemeSharedModule.forRoot(),
+    AccountModule.forRoot({
+      redirectUrl: ''
+    }),
     CoreModule.forRoot({
       environment,
       requirements: {

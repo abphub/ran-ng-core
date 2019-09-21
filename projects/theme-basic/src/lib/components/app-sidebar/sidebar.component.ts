@@ -7,15 +7,20 @@ import { RanLayoutState } from '../../states';
 
 @Component({
     selector: 'ran-app-sidebar',
-    templateUrl: './sidebar.component.html'
+    templateUrl: './sidebar.component.html',
+    styles: ['.active { background: rgba(0, 0, 0, 0.04)!important; }'],
 })
 export class AppSidebarComponent {
 
     @Select(RanLayoutState.getMainNavigationState)
     route$: Observable<ABP.FullRoute>;
 
-    get visibleRoutes$(): Observable<ABP.FullRoute[]> {
+    public get visibleRoutes$(): Observable<ABP.FullRoute[]> {
         return this.route$.pipe(map(m => m.children));
+    }
+
+    public get showSidebar$(): Observable<boolean> {
+        return this.visibleRoutes$.pipe(map(m => m && m.length ? true : false));
     }
 
     trackByFn: TrackByFunction<ABP.FullRoute> = (_, item) => item.name;

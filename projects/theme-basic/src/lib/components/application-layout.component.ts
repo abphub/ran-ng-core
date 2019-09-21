@@ -1,9 +1,10 @@
-import { eLayoutType, Config, ConfigState } from '@abp/ng.core';
+import { eLayoutType } from '@abp/ng.core';
+import { slideFromBottom } from '@abp/ng.theme.shared';
 import { Component } from '@angular/core';
-import { Select, Store } from '@ngxs/store';
+import { Select } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { RanLayoutState } from '../states';
-import { slideFromBottom } from '@abp/ng.theme.shared';
+import { Router } from '@angular/router';
 
 @Component({
     selector: 'ran-application-layout',
@@ -20,4 +21,7 @@ export class ApplicationLayoutComponent {
 
     @Select(RanLayoutState.getDrawbarState)
     drawbarState$: Observable<boolean>;
+
+    constructor(router: Router) {
+    }
 }

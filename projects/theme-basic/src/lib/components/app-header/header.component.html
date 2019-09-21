@@ -15,15 +15,14 @@
     </button>
     <mat-menu #quickNav="matMenu" class="quickNav">
         <button mat-menu-item (click)="setMainNavgition(item)"
-            *ngFor="let item of visibleRoutes$|async">{{item.name}}</button>
+            *ngFor="let item of visibleRoutes$|async">{{item.name | abpLocalization}}</button>
     </mat-menu>
 
-    <!-- <button mat-button class="h5" matTooltip="文档中心"> <i class="fa fa-question-circle"></i></button> -->
+    <button mat-button class="h5 d-none" matTooltip="文档中心"> <i class="fa fa-question-circle"></i></button>
     <button class="d-none" mat-button class="h5" matTooltip="消息中心">
         <i class="fa fa-bell" matBadge="{{unReadCount}}" matBadgeColor="accent" [matBadgeHidden]="unReadCount===0"></i>
     </button>
     <button *ngIf="userName|async" mat-button class="h5" [matMenuTriggerFor]="appMenu" matTooltip="个人中心">
-        <!-- <img class="rounded-circle" [src]="pictureAvatar" style="max-width: 40px;"> -->
         <span class="p-2">{{userName|async}}</span>
     </button>
     <mat-menu #appMenu="matMenu">
