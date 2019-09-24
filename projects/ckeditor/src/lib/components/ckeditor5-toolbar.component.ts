@@ -6,7 +6,7 @@ import { Component, ElementRef } from '@angular/core';
 })
 export class Ckeditor5ToolbarComponent {
 
-    constructor(private hostElement: ElementRef<HTMLElement>) { }
+    constructor(public hostElement: ElementRef<HTMLElement>) { }
 
     appendChild(ckeditorToolbar: HTMLDivElement) {
         this.hostElement.nativeElement.appendChild(ckeditorToolbar);

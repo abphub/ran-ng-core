@@ -1,7 +1,7 @@
 import { IDENTITY_ROUTES } from '@abp/ng.identity';
 import { ACCOUNT_ROUTES } from '@abp/ng.account';
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
+import { Routes, RouterModule, Router } from '@angular/router';
 import { ABP, eLayoutType } from '@abp/ng.core';
 import { TENANT_MANAGEMENT_ROUTES } from '@abp/ng.tenant-management';
 
@@ -22,7 +22,6 @@ const routes: Routes = [
       routes: {
         name: '::Menu:Ckeditor',
         layout: eLayoutType.application,
-        wrapper: true
       } as ABP.FullRoute,
     },
   },
@@ -59,4 +58,5 @@ const routes: Routes = [
   imports: [RouterModule.forRoot(routes)],
   exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {
+}

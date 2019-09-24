@@ -6,6 +6,21 @@
                 基于ckeditor5自研发组件演示
             </div>
             <div class="card-body">
+                <p class="border-bottom pb-2">ckeditor和toolbar分离</p>
+                <ran-ckeditor5-toolbar class="d-block" #ckeditorToolbar></ran-ckeditor5-toolbar>
+                <div class="form-group">
+                    <label class="col-form-label">标题</label>
+                    <input type="text" class="form-control" placeholder="标题">
+                </div>
+                <div class="form-group">
+                    <label class="col-form-label">内容</label>
+                    <ran-ckeditor5 type="document" [toolbarComponent]='ckeditorToolbar'
+                        assetfolderName='post-article-images' formControlName="ckeditorToolbarData"
+                        assetProviderKey='37a9eb83-bb44-7f03-65c4-39f04a1ac0a5'>
+                    </ran-ckeditor5>
+                </div>
+            </div>
+            <div class="card-body">
                 <p class="border-bottom pb-2">基础版</p>
                 <ran-ckeditor5 formControlName="ckeditorBaseData"></ran-ckeditor5>
             </div>
@@ -19,20 +34,7 @@
                 <p class="border-bottom pb-2">document版</p>
                 <ran-ckeditor5 type="document" formControlName="ckeditorDocumentData"></ran-ckeditor5>
             </div>
-            <div class="card-body">
-                <p class="border-bottom pb-2">ckeditor和toolbar分离</p>
-                <ran-ckeditor5-toolbar #ckeditorToolbar></ran-ckeditor5-toolbar>
-                <div class="form-group">
-                    <label class="col-form-label">标题</label>
-                    <input type="text" class="form-control" placeholder="标题">
-                </div>
-                <div class="form-group">
-                    <label class="col-form-label">内容</label>
-                    <ran-ckeditor5 type="document" [toolbarComponent]='ckeditorToolbar'
-                        formControlName="ckeditorToolbarData">
-                    </ran-ckeditor5>
-                </div>
-            </div>
+
         </div>
     </form>
 </ran-page-content>

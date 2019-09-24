@@ -2,9 +2,11 @@ import { AfterViewInit, Component, ElementRef, forwardRef, Injector, Input, View
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import * as DecoupledEditor from '@ckeditor/ckeditor5-build-decoupled-document';
 import '@ckeditor/ckeditor5-build-decoupled-document/build/translations/zh-cn';
+import { Ckeditor5DownloadFile } from '../models';
 import { Ckeditor5ImageUploadAdapter } from '../models/ckeditor5-image-upload-adapter';
 import { MEDIA_PROVIDERS } from '../models/ckeditor5-media-providers';
 import { CkeditorService, CkeditorType } from '../services/ckeditor5.service';
+import { FileService } from './../services/file.service';
 import { Ckeditor5ToolbarComponent } from './ckeditor5-toolbar.component';
 
 
@@ -55,7 +57,7 @@ export class Ckeditor5Component implements AfterViewInit, ControlValueAccessor {
      * 含有上传图片功能的ckeditor5需要配置providerKey用于上传图片
      */
     @Input()
-    providerKey: string;
+    assetProviderKey: string;
 
     /**
      * 上传规则
@@ -63,7 +65,7 @@ export class Ckeditor5Component implements AfterViewInit, ControlValueAccessor {
      * 如果配置，则上传时按照配置之后的上传，
      */
     @Input()
-    providerName: string;
+    assetfolderName: string;
 
     onchange: (newData: any) => void;
     touched: () => void;
@@ -117,35 +119,36 @@ export class Ckeditor5Component implements AfterViewInit, ControlValueAccessor {
              * 自定义上传图片
              */
             editor.plugins.get('FileRepository').createUploadAdapter = (loader) => {
-                return new Ckeditor5ImageUploadAdapter(
+                return new Ckeditor5ImageUploadAdapter({
                     loader,
-                    this.injector,
-                    this.providerKey,
-                    this.providerName,
-                );
+                    injector: this.injector,
+                    type: this.type,
+                    assetFolderName: this.assetfolderName,
+                    assetProviderKey: this.assetProviderKey
+                });
             };
 
             editor.plugins.get('Clipboard').on('inputTransformation', (event, data) => {
 
-                /**
-                 *  判断是否是从world中复制,如果是，则返回，默认走ckeditor自己封装的插件
-                 */
                 const dataTransfer = data.dataTransfer;
                 const rtfContent = dataTransfer.getData('text/rtf');
                 if (rtfContent) {
                     return;
                 }
-                // const downloadFile = new Ckeditor5DownloadFile({
-                //     editor,
-                //     attachmentRuleName: this.attachmentRuleName,
-                //     entityId: this.entityId,
-                //     ckeditorData: data
-                // });
-                // event.stop();
-                // downloadFile.getBody().then(body => {
-                //     const modelFragment = editor.data.toModel(body);
-                //     editor.model.insertContent(modelFragment, editor.model.document.selection);
-                // });
+
+                const downloadFile = new Ckeditor5DownloadFile({
+                    type: this.type,
+                    editor,
+                    assetProviderKey: this.assetProviderKey,
+                    assetFolderName: this.assetfolderName,
+                    dataTransfer: data.dataTransfer,
+                    fileService: this.injector.get(FileService)
+                });
+                event.stop();
+                downloadFile.getBody().then(body => {
+                    const modelFragment = editor.data.toModel(body);
+                    editor.model.insertContent(modelFragment, editor.model.document.selection);
+                });
             });
 
             editor.model.document.on('change:data', () => {

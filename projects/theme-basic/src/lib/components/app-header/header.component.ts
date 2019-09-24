@@ -1,19 +1,19 @@
-import { ApplicationConfiguration, Config, ConfigState, GetAppConfiguration, ABP } from '@abp/ng.core';
-import { Component, OnInit } from '@angular/core';
-import { RouterState, Router } from '@angular/router';
+import { ABP, ApplicationConfiguration, Config, ConfigState, GetAppConfiguration } from '@abp/ng.core';
+import { Component } from '@angular/core';
+import { RouterState } from '@angular/router';
 import { Navigate } from '@ngxs/router-plugin';
 import { Select, Store } from '@ngxs/store';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { SetDrawbarState, SetSidebarState, SetMainNavgitionState } from '../../actions/layout.action';
+import { SetDrawbarState, SetSidebarState } from '../../actions/layout.action';
 
 @Component({
     selector: 'ran-app-header',
     styleUrls: ['./header.component.scss'],
     templateUrl: './header.component.html'
 })
-export class AppHeaderComponent implements OnInit {
+export class AppHeaderComponent {
 
     @Select(ConfigState.getOne('currentUser'))
     currentUser$: Observable<ApplicationConfiguration.CurrentUser>;
@@ -37,15 +37,8 @@ export class AppHeaderComponent implements OnInit {
 
     constructor(
         private store: Store,
-        private router: Router,
         private oauthService: OAuthService
     ) {
-    }
-
-    ngOnInit() {
-        this.visibleRoutes$.subscribe(result => {
-            console.log(result);
-        });
     }
 
     setSidebarState() {
@@ -54,15 +47,6 @@ export class AppHeaderComponent implements OnInit {
 
     setDrawbarState() {
         this.store.dispatch(new SetDrawbarState());
-    }
-
-    setMainNavgition(item: ABP.FullRoute) {
-        this.store.dispatch(new SetMainNavgitionState(item));
-        if (item.wrapper && item.children.length) {
-            this.router.navigateByUrl(item.children[0].path);
-        } else {
-            this.router.navigateByUrl(item.url);
-        }
     }
 
     logout() {
@@ -75,13 +59,18 @@ export class AppHeaderComponent implements OnInit {
         this.store.dispatch(new GetAppConfiguration());
     }
 
-    private getNavgition(routes: ABP.FullRoute[]) {
-        for (const { url, children } of routes) {
-            if (children && children.length) {
-                return this.getNavgition(children);
+    getNavgition(route: ABP.FullRoute) {
+
+        if (!route.children || !route.children.length) {
+            return route.url;
+        }
+
+        for (const _route of route.children as ABP.FullRoute[]) {
+            if (_route.children && _route.children.length) {
+                return this.getNavgition(_route);
             }
 
-            return url;
+            return _route.url;
         }
     }
 }

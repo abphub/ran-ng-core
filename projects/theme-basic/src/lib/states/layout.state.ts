@@ -1,16 +1,16 @@
 import { ABP } from '@abp/ng.core';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
-import { SetDrawbarState, SetMainNavgitionState, SetSidebarState } from '../actions/layout.action';
+import { SetDrawbarState, SetMainNavigationState, SetSidebarState, SetSidebarContentScoll } from '../actions/layout.action';
 import { RanLayout } from '../models/layout';
 
 @State<RanLayout.State>({
     name: 'RanLayoutState',
-    defaults: { sidebarState: true, drawbarState: false, mainNavigation: {} } as RanLayout.State
+    defaults: { sidebarState: true, drawbarState: false, mainNavigation: [], $scrollEvent: null } as RanLayout.State
 })
 export class RanLayoutState {
 
     @Selector()
-    static getMainNavigationState({ mainNavigation }: RanLayout.State): ABP.FullRoute {
+    static getMainNavigationState({ mainNavigation }: RanLayout.State): ABP.FullRoute[] {
         return mainNavigation;
     }
 
@@ -24,9 +24,13 @@ export class RanLayoutState {
         return drawbarState;
     }
 
-    @Action(SetMainNavgitionState)
-    setMainNavigationState({ getState, patchState }: StateContext<RanLayout.State>, { payload }: SetMainNavgitionState) {
-        console.log(payload);
+    @Selector()
+    static getSidebarContentScoll({ $scrollEvent }: RanLayout.State): Event {
+        return $scrollEvent;
+    }
+
+    @Action(SetMainNavigationState)
+    setMainNavigationState({ getState, patchState }: StateContext<RanLayout.State>, { payload }: SetMainNavigationState) {
         patchState({ mainNavigation: payload });
     }
 
@@ -40,5 +44,10 @@ export class RanLayoutState {
     setDrawbarState({ getState, patchState }: StateContext<RanLayout.State>) {
         const { drawbarState } = getState();
         patchState({ drawbarState: !drawbarState });
+    }
+
+    @Action(SetSidebarContentScoll)
+    setSidebarContentScoll({ getState, patchState }: StateContext<RanLayout.State>, { payload }: SetSidebarContentScoll) {
+        patchState({ $scrollEvent: payload });
     }
 }

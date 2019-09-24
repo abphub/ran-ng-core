@@ -4,7 +4,7 @@
     top: 0;
     left: 0;
 
-    button {
-        outline: 0 !important;
+    button:focus {
+        outline: none !important;
     }
 }

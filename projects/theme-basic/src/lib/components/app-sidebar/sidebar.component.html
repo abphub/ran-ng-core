@@ -1,5 +1,5 @@
 <mat-nav-list>
-    <ng-container *ngFor="let route of visibleRoutes$ | async; trackBy: trackByFn"
+    <ng-container *ngFor="let route of routes$ | async; trackBy: trackByFn"
         [ngTemplateOutlet]="route?.children?.length ? dropdownLink : defaultLink"
         [ngTemplateOutletContext]="{ $implicit: route }">
     </ng-container>

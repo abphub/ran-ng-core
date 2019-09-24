@@ -1,6 +1,15 @@
-import { Rest, RestService, ConfigState } from '@abp/ng.core';
+import { ConfigState, Rest, RestService } from '@abp/ng.core';
 import { Injector } from '@angular/core';
 import { Store } from '@ngxs/store';
+import { CkeditorType } from './../services/ckeditor5.service';
+
+export interface ICkeditor5ImageUploadParams {
+    injector: Injector;
+    type: CkeditorType;
+    loader: any;
+    assetProviderKey: string;
+    assetFolderName: string;
+}
 
 export class Ckeditor5ImageUploadAdapter {
 
@@ -10,23 +19,21 @@ export class Ckeditor5ImageUploadAdapter {
     private rest: RestService;
 
     constructor(
-        loader: any,
-        injector: Injector,
-        providerKey: string,
-        providerName: string,
+        data: ICkeditor5ImageUploadParams
     ) {
-        if (!providerKey) {
-            throw new Error('暂无支持上传图片的providerKey,请先配置');
-        }
-        if (!providerName) {
-            providerName = 'ckeditor-content-image';
-        }
+        if (data.type !== 'base') {
+            if (!data.assetProviderKey) {
+                throw new Error('ckeditor5上传图片需要[assetProviderKey],请先配置');
+            }
 
-        this.loader = loader;
-        this.store = injector.get(Store);
-        this.rest = injector.get(RestService);
-
-        this.requestUrl = `/api/assets/files/upload?providerKey=${providerKey}&folderName=${providerName}`;
+            if (!data.assetFolderName) {
+                throw new Error('ckeditor5上传图片需要[assetFolderName],请先配置');
+            }
+        }
+        this.loader = data.loader;
+        this.store = data.injector.get(Store);
+        this.rest = data.injector.get(RestService);
+        this.requestUrl = `/api/assets/files/upload?providerKey=${data.assetProviderKey}&folderName=${data.assetFolderName}`;
     }
 
     upload() {

@@ -1,10 +1,11 @@
 import { eLayoutType } from '@abp/ng.core';
 import { slideFromBottom } from '@abp/ng.theme.shared';
-import { Component } from '@angular/core';
-import { Select } from '@ngxs/store';
+import { Component, ViewChild, AfterViewInit } from '@angular/core';
+import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { RanLayoutState } from '../states';
-import { Router } from '@angular/router';
+import { SetSidebarContentScoll } from '../actions';
+import { MatSidenavContainer } from '@angular/material';
 
 @Component({
     selector: 'ran-application-layout',
@@ -12,8 +13,11 @@ import { Router } from '@angular/router';
     styleUrls: ['./application-layout.component.scss'],
     animations: [slideFromBottom],
 })
-export class ApplicationLayoutComponent {
+export class ApplicationLayoutComponent implements AfterViewInit {
+
     static type = eLayoutType.application;
+
+    @ViewChild(MatSidenavContainer, { static: false }) sidenavContainer: MatSidenavContainer;
 
     @Select(RanLayoutState.getSidebarState)
     sidebarState$: Observable<boolean>;
@@ -22,6 +26,11 @@ export class ApplicationLayoutComponent {
     @Select(RanLayoutState.getDrawbarState)
     drawbarState$: Observable<boolean>;
 
-    constructor(router: Router) {
+    constructor(private store: Store) { }
+
+    ngAfterViewInit() {
+        this.sidenavContainer.scrollable.elementScrolled().subscribe(($event: Event) => {
+            this.store.dispatch(new SetSidebarContentScoll($event));
+        });
     }
 }

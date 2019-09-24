@@ -13,14 +13,10 @@ import { RanLayoutState } from '../../states';
 export class AppSidebarComponent {
 
     @Select(RanLayoutState.getMainNavigationState)
-    route$: Observable<ABP.FullRoute>;
-
-    public get visibleRoutes$(): Observable<ABP.FullRoute[]> {
-        return this.route$.pipe(map(m => m.children));
-    }
+    routes$: Observable<ABP.FullRoute[]>;
 
     public get showSidebar$(): Observable<boolean> {
-        return this.visibleRoutes$.pipe(map(m => m && m.length ? true : false));
+        return this.routes$.pipe(map(m => m && m.length ? true : false));
     }
 
     trackByFn: TrackByFunction<ABP.FullRoute> = (_, item) => item.name;

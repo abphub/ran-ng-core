@@ -5,10 +5,10 @@ import { Component, Input, OnChanges } from '@angular/core';
     templateUrl: './spinner.component.html',
     styleUrls: ['./spinner.component.scss'],
 })
-export class RanSpinnerComponent implements OnChanges {
+export class SpinnerComponent implements OnChanges {
 
-    isloading = false;
     @Input() loading = false;
+    isloading = false;
 
     constructor(
     ) {

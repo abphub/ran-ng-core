@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Rest, RestService } from '@abp/ng.core';
 import { Observable } from 'rxjs';
-import { IDownLoadFile, IFileDto } from '../models/file';
+import { ILoadRemoteFile, IFileDto } from '../models/file';
 
 @Injectable({
     providedIn: 'root'
@@ -9,13 +9,12 @@ import { IDownLoadFile, IFileDto } from '../models/file';
 export class FileService {
     constructor(private rest: RestService) { }
 
-    downLoadFile(downLoadFile: IDownLoadFile): Observable<IFileDto> {
-        const request: Rest.Request<IDownLoadFile> = {
-            method: 'GET',
-            url: `/api/app/file/downloadFile`,
-            body: downLoadFile
+    loadRemoteFile(body: ILoadRemoteFile): Observable<IFileDto> {
+        const request: Rest.Request<ILoadRemoteFile> = {
+            method: 'POST',
+            url: `/api/assets/files/loadRemoteFile?url=${body.url}&providerKey=${body.providerKey}&folderName=${body.folderName}`,
         };
 
-        return this.rest.request<IDownLoadFile, IFileDto>(request);
+        return this.rest.request<ILoadRemoteFile, IFileDto>(request);
     }
 }

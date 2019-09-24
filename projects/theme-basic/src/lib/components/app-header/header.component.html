@@ -14,8 +14,10 @@
         <i class="fa fa-list"></i>
     </button>
     <mat-menu #quickNav="matMenu" class="quickNav">
-        <button mat-menu-item (click)="setMainNavgition(item)"
-            *ngFor="let item of visibleRoutes$|async">{{item.name | abpLocalization}}</button>
+        <button mat-menu-item *ngFor="let item of visibleRoutes$|async" [abpPermission]="item.requiredPolicy"
+            [routerLink]=[getNavgition(item)]>
+            {{item.name | abpLocalization}}
+        </button>
     </mat-menu>
 
     <button mat-button class="h5 d-none" matTooltip="文档中心"> <i class="fa fa-question-circle"></i></button>
@@ -26,7 +28,7 @@
         <span class="p-2">{{userName|async}}</span>
     </button>
     <mat-menu #appMenu="matMenu">
-        <button type="button" mat-menu-item class="pl-3 pr-5" (click)="logout()">
+        <button mat-menu-item class="pl-3 pr-5" (click)="logout()">
             <i class="icon icon-logout pr-2"></i>注销
         </button>
     </mat-menu>

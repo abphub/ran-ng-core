@@ -1,13 +1,12 @@
 import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
+import { NgModule, ModuleWithProviders } from '@angular/core';
 import { MatCheckboxModule } from '@angular/material';
-import { RanCheckboxComponent } from './components/checkbox/checkbox.component';
-import { RanSpinnerComponent } from './components/spinner/spinner.component';
-import { RanAppAnchorDirective } from './directives/auchor.directive';
-import { RanDefaultDataPipe } from './pipes/default-data.pipe';
-import { RanHtmlPipe } from './pipes/innerhtml.pipe';
-import { RanJoinPipe } from './pipes/join.pipe';
-import { RanMomentFormatPipe } from './pipes/moment-format.pipe';
+import { CheckboxComponent } from './components/checkbox/checkbox.component';
+import { AppAnchorDirective } from './directives/auchor.directive';
+import { DefaultDataPipe } from './pipes/default-data.pipe';
+import { HtmlPipe } from './pipes/innerhtml.pipe';
+import { JoinPipe } from './pipes/join.pipe';
+import { MomentFormatPipe } from './pipes/moment-format.pipe';
 import { ModalService } from './services/modal.service';
 import { UnitsService } from './services/units.service';
 
@@ -17,26 +16,30 @@ import { UnitsService } from './services/units.service';
         MatCheckboxModule
     ],
     declarations: [
-        RanCheckboxComponent,
-        RanSpinnerComponent,
-        RanAppAnchorDirective,
-        RanDefaultDataPipe,
-        RanHtmlPipe,
-        RanJoinPipe,
-        RanMomentFormatPipe
+        CheckboxComponent,
+        AppAnchorDirective,
+        DefaultDataPipe,
+        HtmlPipe,
+        JoinPipe,
+        MomentFormatPipe
     ],
     exports: [
-        RanCheckboxComponent,
-        RanSpinnerComponent,
-        RanAppAnchorDirective,
-        RanDefaultDataPipe,
-        RanHtmlPipe,
-        RanJoinPipe,
-        RanMomentFormatPipe
-    ],
-    providers: [
-        ModalService,
-        UnitsService
+        CheckboxComponent,
+        AppAnchorDirective,
+        DefaultDataPipe,
+        HtmlPipe,
+        JoinPipe,
+        MomentFormatPipe
     ]
 })
-export class CoreModule { }
+export class CoreModule {
+    static forRoot(): ModuleWithProviders {
+        return {
+            ngModule: CoreModule,
+            providers: [
+                ModalService,
+                UnitsService
+            ],
+        };
+    }
+}

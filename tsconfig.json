@@ -37,6 +37,12 @@
       ],
       "ckeditor/*": [
         "dist/ckeditor/*"
+      ],
+      "spinner": [
+        "dist/spinner"
+      ],
+      "spinner/*": [
+        "dist/spinner/*"
       ]
     }
   }
