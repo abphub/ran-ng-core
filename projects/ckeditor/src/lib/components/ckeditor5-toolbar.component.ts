@@ -1,8 +1,10 @@
-import { Component, ElementRef } from '@angular/core';
+import { Component, ElementRef, ViewEncapsulation } from '@angular/core';
 
 @Component({
     selector: 'ran-ckeditor5-toolbar',
-    templateUrl: 'ckeditor5-toolbar.component.html'
+    template: '',
+    styles: ['./ckeditor5.component.scss'],
+    encapsulation: ViewEncapsulation.None
 })
 export class Ckeditor5ToolbarComponent {
 

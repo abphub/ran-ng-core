@@ -1,3 +1,6 @@
+/**
+ * extraProviders
+ */
 export const MEDIA_PROVIDERS = [
     {
         /**

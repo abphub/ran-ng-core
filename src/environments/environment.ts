@@ -7,9 +7,9 @@ export const environment = {
   },
   oAuthConfig: {
     issuer: 'https://localhost:44369',
-    clientId: 'Assets_App',
+    clientId: 'Blogging_App',
     dummyClientSecret: '1q2w3e*',
-    scope: 'Assets',
+    scope: 'Blogging',
     showDebugInformation: true,
     oidc: false,
     requireHttps: true,

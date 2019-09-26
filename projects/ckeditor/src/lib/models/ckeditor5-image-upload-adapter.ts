@@ -3,7 +3,7 @@ import { Injector } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { CkeditorType } from './../services/ckeditor5.service';
 
-export interface ICkeditor5ImageUploadParams {
+interface ICkeditor5ImageUploadParams {
     injector: Injector;
     type: CkeditorType;
     loader: any;
@@ -40,13 +40,13 @@ export class Ckeditor5ImageUploadAdapter {
         return new Promise((resolve) => {
             this.loader.file.then((file => {
 
-                const data = new FormData();
-                data.append('file', file);
+                const body = new FormData();
+                body.append('file', file);
 
                 const request: Rest.Request<FormData> = {
                     method: 'POST',
                     url: this.requestUrl,
-                    body: data,
+                    body,
                 };
 
                 this.rest.request<FormData, { webUrl: string }>(request).subscribe(result => {

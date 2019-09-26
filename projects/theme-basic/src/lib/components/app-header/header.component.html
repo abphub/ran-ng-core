@@ -14,18 +14,23 @@
         <i class="fa fa-list"></i>
     </button>
     <mat-menu #quickNav="matMenu" class="quickNav">
-        <button mat-menu-item *ngFor="let item of visibleRoutes$|async" [abpPermission]="item.requiredPolicy"
-            [routerLink]=[getNavgition(item)]>
-            {{item.name | abpLocalization}}
-        </button>
+        <div class="row mx-1">
+            <div class="col-4" *ngFor="let route of navigations">
+                <button mat-menu-item (click)='navigationByRoute(route)'>
+                    <h2 class="mb-0"><i class="{{route.iconClass?route.iconClass:'fa fa-list'}}"></i></h2>
+                    <p class="mb-0">{{route.name | abpLocalization}}</p>
+                </button>
+            </div>
+        </div>
     </mat-menu>
 
     <button mat-button class="h5 d-none" matTooltip="文档中心"> <i class="fa fa-question-circle"></i></button>
     <button class="d-none" mat-button class="h5" matTooltip="消息中心">
         <i class="fa fa-bell" matBadge="{{unReadCount}}" matBadgeColor="accent" [matBadgeHidden]="unReadCount===0"></i>
     </button>
-    <button *ngIf="userName|async" mat-button class="h5" [matMenuTriggerFor]="appMenu" matTooltip="个人中心">
-        <span class="p-2">{{userName|async}}</span>
+    <button *ngIf="(currentUser$|async)?.userName" mat-button class="h5" [matMenuTriggerFor]="appMenu"
+        matTooltip="个人中心">
+        <span class="p-2">{{( currentUser$|async )?.userName}}</span>
     </button>
     <mat-menu #appMenu="matMenu">
         <button mat-menu-item class="pl-3 pr-5" (click)="logout()">

@@ -1,6 +1,6 @@
 import { ABP, ApplicationConfiguration, Config, ConfigState, GetAppConfiguration } from '@abp/ng.core';
-import { Component } from '@angular/core';
-import { RouterState } from '@angular/router';
+import { Component, ViewEncapsulation, OnInit } from '@angular/core';
+import { RouterState, Router } from '@angular/router';
 import { Navigate } from '@ngxs/router-plugin';
 import { Select, Store } from '@ngxs/store';
 import { OAuthService } from 'angular-oauth2-oidc';
@@ -11,9 +11,10 @@ import { SetDrawbarState, SetSidebarState } from '../../actions/layout.action';
 @Component({
     selector: 'ran-app-header',
     styleUrls: ['./header.component.scss'],
-    templateUrl: './header.component.html'
+    templateUrl: './header.component.html',
+    encapsulation: ViewEncapsulation.None
 })
-export class AppHeaderComponent {
+export class AppHeaderComponent implements OnInit {
 
     @Select(ConfigState.getOne('currentUser'))
     currentUser$: Observable<ApplicationConfiguration.CurrentUser>;
@@ -23,22 +24,23 @@ export class AppHeaderComponent {
 
     unReadCount = 0;
 
-    get visibleRoutes$(): Observable<ABP.FullRoute[]> {
-        return this.routes$.pipe(map(m => m.filter(n => !n.invisible)));
-    }
+    navigations: ABP.FullRoute[] = [];
 
     get appInfo(): Config.Application {
         return this.store.selectSnapshot(ConfigState.getApplicationInfo);
     }
 
-    get userName() {
-        return this.currentUser$.pipe(map(m => m.userName));
-    }
-
     constructor(
+        private router: Router,
         private store: Store,
         private oauthService: OAuthService
     ) {
+    }
+
+    ngOnInit() {
+        this.routes$.subscribe(result => {
+            this.navigations = this.getNavgitions(result);
+        });
     }
 
     setSidebarState() {
@@ -51,26 +53,59 @@ export class AppHeaderComponent {
 
     logout() {
         this.oauthService.logOut();
-        this.store.dispatch(
-            new Navigate(['/'], null, {
-                state: { redirectUrl: this.store.selectSnapshot(RouterState).state.url },
-            }),
-        );
+        this.store.dispatch(new Navigate(['/account/login'], null, { state: { redirectUrl: '' } }));
         this.store.dispatch(new GetAppConfiguration());
     }
 
-    getNavgition(route: ABP.FullRoute) {
+    getNavgitions(routes: ABP.FullRoute[]): ABP.FullRoute[] {
+        const _routers = [];
+        for (const item of routes) {
+            if (this.getNavgitionGranted(item)) {
+                _routers.push(item);
+            }
+        }
+        return _routers;
+    }
+
+    private getNavgitionGranted(item: ABP.FullRoute): boolean {
+        if (item.invisible) {
+            return false;
+        }
+
+        if (item.children && item.children.length) {
+            for (const _route of item.children) {
+                return this.getNavgitionGranted(_route);
+            }
+        }
+
+        if (this.getGrantedPolicy(item.requiredPolicy)) {
+            return true;
+        }
+
+        return false;
+    }
+
+    navigationByRoute(route: ABP.FullRoute) {
+        const url = this.getNavigationByRoute(route);
+        this.router.navigateByUrl(url);
+    }
+
+    private getNavigationByRoute(route: ABP.FullRoute): string {
 
         if (!route.children || !route.children.length) {
-            return route.url;
-        }
-
-        for (const _route of route.children as ABP.FullRoute[]) {
-            if (_route.children && _route.children.length) {
-                return this.getNavgition(_route);
+            if (this.getGrantedPolicy(route.requiredPolicy) && route.url && !route.invisible) {
+                return route.url;
+            } else {
+                return '';
             }
-
-            return _route.url;
+        } else {
+            for (const _route of route.children) {
+                return this.getNavigationByRoute(_route);
+            }
         }
+    }
+
+    private getGrantedPolicy(requiredPolicy: string): boolean {
+        return this.store.selectSnapshot(ConfigState.getGrantedPolicy(requiredPolicy));
     }
 }

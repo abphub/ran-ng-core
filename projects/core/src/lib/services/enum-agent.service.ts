@@ -70,13 +70,21 @@ export class EnumAgentService {
         return result;
     }
 
+    getEnumAgentByEnumKey(enumKey: string | number): IEnumAgent {
+        return this.enumAgents.find(n => n.enumKey === enumKey);
+    }
+
+    getEnumAgentByEnumValue(enumValue: number) {
+        return this.enumAgents.find(n => n.enumValue === enumValue);
+    }
+
     getDisplayNameByEnumKey(enumKey: string | number): string {
-        const result = this.enumAgents.find(n => n.enumKey === enumKey);
+        const result = this.getEnumAgentByEnumKey(enumKey);
         return result ? result.displayName : undefined;
     }
 
     getDisplayNameByEnumValue(enumValue: number) {
-        const result = this.enumAgents.find(n => n.enumValue === enumValue);
+        const result = this.getEnumAgentByEnumValue(enumValue);
         return result ? result.displayName : undefined;
     }
 }

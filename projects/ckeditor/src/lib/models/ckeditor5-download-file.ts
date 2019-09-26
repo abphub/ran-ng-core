@@ -1,3 +1,6 @@
+import { ConfigState } from '@abp/ng.core';
+import { Store } from '@ngxs/store';
+import { Injector } from '@angular/core';
 import ViewMatcher from '@ckeditor/ckeditor5-engine/src/view/matcher';
 import { FileService } from '../services/file.service';
 import { CkeditorType } from './../services/ckeditor5.service';
@@ -10,7 +13,7 @@ interface ICkeditor5DownloadFile {
     assetProviderKey: string;
     assetFolderName: string;
     dataTransfer: any;
-    fileService: FileService;
+    injector: Injector;
 }
 
 export class Ckeditor5DownloadFile {
@@ -18,11 +21,12 @@ export class Ckeditor5DownloadFile {
     type: CkeditorType;
     assetProviderKey: string;
     assetFolderName: string;
-    fileService: FileService;
     dataTransfer: any;
 
-    private editorModel: any;
     private editorView: any;
+    private fileService: FileService;
+    private baseUrl: string;
+
 
     constructor(data: ICkeditor5DownloadFile) {
         if (data.type !== 'base') {
@@ -34,31 +38,25 @@ export class Ckeditor5DownloadFile {
                 throw new Error('ckeditor5上传图片需要[assetFolderName],请先配置');
             }
         }
-
-        console.log(1);
-
         this.assetProviderKey = data.assetProviderKey;
         this.assetFolderName = data.assetFolderName;
         this.dataTransfer = data.dataTransfer;
-        this.fileService = data.fileService;
-        this.editorModel = data.editor.model;
         this.editorView = data.editor.editing.view;
+        this.fileService = data.injector.get(FileService);
+        this.baseUrl = data.injector.get(Store).selectSnapshot(ConfigState.getApiUrl());
     }
 
     getBody(): Promise<any> {
         const htmlDocumentView = this.getFragment();
-
-        console.log(htmlDocumentView);
-
         const imageElements = this.getImageElements(htmlDocumentView);
-
         const promises: Promise<void>[] = [];
 
         for (const item of imageElements) {
             const src = item.getAttribute('src');
+
             if (src) {
                 promises.push(this.loadRemoteFile(src).then(result => {
-                    this.editorModel.setAttribute('src', result.webUrl, item);
+                    item._setAttribute('src', this.baseUrl + result.webUrl);
                 }));
             }
         }

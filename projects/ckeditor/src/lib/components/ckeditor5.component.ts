@@ -6,7 +6,6 @@ import { Ckeditor5DownloadFile } from '../models';
 import { Ckeditor5ImageUploadAdapter } from '../models/ckeditor5-image-upload-adapter';
 import { MEDIA_PROVIDERS } from '../models/ckeditor5-media-providers';
 import { CkeditorService, CkeditorType } from '../services/ckeditor5.service';
-import { FileService } from './../services/file.service';
 import { Ckeditor5ToolbarComponent } from './ckeditor5-toolbar.component';
 
 
@@ -14,7 +13,6 @@ const DocumentEditor = DecoupledEditor;
 
 const CKEDITOR_NG_VALUE_ACCESSOR = {
     provide: NG_VALUE_ACCESSOR,
-    // tslint:disable-next-line: no-use-before-declare
     useExisting: forwardRef(() => Ckeditor5Component),
     multi: true
 };
@@ -72,7 +70,8 @@ export class Ckeditor5Component implements AfterViewInit, ControlValueAccessor {
 
     data: string;
 
-    private ckeditor;
+    ckeditor;
+    loading = false;
 
     constructor(
         private injector: Injector,
@@ -130,9 +129,12 @@ export class Ckeditor5Component implements AfterViewInit, ControlValueAccessor {
 
             editor.plugins.get('Clipboard').on('inputTransformation', (event, data) => {
 
+                this.loading = true;
+
                 const dataTransfer = data.dataTransfer;
                 const rtfContent = dataTransfer.getData('text/rtf');
                 if (rtfContent) {
+                    this.loading = false;
                     return;
                 }
 
@@ -142,12 +144,13 @@ export class Ckeditor5Component implements AfterViewInit, ControlValueAccessor {
                     assetProviderKey: this.assetProviderKey,
                     assetFolderName: this.assetfolderName,
                     dataTransfer: data.dataTransfer,
-                    fileService: this.injector.get(FileService)
+                    injector: this.injector
                 });
                 event.stop();
                 downloadFile.getBody().then(body => {
                     const modelFragment = editor.data.toModel(body);
                     editor.model.insertContent(modelFragment, editor.model.document.selection);
+                    this.loading = false;
                 });
             });
 

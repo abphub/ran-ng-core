@@ -1,9 +1,9 @@
-import { Ckeditor5ToolbarComponent } from './../../../projects/ckeditor/src/lib/components/ckeditor5-toolbar.component';
-import { Component, OnInit, ViewChild, AfterViewInit, Renderer2 } from '@angular/core';
+import { AfterViewInit, Component, OnInit, Renderer2, ViewChild } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
-import { Selector, Select } from '@ngxs/store';
+import { Select } from '@ngxs/store';
 import { RanLayoutState } from 'projects/theme-basic/src/lib/states';
 import { Observable } from 'rxjs';
+import { Ckeditor5ToolbarComponent } from './../../../projects/ckeditor/src/lib/components/ckeditor5-toolbar.component';
 
 @Component({
     selector: 'ran-demo-ckeditor',

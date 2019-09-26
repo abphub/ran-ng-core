@@ -1,31 +1,44 @@
-.ck-default-style {
-    border: 1px solid #c4c4c4 !important;
-    margin-top: -1px;
-    min-height: 300px;
-    max-height: 600px;
+ran-ckeditor5-toolbar {
+    .ck-toolbar {
+        background: white!important;
+    }
 }
 
-.ck-no-toolbarcomponent-style {
-    border: none !important;
-    box-shadow: none !important;
-    padding: 0 !important;
-    min-height: 600px;
-    max-height: none!important;
-}
+ran-ckeditor5 {
 
-.ck-media__wrapper {
+    position: relative;
+    display: inline-block;
     width: 100%;
 
-    .ck_media__wrapper_txq {
-        position: relative;
-        padding-bottom: 100%;
+    .ck-default-style {
+        border: 1px solid #c4c4c4 !important;
+        margin-top: -1px;
+        min-height: 300px;
+        max-height: 600px;
+    }
 
-        iframe {
-            position: absolute;
-            width: 100%;
-            height: 100%;
-            top: 0;
-            left: 0
+    .ck-no-toolbarcomponent-style {
+        border: none !important;
+        box-shadow: none !important;
+        padding: 0 !important;
+        min-height: 600px;
+        max-height: none !important;
+    }
+
+    .ck-media__wrapper {
+        width: 100%;
+
+        .ck_media__wrapper_txq {
+            position: relative;
+            padding-bottom: 100%;
+
+            iframe {
+                position: absolute;
+                width: 100%;
+                height: 100%;
+                top: 0;
+                left: 0
+            }
         }
     }
 }

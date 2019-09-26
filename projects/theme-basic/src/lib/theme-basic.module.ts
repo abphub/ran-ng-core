@@ -11,8 +11,6 @@ import { NavigationEnd, Router } from '@angular/router';
 import { NgxsModule, Store } from '@ngxs/store';
 import { CoreModule as RanCoreModule } from '@ran-ng/core';
 import { SpinnerModule } from '@ran-ng/spinner';
-
-import { SetMainNavigationState } from './actions';
 import { AccountLayoutComponent } from './components/account-layout.component';
 import { AppContainerComponent } from './components/app-container/container.component';
 import { AppDrawerComponent } from './components/app-drawer/drawer.component';
@@ -24,6 +22,7 @@ import { AppSidebarComponent } from './components/app-sidebar/sidebar.component'
 import { ApplicationLayoutComponent } from './components/application-layout.component';
 import { EmptyLayoutComponent } from './components/empty-layout.component';
 import { RanLayoutState } from './states/layout.state';
+import { SetMainNavigationState } from './actions/layout.action';
 
 export const RAN_LAYOUTS = [ApplicationLayoutComponent, AccountLayoutComponent, EmptyLayoutComponent];
 
