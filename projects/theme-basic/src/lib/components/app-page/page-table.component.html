@@ -16,7 +16,8 @@
         <!-- 总数 -->
         <div class="p-3 text-right bg-white" *ngIf="!paginator">
             <p class="m-0 text-black-50">
-                {{ '::TotalCount' | abpLocalization: stringTotalCount }}
+                <span *ngIf="totalCount">{{ '::TotalCount' | abpLocalization: totalCount.toString() }}</span>
+                <span *ngIf="!totalCount">{{ '::TotalCount' | abpLocalization: '0' }}</span>
             </p>
         </div>
     </div>

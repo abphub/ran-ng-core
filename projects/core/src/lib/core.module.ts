@@ -1,5 +1,5 @@
 import { CommonModule } from '@angular/common';
-import { NgModule, ModuleWithProviders } from '@angular/core';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 import { MatCheckboxModule } from '@angular/material';
 import { CheckboxComponent } from './components/checkbox/checkbox.component';
 import { AppAnchorDirective } from './directives/auchor.directive';
@@ -39,7 +39,7 @@ export class CoreModule {
             providers: [
                 ModalService,
                 UnitsService
-            ],
+            ]
         };
     }
 }

@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, OnInit, Renderer2, ViewChild } from '@angular/core';
+import { AfterViewInit, Component, OnInit, Renderer2, ViewChild, Injector } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 import { Select } from '@ngxs/store';
 import { RanLayoutState } from 'projects/theme-basic/src/lib/states';
@@ -19,12 +19,13 @@ export class DemoCkeditorComponent implements OnInit, AfterViewInit {
 
     form: FormGroup;
 
-    constructor(private renderer2: Renderer2) {
-
+    constructor(
+        private renderer2: Renderer2,
+        injector: Injector
+    ) {
     }
 
     ngOnInit() {
-
         this.form = new FormGroup({
             ckeditorBaseData: new FormControl(''),
             ckeditorClassicData: new FormControl(''),

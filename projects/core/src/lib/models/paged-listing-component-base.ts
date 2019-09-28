@@ -57,7 +57,11 @@ export abstract class PagedListingComponentBase<T> implements OnInit {
         }
     }
 
-    refresh(): void {
+    refresh(pageNumber?: number): void {
+        if (pageNumber) {
+            this.getDataPage(pageNumber);
+            return;
+        }
         this.getDataPage(this.pageNumber);
     }
 
