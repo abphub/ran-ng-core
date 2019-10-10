@@ -26,6 +26,16 @@ const routes: Routes = [
     },
   },
   {
+    path: 'core',
+    loadChildren: () => import('./demo-core/demo-core.module').then(m => m.DemoCoreModule),
+    data: {
+      routes: {
+        name: '::Menu:Core',
+        layout: eLayoutType.application,
+      } as ABP.FullRoute,
+    },
+  },
+  {
     path: 'theme',
     loadChildren: () => import('./demo-theme-basic/demo-theme-basic.module').then(m => m.DemoThemeBasicModule),
     data: {

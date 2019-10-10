@@ -1,9 +1,9 @@
-import { Injector, OnInit, ViewChild } from '@angular/core';
-import { MatSort } from '@angular/material/sort';
-import { MatPaginator, PageEvent } from '@angular/material/paginator';
-import { ConfirmationService } from '@abp/ng.theme.shared';
 import { ABP } from '@abp/ng.core';
-import { ModalService } from '../services';
+import { ConfirmationService } from '@abp/ng.theme.shared';
+import { Injector, OnInit, ViewChild } from '@angular/core';
+import { MatDialog } from '@angular/material';
+import { MatPaginator, PageEvent } from '@angular/material/paginator';
+import { MatSort } from '@angular/material/sort';
 
 export abstract class PagedListingComponentBase<T> implements OnInit {
 
@@ -20,13 +20,13 @@ export abstract class PagedListingComponentBase<T> implements OnInit {
     public totalPages = 1;
     public pageSizeOptions = [10, 25, 50, 100, 300, 500];
 
-    protected _modalService: ModalService;
+    protected _matDialog: MatDialog;
     protected _confirmationService: ConfirmationService;
 
 
     constructor(injector: Injector) {
         this.result = { items: [], totalCount: 0 };
-        this._modalService = injector.get(ModalService);
+        this._matDialog = injector.get(MatDialog);
         this._confirmationService = injector.get(ConfirmationService);
     }
 

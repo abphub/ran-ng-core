@@ -1,12 +1,12 @@
 import { NgModule } from '@angular/core';
-import { Ckeditor5Component } from './components/ckeditor5.component';
-import { Ckeditor5ToolbarComponent } from './components/ckeditor5-toolbar.component';
 import { SpinnerModule } from '@ran-ng/spinner';
+import { Ckeditor5ToolbarComponent } from './components/ckeditor5-toolbar.component';
+import { Ckeditor5Component } from './components/ckeditor5.component';
 
 
 @NgModule({
   imports: [
-    SpinnerModule
+    SpinnerModule,
   ],
   declarations: [
     Ckeditor5ToolbarComponent,

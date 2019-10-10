@@ -46,7 +46,7 @@ export class Ckeditor5DownloadFile {
         this.baseUrl = data.injector.get(Store).selectSnapshot(ConfigState.getApiUrl());
     }
 
-    getBody(): Promise<any> {
+    getBody(callback: () => void): Promise<any> {
         const htmlDocumentView = this.getFragment();
         const imageElements = this.getImageElements(htmlDocumentView);
         const promises: Promise<void>[] = [];
@@ -62,9 +62,14 @@ export class Ckeditor5DownloadFile {
         }
 
         return new Promise((resolve) => {
-            Promise.all(promises).then(() => {
-                resolve(htmlDocumentView);
-            });
+            if (promises.length) {
+                callback();
+                Promise.all(promises).then(() => {
+                    resolve(htmlDocumentView);
+                });
+            } else {
+                resolve(false);
+            }
         });
     }
 
@@ -83,7 +88,6 @@ export class Ckeditor5DownloadFile {
     private getFragment() {
         const htmlString = this.dataTransfer.getData('text/html');
         const htmlDocument = new DOMParser().parseFromString(htmlString, 'text/html');
-
         const fragment = htmlDocument.createDocumentFragment();
         const nodes = htmlDocument.body.childNodes;
 

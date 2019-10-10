@@ -146,11 +146,16 @@ export class Ckeditor5Component implements AfterViewInit, ControlValueAccessor {
                     dataTransfer: data.dataTransfer,
                     injector: this.injector
                 });
-                event.stop();
-                downloadFile.getBody().then(body => {
-                    const modelFragment = editor.data.toModel(body);
-                    editor.model.insertContent(modelFragment, editor.model.document.selection);
+                downloadFile.getBody(() => {
+                    event.stop();
+                }).then(body => {
                     this.loading = false;
+                    if (body) {
+                        const modelFragment = editor.data.toModel(body);
+                        editor.model.insertContent(modelFragment, editor.model.document.selection);
+                    } else {
+                        console.log(event);
+                    }
                 });
             });
 

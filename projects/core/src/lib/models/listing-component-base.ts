@@ -1,19 +1,21 @@
-import { Injector, OnInit } from '@angular/core';
 import { ABP } from '@abp/ng.core';
 import { ConfirmationService } from '@abp/ng.theme.shared';
-import { ModalService } from '../services';
+import { Injector, OnInit } from '@angular/core';
+import { MatDialog } from '@angular/material';
 
 export abstract class ListingComponentBase<T> implements OnInit {
 
     isLoading = false;
     result: ABP.PagedItemsResponse<T>;
-    protected _modalService: ModalService;
+    protected _matDialog: MatDialog;
     protected _confirmationService: ConfirmationService;
 
     constructor(injector: Injector) {
-        this.result = { items: [] };
-        this._modalService = injector.get(ModalService);
+        this._matDialog = injector.get(MatDialog);
         this._confirmationService = injector.get(ConfirmationService);
+        this.result = {
+            items: []
+        };
     }
 
     ngOnInit() {

@@ -22,6 +22,5 @@ export namespace RAN {
     export type IFullAuditedDto<T> =
         IModificationAuditedDto<T> & ICreationAuditedDto<T> & IDeletionAuditedDto<T>;
 
-    export type IFullAuditedEntityDto<M, T> =
-        IModificationAuditedDto<M> & ICreationAuditedDto<M> & IDeletionAuditedDto<M> & EntityDto<T>;
+    export type IFullAuditedEntityDto<M, T> = EntityDto<T> & IFullAuditedDto<M>;
 }
