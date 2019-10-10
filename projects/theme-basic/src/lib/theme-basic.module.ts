@@ -23,6 +23,8 @@ import { ApplicationLayoutComponent } from './components/application-layout.comp
 import { EmptyLayoutComponent } from './components/empty-layout.component';
 import { RanLayoutState } from './states/layout.state';
 import { SetMainNavigationState } from './actions/layout.action';
+import { NgxValidateCoreModule } from '@ngx-validate/core';
+import { ValidationErrorComponent } from './components/validation-error/validation-error.component';
 
 export const RAN_LAYOUTS = [ApplicationLayoutComponent, AccountLayoutComponent, EmptyLayoutComponent];
 
@@ -35,7 +37,8 @@ export const RAN_LAYOUTS = [ApplicationLayoutComponent, AccountLayoutComponent, 
         AppDrawerComponent,
         PageHeaderComponent,
         PageContentComponent,
-        PageTableComponent
+        PageTableComponent,
+        ValidationErrorComponent
     ],
     imports: [
         NgxsModule.forFeature([RanLayoutState]),
@@ -51,6 +54,20 @@ export const RAN_LAYOUTS = [ApplicationLayoutComponent, AccountLayoutComponent, 
         MatButtonModule,
         MatMenuModule,
         MatTooltipModule,
+        NgxValidateCoreModule,
+        NgxValidateCoreModule.forRoot({
+            targetSelector: '.form-group',
+            blueprints: {
+                email: 'AbpAccount::ThisFieldIsNotAValidEmailAddress.',
+                max: 'AbpAccount::ThisFieldMustBeBetween{0}And{1}[{{ min }},{{ max }}]',
+                maxlength: 'AbpAccount::ThisFieldMustBeAStringWithAMaximumLengthOf{1}[{{ requiredLength }}]',
+                min: 'AbpAccount::ThisFieldMustBeBetween{0}And{1}[{{ min }},{{ max }}]',
+                minlength: 'AbpAccount::ThisFieldMustBeAStringOrArrayTypeWithAMinimumLengthOf[{{ min }},{{ max }}]',
+                required: 'AbpAccount::ThisFieldIsRequired.',
+                passwordMismatch: 'AbpIdentity::Identity.PasswordConfirmationFailed'
+            },
+            errorTemplate: ValidationErrorComponent
+        })
     ],
     exports: [
         ...RAN_LAYOUTS,
@@ -58,7 +75,10 @@ export const RAN_LAYOUTS = [ApplicationLayoutComponent, AccountLayoutComponent, 
         PageContentComponent,
         PageTableComponent
     ],
-    entryComponents: [...RAN_LAYOUTS]
+    entryComponents: [
+        ...RAN_LAYOUTS,
+        ValidationErrorComponent
+    ]
 })
 export class ThemeBasicModule {
     constructor(

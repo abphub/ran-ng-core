@@ -1,5 +1,5 @@
 import { Component, Injector, OnInit } from '@angular/core';
-import { ModalService } from '@ran-ng/core';
+import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 
 @Component({
     selector: 'app-demo-core',
@@ -8,18 +8,18 @@ import { ModalService } from '@ran-ng/core';
 })
 export class DemoCoreComponent implements OnInit {
 
+    formgroup: FormGroup;
 
     constructor(
-        public injector: Injector,
-        public modalService: ModalService
+        private fb: FormBuilder
     ) {
     }
 
     ngOnInit() {
-        console.log(this.injector.get(ModalService));
-    }
-
-    protected getListResult(successCallback: (result: any[]) => void, finishedCallback?: () => void) {
-        successCallback([]);
+        this.formgroup = this.fb.group({
+            name: ['', Validators.required],
+            weight: ['', Validators.required],
+            height: ['', Validators.required]
+        });
     }
 }

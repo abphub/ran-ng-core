@@ -10,11 +10,27 @@
             <ran-checkbox>刘老根</ran-checkbox>
         </div>
     </div>
+    {{formgroup.valid}}
+    {{formgroup.value|json}}
     <div class="card  mt-2">
         <div class="card-header">
-            ran-datetime-picker
+            表单验证
         </div>
         <div class="card-body">
+            <form [formGroup]="formgroup">
+                <div class="form-group">
+                    <label for="role-name">姓名</label><span> * </span>
+                    <input autofocus type="text" class="form-control" formControlName="name">
+                </div>
+                <div class="form-group">
+                    <label>体重</label>
+                    <input autofocus type="text" class="form-control" formControlName="weight">
+                </div>
+                <div class="form-group">
+                    <label>身高</label>
+                    <input autofocus type="text" class="form-control" formControlName="height">
+                </div>
+            </form>
         </div>
     </div>
 </ran-page-content>
