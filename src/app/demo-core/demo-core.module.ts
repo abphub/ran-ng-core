@@ -16,7 +16,7 @@ import { DemoCoreComponent } from './demo-core.component';
     imports: [
         NgxValidateCoreModule,
         CoreModule,
-        MatDialogModule,
+        FormsModule,
         ReactiveFormsModule,
         CommonModule,
         ThemeBasicModule,

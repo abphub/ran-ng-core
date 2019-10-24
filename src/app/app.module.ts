@@ -11,7 +11,7 @@ import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
-
+import { CoreModule as RanCoreModule } from 'projects/core/src/lib/core.module';
 @NgModule({
   declarations: [AppComponent],
   imports: [
@@ -26,6 +26,7 @@ import { SharedModule } from './shared/shared.module';
         layouts: RAN_LAYOUTS
       }
     }),
+    RanCoreModule.forRoot(),
     OAuthModule.forRoot(),
     NgxsModule.forRoot([]),
     NgxsReduxDevtoolsPluginModule.forRoot({ disabled: environment.production }),

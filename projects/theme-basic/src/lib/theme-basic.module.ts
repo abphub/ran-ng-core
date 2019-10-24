@@ -11,6 +11,7 @@ import { NavigationEnd, Router } from '@angular/router';
 import { NgxsModule, Store } from '@ngxs/store';
 import { CoreModule as RanCoreModule } from '@ran-ng/core';
 import { SpinnerModule } from '@ran-ng/spinner';
+import { SetMainNavigationState } from './actions/layout.action';
 import { AccountLayoutComponent } from './components/account-layout.component';
 import { AppContainerComponent } from './components/app-container/container.component';
 import { AppDrawerComponent } from './components/app-drawer/drawer.component';
@@ -21,10 +22,8 @@ import { PageTableComponent } from './components/app-page/page-table.component';
 import { AppSidebarComponent } from './components/app-sidebar/sidebar.component';
 import { ApplicationLayoutComponent } from './components/application-layout.component';
 import { EmptyLayoutComponent } from './components/empty-layout.component';
-import { RanLayoutState } from './states/layout.state';
-import { SetMainNavigationState } from './actions/layout.action';
-import { NgxValidateCoreModule } from '@ngx-validate/core';
 import { ValidationErrorComponent } from './components/validation-error/validation-error.component';
+import { RanLayoutState } from './states/layout.state';
 
 export const RAN_LAYOUTS = [ApplicationLayoutComponent, AccountLayoutComponent, EmptyLayoutComponent];
 
@@ -53,21 +52,7 @@ export const RAN_LAYOUTS = [ApplicationLayoutComponent, AccountLayoutComponent, 
         MatBadgeModule,
         MatButtonModule,
         MatMenuModule,
-        MatTooltipModule,
-        NgxValidateCoreModule,
-        NgxValidateCoreModule.forRoot({
-            targetSelector: '.form-group',
-            blueprints: {
-                email: 'AbpAccount::ThisFieldIsNotAValidEmailAddress.',
-                max: 'AbpAccount::ThisFieldMustBeBetween{0}And{1}[{{ min }},{{ max }}]',
-                maxlength: 'AbpAccount::ThisFieldMustBeAStringWithAMaximumLengthOf{1}[{{ requiredLength }}]',
-                min: 'AbpAccount::ThisFieldMustBeBetween{0}And{1}[{{ min }},{{ max }}]',
-                minlength: 'AbpAccount::ThisFieldMustBeAStringOrArrayTypeWithAMinimumLengthOf[{{ min }},{{ max }}]',
-                required: 'AbpAccount::ThisFieldIsRequired.',
-                passwordMismatch: 'AbpIdentity::Identity.PasswordConfirmationFailed'
-            },
-            errorTemplate: ValidationErrorComponent
-        })
+        MatTooltipModule
     ],
     exports: [
         ...RAN_LAYOUTS,

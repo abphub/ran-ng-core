@@ -4,19 +4,42 @@
 <ran-page-content>
     <div class="card">
         <div class="card-header">
+            当前时间
+        </div>
+        <div class="card-body">
+            {{dateTimeNow|momentFormat:'L LTS'}}
+        </div>
+    </div>
+    <div class="card">
+        <div class="card-header">
             ran-checkbox
         </div>
         <div class="card-body">
             <ran-checkbox>刘老根</ran-checkbox>
         </div>
     </div>
-    {{formgroup.valid}}
-    {{formgroup.value|json}}
     <div class="card  mt-2">
         <div class="card-header">
             表单验证
         </div>
         <div class="card-body">
+            <form>
+                <div class="form-group">
+                    <label for="role-name">姓名</label><span> * </span>
+                    <input autofocus type="text" name="name" class="form-control" [(ngModel)]="edit.name" required>
+                </div>
+                <div class="form-group">
+                    <label>体重</label>
+                    <input autofocus type="number" name="weight" class="form-control" [(ngModel)]="edit.weight"
+                        min="10">
+                </div>
+                <div class="form-group">
+                    <label>身高</label>
+                    <input autofocus type="number" name="height" class="form-control" [(ngModel)]="edit.height"
+                        minlength="18">
+                </div>
+            </form>
+
             <form [formGroup]="formgroup">
                 <div class="form-group">
                     <label for="role-name">姓名</label><span> * </span>
@@ -24,7 +47,7 @@
                 </div>
                 <div class="form-group">
                     <label>体重</label>
-                    <input autofocus type="text" class="form-control" formControlName="weight">
+                    <input autofocus type="number" class="form-control" formControlName="weight">
                 </div>
                 <div class="form-group">
                     <label>身高</label>

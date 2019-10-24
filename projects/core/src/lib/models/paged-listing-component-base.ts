@@ -1,14 +1,14 @@
 import { ABP } from '@abp/ng.core';
 import { ConfirmationService } from '@abp/ng.theme.shared';
-import { Injector, OnInit, ViewChild } from '@angular/core';
+import { Injector, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { MatPaginator, PageEvent } from '@angular/material/paginator';
 import { MatSort } from '@angular/material/sort';
 
 export abstract class PagedListingComponentBase<T> implements OnInit {
 
-    @ViewChild(MatPaginator, { static: true }) matPaginator: MatPaginator;
-    @ViewChild(MatSort, { static: true }) matSort: MatSort;
+    abstract matPaginator: MatPaginator;
+    matSort: MatSort;
 
     isLoading = false;
     result: ABP.PagedResponse<T>;
@@ -25,15 +25,16 @@ export abstract class PagedListingComponentBase<T> implements OnInit {
 
 
     constructor(injector: Injector) {
-        this.result = { items: [], totalCount: 0 };
         this._matDialog = injector.get(MatDialog);
         this._confirmationService = injector.get(ConfirmationService);
+        this.result = {
+            items: [],
+            totalCount: 0
+        };
     }
 
     ngOnInit(): void {
-        /**
-         * 刷新数据
-         */
+
         this.refresh();
 
         /**

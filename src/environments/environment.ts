@@ -12,7 +12,7 @@ export const environment = {
     scope: 'Blogging',
     showDebugInformation: true,
     oidc: false,
-    requireHttps: true,
+    requireHttps: false,
   },
   apis: {
     default: {

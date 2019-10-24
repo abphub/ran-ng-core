@@ -1,4 +1,4 @@
-import { ABP, ApplicationConfiguration, Config, ConfigState, GetAppConfiguration } from '@abp/ng.core';
+import { ABP, ApplicationConfiguration, Config, ConfigState, GetAppConfiguration, SetLanguage, SessionState } from '@abp/ng.core';
 import { Component, ViewEncapsulation, OnInit } from '@angular/core';
 import { RouterState, Router } from '@angular/router';
 import { Navigate } from '@ngxs/router-plugin';
@@ -22,12 +22,22 @@ export class AppHeaderComponent implements OnInit {
     @Select(ConfigState.getOne('routes'))
     routes$: Observable<ABP.FullRoute[]>;
 
+    @Select(ConfigState.getDeep('localization.languages'))
+    languages$: Observable<ApplicationConfiguration.Language[]>;
+
     unReadCount = 0;
 
     navigations: ABP.FullRoute[] = [];
 
+    isOpenChangePassword = false;
+    isOpenProfile = false;
+
     get appInfo(): Config.Application {
         return this.store.selectSnapshot(ConfigState.getApplicationInfo);
+    }
+
+    get selectedLangCulture(): string {
+        return this.store.selectSnapshot(SessionState.getLanguage);
     }
 
     constructor(
@@ -49,6 +59,11 @@ export class AppHeaderComponent implements OnInit {
 
     setDrawbarState() {
         this.store.dispatch(new SetDrawbarState());
+    }
+
+    onChangeLang(cultureName: string) {
+        this.store.dispatch(new SetLanguage(cultureName));
+        window.location.reload();
     }
 
     logout() {

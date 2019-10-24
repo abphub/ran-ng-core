@@ -10,6 +10,7 @@
 
     <span class="mr-auto"></span>
 
+    <!-- 快速导航 -->
     <button mat-button class="h6" matTooltip="快速导航" [matMenuTriggerFor]="quickNav">
         <i class="fa fa-list"></i>
     </button>
@@ -23,11 +24,32 @@
             </div>
         </div>
     </mat-menu>
+    <!-- 快速导航 -->
 
+    <!-- 文档中心 -->
     <button mat-button class="h5 d-none" matTooltip="文档中心"> <i class="fa fa-question-circle"></i></button>
+    <!-- 文档中心 -->
+
+    <!-- 消息中心 -->
     <button class="d-none" mat-button class="h5" matTooltip="消息中心">
         <i class="fa fa-bell" matBadge="{{unReadCount}}" matBadgeColor="accent" [matBadgeHidden]="unReadCount===0"></i>
     </button>
+    <!-- 消息中心 -->
+
+    <!-- 语言管理 -->
+    <button mat-button class="h5" [matMenuTriggerFor]="appLanguageMenu" matTooltip="语言管理">
+        <i class="fa fa-language"></i>
+    </button>
+    <mat-menu #appLanguageMenu="matMenu">
+        <button *ngFor="let lang of languages$ | async" mat-menu-item class="pl-3 pr-5"
+            (click)="onChangeLang(lang.cultureName)">
+            {{ lang?.displayName }}
+            <i *ngIf="lang?.cultureName===selectedLangCulture">默认</i>
+        </button>
+    </mat-menu>
+    <!-- 语言管理 -->
+
+    <!-- 个人中心 -->
     <button *ngIf="(currentUser$|async)?.userName" mat-button class="h5" [matMenuTriggerFor]="appMenu"
         matTooltip="个人中心">
         <span class="p-2">{{( currentUser$|async )?.userName}}</span>
@@ -37,4 +59,5 @@
             <i class="icon icon-logout pr-2"></i>注销
         </button>
     </mat-menu>
+    <!-- 个人中心 -->
 </mat-toolbar>
