@@ -5,6 +5,7 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { ThemeBasicModule } from 'projects/theme-basic/src/public-api';
 import { DemoThemeBasicRoutingModule } from './demo-theme-basic-routing.module';
 import { DemoThemeBasicComponent } from './demo-theme-basic.component';
+import { MatListModule } from '@angular/material';
 
 @NgModule({
     imports: [
@@ -12,7 +13,8 @@ import { DemoThemeBasicComponent } from './demo-theme-basic.component';
         ReactiveFormsModule,
         CoreModule,
         ThemeBasicModule,
-        DemoThemeBasicRoutingModule
+        DemoThemeBasicRoutingModule,
+        MatListModule,
     ],
     declarations: [
         DemoThemeBasicComponent

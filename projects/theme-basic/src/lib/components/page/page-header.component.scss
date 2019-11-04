@@ -1,9 +1,12 @@
 :host {
     display: flex;
-    height: 60px;
-    background: white;
+    height: 48px;
     align-items: center;
     justify-content: space-between;
-    padding: 0 15px;
-    margin: -15px -15px 0 -15px;
+    padding: 10px 35px 10px 15px;
+    margin-top: -15px;
+    position: fixed;
+    right: 0;
+    left: 220px;
+    z-index: 9999;
 }

@@ -1,10 +1,7 @@
 <div class="d-flex">
-    <button class="btn btn-outline-secondary  btn-sm " *ngIf="showBackButton" (click)="back()">
-        <i class="fa fa-arrow-left"></i>
-    </button>
-    <ng-content select="[position='left']"></ng-content>
+    <ng-content select=".tools-left"></ng-content>
 </div>
 <ng-content></ng-content>
 <div class="d-flex">
-    <ng-content select="[position='right']"></ng-content>
+    <ng-content select=".tools-right"></ng-content>
 </div>

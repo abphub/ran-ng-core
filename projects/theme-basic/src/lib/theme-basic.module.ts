@@ -88,7 +88,7 @@ export class ThemeBasicModule {
                 }
 
                 // tslint:disable-next-line: variable-name
-                const _routes: ABP.FullRoute[] = routes.reduce((acc, val) => (val.wrapper ? [...acc, ...val.children] : [...acc, val]), [])
+                const _routes: ABP.FullRoute[] = routes.reduce((acc, val) => (val.wrapper ? [...acc, ...val.children] : [...acc, val]), []);
                 const route = _routes.find(m => m.path === segments[0].path);
 
                 // 如果不可见

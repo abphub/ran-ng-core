@@ -1,4 +1,5 @@
-import { Component } from '@angular/core';
+import { Component, ContentChild } from '@angular/core';
+import { PageSidebarComponent } from './page-sidebar.component';
 
 @Component({
     selector: 'ran-page-content',
@@ -6,5 +7,6 @@ import { Component } from '@angular/core';
     styleUrls: ['./page-content.component.scss']
 })
 export class PageContentComponent {
+    @ContentChild(PageSidebarComponent, { static: true }) pageSidebar: PageSidebarComponent;
 
 }
