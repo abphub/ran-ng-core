@@ -3,113 +3,111 @@
 
      ran-application-layout {
 
-         ran-app-container {
-             ran-app-header.fixed-top+mat-sidenav-container {
-                 position: relative;
-                 top: 48px;
+         ran-app-header.fixed-top+mat-sidenav-container {
+             position: relative;
+             top: 48px;
+         }
+
+         ran-app-header {
+             height: 48px;
+             color: #8c8c8c;
+             z-index: 999 !important;
+
+             button:focus {
+                 outline: none !important;
+             }
+         }
+
+         mat-sidenav-container {
+             mat-sidenav-content {
+                 padding: 15px;
+
+                 ran-page-content {
+                     height: calc(100% - 64px);
+                 }
+
+                 ran-page-content.w-70 {
+                     margin: 0 auto;
+                     width: 85%;
+                 }
+
+                 ran-page-sidebar {
+                     width: 20%;
+                     height: 100%;
+                     overflow-x: hidden;
+                     overflow-y: auto;
+                     background-color: #fff;
+                     padding: 0 15px 0 15px;
+                     box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075) !important;
+                 }
+
+                 .mat-list-item.active {
+                     color: #1b9aee;
+                     border-radius: 5px;
+                     background: rgba(0, 0, 0, 0.04);
+                 }
+
+                 .mat-list-item:hover {
+                     color: #1b9aee;
+                     border-radius: 5px;
+                     background: rgba(0, 0, 0, 0.04);
+                 }
+
+                 .card {
+                     width: 100%;
+                     margin: 0 1px;
+                     position: relative;
+                     display: flex;
+                     flex-direction: column;
+                     min-width: 0;
+                     word-wrap: break-word;
+                     background-color: #fff;
+                     background-clip: border-box;
+                     border-radius: .25rem;
+                     border: 0;
+                     box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075);
+                 }
+
+                 .card-header {
+                     padding: 30px 30px 0 30px;
+                     margin-bottom: 0;
+                     background-color: #fff;
+                     display: flex;
+                     justify-content: space-between;
+                     border: 0;
+                 }
+
+                 /*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê½*/
+                 .scrollbar::-webkit-scrollbar {
+                     /*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ê½*/
+                     width: 4px;
+                     /*ï¿½ß¿ï¿½ï¿½Ö±ï¿½ï¿½Ó¦ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ä³ß´ï¿½*/
+                     height: 4px;
+                 }
+
+                 .scrollbar::-webkit-scrollbar-thumb {
+                     /*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½Ð¡ï¿½ï¿½ï¿½ï¿½*/
+                     border-radius: 5px;
+                     -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+                     background: rgba(0, 0, 0, 0.2);
+                 }
+
+                 .scrollbar::-webkit-scrollbar-track {
+                     /*ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½ï¿½*/
+                     -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
+                     border-radius: 0;
+                     background: rgba(0, 0, 0, 0.1);
+                 }
              }
 
-             ran-app-header {
-                 height: 48px;
-                 color: #8c8c8c;
-                 z-index: 999 !important;
-
-                 button:focus {
-                     outline: none !important;
-                 }
+             .mat-sidebar {
+                 width: 230px;
+                 z-index: 0;
              }
 
-             mat-sidenav-container {
-                 mat-sidenav-content {
-                     padding: 15px;
-
-                     ran-page-content {
-                         height: calc(100% - 64px);
-                     }
-
-                     ran-page-content.w-70 {
-                         margin: 0 auto;
-                         width: 85%;
-                     }
-
-                     ran-page-sidebar {
-                         width: 20%;
-                         height: 100%;
-                         overflow-x: hidden;
-                         overflow-y: auto;
-                         background-color: #fff;
-                         padding: 0 15px 0 15px;
-                         box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075) !important;
-                     }
-
-                     .mat-list-item.active {
-                         color: #1b9aee;
-                         border-radius: 5px;
-                         background: rgba(0, 0, 0, 0.04);
-                     }
-
-                     .mat-list-item:hover {
-                         color: #1b9aee;
-                         border-radius: 5px;
-                         background: rgba(0, 0, 0, 0.04);
-                     }
-
-                     .card {
-                         width: 100%;
-                         margin: 0 1px;
-                         position: relative;
-                         display: flex;
-                         flex-direction: column;
-                         min-width: 0;
-                         word-wrap: break-word;
-                         background-color: #fff;
-                         background-clip: border-box;
-                         border-radius: .25rem;
-                         border: 0;
-                         box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075);
-                     }
-
-                     .card-header {
-                         padding: 30px 30px 0 30px;
-                         margin-bottom: 0;
-                         background-color: #fff;
-                         display: flex;
-                         justify-content: space-between;
-                         border: 0;
-                     }
-
-                     /*¹ö¶¯ÌõÑùÊ½*/
-                     .scrollbar::-webkit-scrollbar {
-                         /*¹ö¶¯ÌõÕûÌåÑùÊ½*/
-                         width: 4px;
-                         /*¸ß¿í·Ö±ð¶ÔÓ¦ºáÊú¹ö¶¯ÌõµÄ³ß´ç*/
-                         height: 4px;
-                     }
-
-                     .scrollbar::-webkit-scrollbar-thumb {
-                         /*¹ö¶¯ÌõÀïÃæÐ¡·½¿é*/
-                         border-radius: 5px;
-                         -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
-                         background: rgba(0, 0, 0, 0.2);
-                     }
-
-                     .scrollbar::-webkit-scrollbar-track {
-                         /*¹ö¶¯ÌõÀïÃæ¹ìµÀ*/
-                         -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
-                         border-radius: 0;
-                         background: rgba(0, 0, 0, 0.1);
-                     }
-                 }
-
-                 .mat-sidebar {
-                     width: 230px;
-                     z-index: 0;
-                 }
-
-                 .mat-drawbar {
-                     width: 400px;
-                     top: 0;
-                 }
+             .mat-drawbar {
+                 width: 400px;
+                 top: 0;
              }
          }
      }
