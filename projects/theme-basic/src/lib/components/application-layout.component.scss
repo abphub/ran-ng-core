@@ -3,36 +3,34 @@
 
      ran-application-layout {
 
-         ran-app-container {
-             ran-app-header.fixed-top+mat-sidenav-container {
-                 position: relative;
-                 top: 48px;
+         ran-app-header.fixed-top+mat-sidenav-container {
+             position: relative;
+             top: 48px;
+         }
+
+         ran-app-header {
+             height: 48px;
+             color: #8c8c8c;
+             z-index: 999 !important;
+
+             button:focus {
+                 outline: none !important;
+             }
+         }
+
+         mat-sidenav-container {
+             mat-sidenav-content {
+                 padding: 15px;
              }
 
-             ran-app-header {
-                 height: 48px;
-                 color: #8c8c8c;
-                 z-index: 999 !important;
-
-                 button:focus {
-                     outline: none !important;
-                 }
+             .mat-sidebar {
+                 width: 230px;
+                 z-index: 0;
              }
 
-             mat-sidenav-container {
-                 mat-sidenav-content {
-                     padding: 15px;
-                 }
-
-                 .mat-sidebar {
-                     width: 230px;
-                     z-index: 0;
-                 }
-
-                 .mat-drawbar {
-                     width: 400px;
-                     top: 0;
-                 }
+             .mat-drawbar {
+                 width: 400px;
+                 top: 0;
              }
          }
      }
