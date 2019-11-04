@@ -1,9 +1,10 @@
-import { IDENTITY_ROUTES } from '@abp/ng.identity';
 import { ACCOUNT_ROUTES } from '@abp/ng.account';
-import { NgModule } from '@angular/core';
-import { Routes, RouterModule, Router } from '@angular/router';
 import { ABP, eLayoutType } from '@abp/ng.core';
+import { IDENTITY_ROUTES } from '@abp/ng.identity';
 import { TENANT_MANAGEMENT_ROUTES } from '@abp/ng.tenant-management';
+import { NgModule } from '@angular/core';
+import { RouterModule, Routes } from '@angular/router';
+import { THEME_BASIC_ROUTES } from 'projects/theme-basic/src/public-api';
 
 const routes: Routes = [
   {
@@ -38,13 +39,7 @@ const routes: Routes = [
   {
     path: 'theme',
     loadChildren: () => import('./demo-theme-basic/demo-theme-basic.module').then(m => m.DemoThemeBasicModule),
-    data: {
-      routes: {
-        name: '::Menu:ThemeBasic',
-        layout: eLayoutType.application,
-        wrapper: true
-      } as ABP.FullRoute,
-    },
+    data: { routes: THEME_BASIC_ROUTES },
   },
   {
     path: 'account',
