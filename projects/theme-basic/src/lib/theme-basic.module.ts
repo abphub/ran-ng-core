@@ -25,6 +25,7 @@ import { ValidationErrorComponent } from './components/validation-error/validati
 import { RanLayoutState } from './states/layout.state';
 import { AppHeaderBarComponent } from './components/header/header-bar.component';
 import { PageSidebarComponent } from './components/page/page-sidebar.component';
+import { NgxValidateCoreModule } from '@ngx-validate/core';
 
 export const RAN_LAYOUTS = [ApplicationLayoutComponent, AccountLayoutComponent, EmptyLayoutComponent];
 
@@ -54,7 +55,21 @@ export const RAN_LAYOUTS = [ApplicationLayoutComponent, AccountLayoutComponent, 
         MatBadgeModule,
         MatButtonModule,
         MatMenuModule,
-        MatTooltipModule
+        MatTooltipModule,
+        NgxValidateCoreModule,
+        NgxValidateCoreModule.forRoot({
+            targetSelector: '.form-group',
+            blueprints: {
+                email: 'AbpAccount::ThisFieldIsNotAValidEmailAddress.',
+                max: 'AbpAccount::ThisFieldMustBeBetween{0}And{1}[{{ min }},{{ max }}]',
+                maxlength: 'AbpAccount::ThisFieldMustBeAStringWithAMaximumLengthOf{1}[{{ requiredLength }}]',
+                min: 'AbpAccount::ThisFieldMustBeBetween{0}And{1}[{{ min }},{{ max }}]',
+                minlength: 'AbpAccount::ThisFieldMustBeAStringOrArrayTypeWithAMinimumLengthOf[{{ min }},{{ max }}]',
+                required: 'AbpAccount::ThisFieldIsRequired.',
+                passwordMismatch: 'AbpIdentity::Identity.PasswordConfirmationFailed',
+            },
+            errorTemplate: ValidationErrorComponent,
+        }),
     ],
     exports: [
         ...RAN_LAYOUTS,

@@ -1,12 +1,12 @@
+import { DynamicLayoutComponent } from '@abp/ng.core';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { ApplicationLayoutComponent } from 'projects/theme-basic/src/public-api';
 import { DemoCoreComponent } from './demo-core.component';
 
 const routes: Routes = [
     {
         path: '',
-        component: ApplicationLayoutComponent,
+        component: DynamicLayoutComponent,
         children: [{ path: '', component: DemoCoreComponent }],
     },
 ];
