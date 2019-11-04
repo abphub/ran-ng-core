@@ -20,13 +20,13 @@ import { CoreModule as RanCoreModule } from 'projects/core/src/lib/core.module';
     AppRoutingModule,
     SharedModule,
     ThemeSharedModule.forRoot(),
+    RanCoreModule.forRoot(),
     CoreModule.forRoot({
       environment,
       requirements: {
         layouts: RAN_LAYOUTS
       }
     }),
-    RanCoreModule.forRoot(),
     OAuthModule.forRoot(),
     NgxsModule.forRoot([]),
     NgxsReduxDevtoolsPluginModule.forRoot({ disabled: environment.production }),

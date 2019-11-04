@@ -1,6 +1,6 @@
 import { eLayoutType } from '@abp/ng.core';
 import { slideFromBottom } from '@abp/ng.theme.shared';
-import { Component, ViewChild, AfterViewInit } from '@angular/core';
+import { Component, ViewChild, AfterViewInit, ViewEncapsulation } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { RanLayoutState } from '../states';
@@ -11,6 +11,7 @@ import { MatSidenavContainer } from '@angular/material';
     selector: 'ran-application-layout',
     templateUrl: './application-layout.component.html',
     styleUrls: ['./application-layout.component.scss'],
+    encapsulation: ViewEncapsulation.None,
     animations: [slideFromBottom],
 })
 export class ApplicationLayoutComponent implements AfterViewInit {

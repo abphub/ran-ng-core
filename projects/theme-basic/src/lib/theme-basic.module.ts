@@ -13,17 +13,19 @@ import { CoreModule as RanCoreModule } from '@ran-ng/core';
 import { SpinnerModule } from '@ran-ng/spinner';
 import { SetMainNavigationState } from './actions/layout.action';
 import { AccountLayoutComponent } from './components/account-layout.component';
-import { AppContainerComponent } from './components/app-container/container.component';
-import { AppDrawerComponent } from './components/app-drawer/drawer.component';
-import { AppHeaderComponent } from './components/app-header/header.component';
-import { PageContentComponent } from './components/app-page/page-content.component';
-import { PageHeaderComponent } from './components/app-page/page-header.component';
-import { PageTableComponent } from './components/app-page/page-table.component';
-import { AppSidebarComponent } from './components/app-sidebar/sidebar.component';
+import { AppContainerComponent } from './components/container/container.component';
+import { AppDrawerComponent } from './components/drawer/drawer.component';
+import { AppHeaderComponent } from './components/header/header.component';
+import { PageContentComponent } from './components/page/page-content.component';
+import { PageHeaderComponent } from './components/page/page-header.component';
+import { PageTableComponent } from './components/page/page-table.component';
+import { AppSidebarComponent } from './components/sidebar/sidebar.component';
 import { ApplicationLayoutComponent } from './components/application-layout.component';
 import { EmptyLayoutComponent } from './components/empty-layout.component';
 import { ValidationErrorComponent } from './components/validation-error/validation-error.component';
 import { RanLayoutState } from './states/layout.state';
+import { AppHeaderBarComponent } from './components/header/header-bar.component';
+import { PageSidebarComponent } from './components/page/page-sidebar.component';
 
 export const RAN_LAYOUTS = [ApplicationLayoutComponent, AccountLayoutComponent, EmptyLayoutComponent];
 
@@ -32,9 +34,11 @@ export const RAN_LAYOUTS = [ApplicationLayoutComponent, AccountLayoutComponent, 
         ...RAN_LAYOUTS,
         AppContainerComponent,
         AppHeaderComponent,
+        AppHeaderBarComponent,
         AppSidebarComponent,
         AppDrawerComponent,
         PageHeaderComponent,
+        PageSidebarComponent,
         PageContentComponent,
         PageTableComponent,
         ValidationErrorComponent
@@ -57,6 +61,7 @@ export const RAN_LAYOUTS = [ApplicationLayoutComponent, AccountLayoutComponent, 
     exports: [
         ...RAN_LAYOUTS,
         PageHeaderComponent,
+        PageSidebarComponent,
         PageContentComponent,
         PageTableComponent
     ],
@@ -74,7 +79,7 @@ export class ThemeBasicModule {
             if (event instanceof NavigationEnd) {
                 const segmentGroup = router.parseUrl(event.url).root.children.primary;
                 const { routes } = this.store.selectSnapshot(ConfigState.getAll);
-
+                console.log(routes);
                 const segments = segmentGroup ? segmentGroup.segments : [];
 
                 if (!segments.length) {
@@ -104,6 +109,7 @@ export class ThemeBasicModule {
     }
 
     setMainNavgition(routes: ABP.FullRoute[]) {
+        console.log(routes);
         this.store.dispatch(new SetMainNavigationState(routes));
     }
 }

@@ -1,18 +1,15 @@
-import { ABP, ApplicationConfiguration, Config, ConfigState, GetAppConfiguration, SetLanguage, SessionState } from '@abp/ng.core';
-import { Component, ViewEncapsulation, OnInit } from '@angular/core';
-import { RouterState, Router } from '@angular/router';
+import { ABP, ApplicationConfiguration, Config, ConfigState, GetAppConfiguration, SessionState, SetLanguage } from '@abp/ng.core';
+import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Navigate } from '@ngxs/router-plugin';
 import { Select, Store } from '@ngxs/store';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { Observable } from 'rxjs';
-import { map } from 'rxjs/operators';
 import { SetDrawbarState, SetSidebarState } from '../../actions/layout.action';
 
 @Component({
     selector: 'ran-app-header',
-    styleUrls: ['./header.component.scss'],
-    templateUrl: './header.component.html',
-    encapsulation: ViewEncapsulation.None
+    templateUrl: './header.component.html'
 })
 export class AppHeaderComponent implements OnInit {
 
@@ -50,6 +47,7 @@ export class AppHeaderComponent implements OnInit {
     ngOnInit() {
         this.routes$.subscribe(result => {
             this.navigations = this.getNavgitions(result);
+            console.log(this.navigations);
         });
     }
 

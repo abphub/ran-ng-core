@@ -1,24 +1,84 @@
-:host {
-    position: absolute;
-    display: inline-block;
-    width: 100%;
-    top: 64px;
-    height: calc(100% - 64px);
+ body {
+     overflow: hidden;
 
-    mat-sidenav-container {
+     ran-application-layout {
 
-        mat-sidenav-content {
-            padding: 15px;
-        }
-    }
+         ran-app-container {
+             ran-app-header.fixed-top+mat-sidenav-container {
+                 position: relative;
+                 top: 48px;
+             }
 
-    .mat-sidebar {
-        width: 230px;
-        z-index: 0;
-    }
+             ran-app-header {
+                 height: 48px;
+                 color: #8c8c8c;
+                 z-index: 999 !important;
 
-    .mat-drawbar {
-        width: 400px;
-        top: 0;
-    }
-}
+                 button:focus {
+                     outline: none !important;
+                 }
+             }
+
+             mat-sidenav-container {
+                 mat-sidenav-content {
+                     padding: 15px;
+                 }
+
+                 .mat-sidebar {
+                     width: 230px;
+                     z-index: 0;
+                 }
+
+                 .mat-drawbar {
+                     width: 400px;
+                     top: 0;
+                 }
+             }
+         }
+     }
+ }
+
+ .apps {
+     max-width: 320px !important;
+     overflow: hidden !important;
+     width: 320px;
+
+     .app {
+         display: flex;
+         flex-direction: column;
+         align-items: center;
+
+         h4 {
+             display: inline-block;
+             width: 45px;
+             height: 45px;
+             border: 1px solid #f0f0f0;
+             box-shadow: 0 2px 8px rgba(56, 56, 56, .06);
+             transition: all 0.3s;
+
+         }
+
+         .app-logo {
+             cursor: pointer;
+             background-color: #fff;
+             background-size: cover;
+             background-repeat: no-repeat;
+             background-position: 50%;
+         }
+
+         h4:hover {
+             transform: scale(1.1);
+             box-shadow: 0 2px 8px rgba(56, 56, 56, .08);
+         }
+
+         p {
+             font-size: 0.86rem;
+         }
+     }
+ }
+
+ .mat-menu-content {
+     button:focus {
+         outline: none !important;
+     }
+ }
