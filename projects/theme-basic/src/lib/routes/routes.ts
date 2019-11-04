@@ -1,7 +1,10 @@
 import { ABP, eLayoutType } from '@abp/ng.core';
-
-export const THEME_BASIC_ROUTES = [
-  {
+/**
+ *
+ * @deprecated since version 1..
+ */
+export const THEME_BASIC_ROUTES = {
+  routes: [{
     name: '模板模块',
     path: 'theme',
     order: 3,
@@ -16,6 +19,5 @@ export const THEME_BASIC_ROUTES = [
         { path: 'categories', name: 'Site::Menu:Categories', order: 5 },
       ]
     }]
-
-  }
-] as ABP.FullRoute[];
+  }] as ABP.FullRoute[]
+};

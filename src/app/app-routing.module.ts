@@ -1,7 +1,4 @@
-import { ACCOUNT_ROUTES } from '@abp/ng.account';
 import { ABP, eLayoutType } from '@abp/ng.core';
-import { IDENTITY_ROUTES } from '@abp/ng.identity';
-import { TENANT_MANAGEMENT_ROUTES } from '@abp/ng.tenant-management';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { THEME_BASIC_ROUTES } from 'projects/theme-basic/src/public-api';
@@ -44,18 +41,15 @@ const routes: Routes = [
   {
     path: 'account',
     loadChildren: () => import('./lazy-libs/account-wrapper.module').then(m => m.AccountWrapperModule),
-    data: { routes: ACCOUNT_ROUTES },
   },
   {
     path: 'identity',
     loadChildren: () => import('./lazy-libs/identity-wrapper.module').then(m => m.IdentityWrapperModule),
-    data: { routes: IDENTITY_ROUTES },
   },
   {
     path: 'tenant-management',
     loadChildren: () =>
       import('./lazy-libs/tenant-management-wrapper.module').then(m => m.TenantManagementWrapperModule),
-    data: { routes: TENANT_MANAGEMENT_ROUTES },
   },
 ];
 
