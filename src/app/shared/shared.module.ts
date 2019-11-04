@@ -11,4 +11,4 @@ import { ThemeBasicModule } from 'projects/theme-basic/src/public-api';
   exports: [CoreModule, ThemeSharedModule, ThemeBasicModule, TableModule, NgbDropdownModule],
   providers: [],
 })
-export class SharedModule {}
+export class SharedModule { }

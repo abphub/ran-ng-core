@@ -13,7 +13,6 @@ import { CoreModule as RanCoreModule } from '@ran-ng/core';
 import { SpinnerModule } from '@ran-ng/spinner';
 import { SetMainNavigationState } from './actions/layout.action';
 import { AccountLayoutComponent } from './components/account-layout.component';
-import { AppContainerComponent } from './components/container/container.component';
 import { AppDrawerComponent } from './components/drawer/drawer.component';
 import { AppHeaderComponent } from './components/header/header.component';
 import { PageContentComponent } from './components/page/page-content.component';
@@ -32,7 +31,6 @@ export const RAN_LAYOUTS = [ApplicationLayoutComponent, AccountLayoutComponent, 
 @NgModule({
     declarations: [
         ...RAN_LAYOUTS,
-        AppContainerComponent,
         AppHeaderComponent,
         AppHeaderBarComponent,
         AppSidebarComponent,

@@ -1,4 +1,4 @@
-import { eLayoutType } from '@abp/ng.core';
+import { eLayoutType, Config, ConfigState } from '@abp/ng.core';
 import { slideFromBottom } from '@abp/ng.theme.shared';
 import { Component, ViewChild, AfterViewInit, ViewEncapsulation } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
@@ -28,6 +28,10 @@ export class ApplicationLayoutComponent implements AfterViewInit {
     drawbarState$: Observable<boolean>;
 
     constructor(private store: Store) { }
+
+    get appInfo(): Config.Application {
+        return this.store.selectSnapshot(ConfigState.getApplicationInfo);
+    }
 
     ngAfterViewInit() {
         this.sidenavContainer.scrollable.elementScrolled().subscribe(($event: Event) => {

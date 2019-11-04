@@ -78,23 +78,23 @@
                          border: 0;
                      }
 
-                     /*æ»šåŠ¨æ¡æ ·å¼*/
+                     /*¹ö¶¯ÌõÑùÊ½*/
                      .scrollbar::-webkit-scrollbar {
-                         /*æ»šåŠ¨æ¡æ•´ä½“æ ·å¼*/
+                         /*¹ö¶¯ÌõÕûÌåÑùÊ½*/
                          width: 4px;
-                         /*é«˜å®½åˆ†åˆ«å¯¹åº”æ¨ªç«–æ»šåŠ¨æ¡çš„å°ºå¯¸*/
+                         /*¸ß¿í·Ö±ğ¶ÔÓ¦ºáÊú¹ö¶¯ÌõµÄ³ß´ç*/
                          height: 4px;
                      }
 
                      .scrollbar::-webkit-scrollbar-thumb {
-                         /*æ»šåŠ¨æ¡é‡Œé¢å°æ–¹å—*/
+                         /*¹ö¶¯ÌõÀïÃæĞ¡·½¿é*/
                          border-radius: 5px;
                          -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
                          background: rgba(0, 0, 0, 0.2);
                      }
 
                      .scrollbar::-webkit-scrollbar-track {
-                         /*æ»šåŠ¨æ¡é‡Œé¢è½¨é“*/
+                         /*¹ö¶¯ÌõÀïÃæ¹ìµÀ*/
                          -webkit-box-shadow: inset 0 0 5px rgba(0, 0, 0, 0.2);
                          border-radius: 0;
                          background: rgba(0, 0, 0, 0.1);

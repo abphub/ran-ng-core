@@ -1,13 +1,8 @@
 {
   "name": "@ran-ng/core",
-  "version": "0.4.5",
+  "version": "0.4.6",
   "dependencies": {
     "moment": "^2.24.0"
-  },
-  "peerDependencies": {
-    "@angular/common": "^8.2.0",
-    "@angular/core": "^8.2.0",
-    "rxjs": "~6.4.0"
   },
   "publishConfig": {
     "access": "public"

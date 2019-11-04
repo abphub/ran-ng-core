@@ -7,7 +7,6 @@ export * from './page/page-content.component';
 export * from './page/page-header.component';
 export * from './page/page-table.component';
 export * from './sidebar/sidebar.component';
-export * from './container/container.component';
 export * from './account-layout.component';
 export * from './application-layout.component';
 export * from './empty-layout.component';

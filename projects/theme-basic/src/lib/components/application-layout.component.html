@@ -1,23 +1,28 @@
-<ran-app-container>
-    <ran-app-header class="navbar fixed-top bg-white py-0 shadow-sm"></ran-app-header>
-    <mat-sidenav-container class="h-100">
-        <!-- 左侧导航 -->
-        <mat-sidenav class="mat-sidebar" mode="side" [opened]='appSidebar?.showSidebar$|async'>
-            <ran-app-sidebar #appSidebar></ran-app-sidebar>
-        </mat-sidenav>
-        <!-- 左侧导航 -->
+<ran-app-header class="navbar fixed-top bg-white py-0 shadow-sm"></ran-app-header>
+<mat-sidenav-container class="h-100">
+    <!-- 左侧导航 -->
+    <mat-sidenav class="mat-sidebar" mode="side" [opened]='appSidebar?.showSidebar$|async'>
+        <ran-app-sidebar #appSidebar></ran-app-sidebar>
+    </mat-sidenav>
+    <!-- 左侧导航 -->
 
-        <!-- 右侧抽屉 -->
-        <mat-sidenav class="mat-drawbar" position="end" [opened]='drawbarState$ | async'>
-            <ran-app-drawer></ran-app-drawer>
-        </mat-sidenav>
-        <!-- 右侧抽屉 -->
+    <!-- 右侧抽屉 -->
+    <mat-sidenav class="mat-drawbar" position="end" [opened]='drawbarState$ | async'>
+        <ran-app-drawer></ran-app-drawer>
+    </mat-sidenav>
+    <!-- 右侧抽屉 -->
 
-        <!-- 内容 -->
-        <mat-sidenav-content
-            [@routeAnimations]="outlet && outlet.activatedRoute && outlet.activatedRoute.routeConfig.path">
-            <router-outlet #outlet="outlet"></router-outlet>
-        </mat-sidenav-content>
-        <!-- 内容 -->
-    </mat-sidenav-container>
-</ran-app-container>
+    <!-- 内容 -->
+    <mat-sidenav-content [@slideFromBottom]="outlet && outlet.activatedRoute && outlet.activatedRoute.routeConfig.path">
+        <router-outlet #outlet="outlet"></router-outlet>
+    </mat-sidenav-content>
+    <!-- 内容 -->
+</mat-sidenav-container>
+
+
+<abp-confirmation></abp-confirmation>
+<abp-toast></abp-toast>
+
+<ng-template #appName>
+    {{ appInfo.name }}
+</ng-template>
