@@ -6,7 +6,8 @@ import { ABP, ConfigState, Config } from '@abp/ng.core';
 
 @Component({
     selector: 'ran-app-header-bar',
-    templateUrl: './headerbar.component.html'
+    templateUrl: './headerbar.component.html',
+    styleUrls: ['./header.component.scss']
 })
 export class AppHeaderBarComponent {
 
