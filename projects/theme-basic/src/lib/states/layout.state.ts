@@ -1,18 +1,12 @@
-import { ABP } from '@abp/ng.core';
 import { Action, Selector, State, StateContext } from '@ngxs/store';
-import { SetDrawbarState, SetMainNavigationState, SetSidebarState, SetSidebarContentScoll } from '../actions/layout.action';
+import { SetDrawbarState, SetSidebarContentScoll, SetSidebarState } from '../actions/layout.action';
 import { RanLayout } from '../models/layout';
 
 @State<RanLayout.State>({
     name: 'RanLayoutState',
-    defaults: { sidebarState: true, drawbarState: false, mainNavigation: [], $scrollEvent: null } as RanLayout.State
+    defaults: { sidebarState: true, drawbarState: false, $scrollEvent: null } as RanLayout.State
 })
 export class RanLayoutState {
-
-    @Selector()
-    static getMainNavigationState({ mainNavigation }: RanLayout.State): ABP.FullRoute[] {
-        return mainNavigation;
-    }
 
     @Selector()
     static getSidebarState({ sidebarState }: RanLayout.State): boolean {
@@ -27,11 +21,6 @@ export class RanLayoutState {
     @Selector()
     static getSidebarContentScoll({ $scrollEvent }: RanLayout.State): Event {
         return $scrollEvent;
-    }
-
-    @Action(SetMainNavigationState)
-    setMainNavigationState({ getState, patchState }: StateContext<RanLayout.State>, { payload }: SetMainNavigationState) {
-        patchState({ mainNavigation: payload });
     }
 
     @Action(SetSidebarState)

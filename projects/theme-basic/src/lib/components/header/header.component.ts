@@ -1,11 +1,12 @@
 import { ABP, ApplicationConfiguration, Config, ConfigState, GetAppConfiguration, SessionState, SetLanguage } from '@abp/ng.core';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
-import { Navigate } from '@ngxs/router-plugin';
+import { Navigate, RouterState } from '@ngxs/router-plugin';
 import { Select, Store } from '@ngxs/store';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { Observable } from 'rxjs';
 import { SetDrawbarState, SetSidebarState } from '../../actions/layout.action';
+import { AppNavgationService } from '../../services/navigation.service';
+import { RanNavigationState } from '../../states/navigation.state';
 
 @Component({
     selector: 'ran-app-header',
@@ -17,16 +18,13 @@ export class AppHeaderComponent implements OnInit {
     @Select(ConfigState.getOne('currentUser'))
     currentUser$: Observable<ApplicationConfiguration.CurrentUser>;
 
-    @Select(ConfigState.getOne('routes'))
-    routes$: Observable<ABP.FullRoute[]>;
-
     @Select(ConfigState.getDeep('localization.languages'))
     languages$: Observable<ApplicationConfiguration.Language[]>;
 
+    @Select(RanNavigationState.getAppbarNavigationState)
+    navigations$: Observable<ABP.FullRoute[]>;
+
     unReadCount = 0;
-
-    navigations: ABP.FullRoute[] = [];
-
     isOpenChangePassword = false;
     isOpenProfile = false;
 
@@ -39,17 +37,15 @@ export class AppHeaderComponent implements OnInit {
     }
 
     constructor(
-        private router: Router,
         private store: Store,
-        private oauthService: OAuthService
+        private oauthService: OAuthService,
+        private appNavationService: AppNavgationService
     ) {
     }
 
     ngOnInit() {
-        this.routes$.subscribe(result => {
-            this.navigations = this.getNavgitions(result);
-            console.log(this.navigations);
-        });
+        console.log('headerbar onInit,setAppbarNavigations');
+        this.appNavationService.setAppbarNavigations();
     }
 
     setSidebarState() {
@@ -67,59 +63,13 @@ export class AppHeaderComponent implements OnInit {
 
     logout() {
         this.oauthService.logOut();
-        this.store.dispatch(new Navigate(['/account/login'], null, { state: { redirectUrl: '' } }));
+        this.store.dispatch(
+            new Navigate(['/'], null, {
+                state: { redirectUrl: this.store.selectSnapshot(RouterState).state.url },
+            }),
+        );
         this.store.dispatch(new GetAppConfiguration());
-    }
-
-    getNavgitions(routes: ABP.FullRoute[]): ABP.FullRoute[] {
-        const _routers = [];
-        for (const item of routes) {
-            if (this.getNavgitionGranted(item)) {
-                _routers.push(item);
-            }
-        }
-        return _routers;
-    }
-
-    private getNavgitionGranted(item: ABP.FullRoute): boolean {
-        if (item.invisible) {
-            return false;
-        }
-
-        if (item.children && item.children.length) {
-            for (const _route of item.children) {
-                return this.getNavgitionGranted(_route);
-            }
-        }
-
-        if (this.getGrantedPolicy(item.requiredPolicy)) {
-            return true;
-        }
-
-        return false;
-    }
-
-    navigationByRoute(route: ABP.FullRoute) {
-        const url = this.getNavigationByRoute(route);
-        this.router.navigateByUrl(url);
-    }
-
-    private getNavigationByRoute(route: ABP.FullRoute): string {
-
-        if (!route.children || !route.children.length) {
-            if (this.getGrantedPolicy(route.requiredPolicy) && route.url && !route.invisible) {
-                return route.url;
-            } else {
-                return '';
-            }
-        } else {
-            for (const _route of route.children) {
-                return this.getNavigationByRoute(_route);
-            }
-        }
-    }
-
-    private getGrantedPolicy(requiredPolicy: string): boolean {
-        return this.store.selectSnapshot(ConfigState.getGrantedPolicy(requiredPolicy));
+        // 重新设置app导航
+        this.appNavationService.setAppbarNavigations();
     }
 }

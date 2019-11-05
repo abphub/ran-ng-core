@@ -17,7 +17,7 @@ import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 import { RAN_LAYOUTS } from 'projects/theme-basic/src/public-api';
 
-const LOGGERS = [NgxsLoggerPluginModule.forRoot({ disabled: false })];
+const LOGGERS = [NgxsLoggerPluginModule.forRoot({ disabled: true })];
 
 
 @NgModule({
