@@ -1,5 +1,5 @@
 <ran-app-header class="navbar fixed-top bg-white py-0 shadow-sm"></ran-app-header>
-<mat-sidenav-container class="h-100">
+<mat-sidenav-container class="h-100" style="z-index: 1040 !important;">
     <!-- 左侧导航 -->
     <mat-sidenav class="mat-sidebar scrollbar" mode="side" [opened]='appSidebar?.showSidebar$|async'>
         <ran-app-sidebar class="scrollbar" #appSidebar></ran-app-sidebar>

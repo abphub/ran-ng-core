@@ -27,6 +27,7 @@ import { AppNavgationService } from './services/navigation.service';
 import { RanLayoutState } from './states/layout.state';
 import { RanNavigationState } from './states/navigation.state';
 import { AppbarComponent } from './components/appbar/appbar.component';
+import { PageTopToolsComponent } from './components/page/page-top-tools.component';
 
 export const RAN_LAYOUTS = [ApplicationLayoutComponent, AccountLayoutComponent, EmptyLayoutComponent];
 
@@ -42,6 +43,7 @@ export const RAN_LAYOUTS = [ApplicationLayoutComponent, AccountLayoutComponent, 
         PageSidebarComponent,
         PageContentComponent,
         PageTableComponent,
+        PageTopToolsComponent,
         ValidationErrorComponent
     ],
     imports: [
@@ -79,6 +81,7 @@ export const RAN_LAYOUTS = [ApplicationLayoutComponent, AccountLayoutComponent, 
         PageSidebarComponent,
         PageContentComponent,
         PageTableComponent
+        PageTopToolsComponent
     ],
     entryComponents: [
         ...RAN_LAYOUTS,
