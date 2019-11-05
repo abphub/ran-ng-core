@@ -31,7 +31,7 @@ export class AppNavgationService {
      */
     setAppbarNavigations() {
         const { routes } = this.store.selectSnapshot(ConfigState.getAll);
-        const appbarNavations = this.getRoutes(routes);
+        const appbarNavations = this.getAppbarNavigations(routes);
         this.store.dispatch(new SetAppbarNavigationState(appbarNavations));
     }
 
@@ -39,17 +39,13 @@ export class AppNavgationService {
      * 根据点击路由查找可跳转的url
      */
     getNavigationUrlByRoute(route: ABP.FullRoute): string {
-        if (!route.children || !route.children.length) {
-            if (this.getGrantedPolicy(route.requiredPolicy) && route.url && !route.invisible) {
-                return route.url;
-            } else {
-                return '';
-            }
-        } else {
-            for (const _route of route.children) {
-                return this.getNavigationUrlByRoute(_route);
+        const routes = this.getRoutes(route.children, []);
+        for (const _route of routes) {
+            if (this.getGrantedPolicy(_route.requiredPolicy) && _route.url && !_route.invisible) {
+                return _route.url;
             }
         }
+        return '';
     }
 
 
@@ -64,24 +60,24 @@ export class AppNavgationService {
             const segments = segmentGroup ? segmentGroup.segments : [];
 
             if (!segments.length) {
-                this.setTopbarOrSidebarNavigation([]);
+                this.setTopbarAndSidebarNavigation([]);
                 return;
             }
 
+            // 查找一级菜单中匹配的项
             const route = flattedRoutes.find(m => m.path === segments[0].path);
-            console.log(route);
-
             // 如果不可见
             if (route.invisible) {
-                this.setTopbarOrSidebarNavigation([]);
+                this.setTopbarAndSidebarNavigation([]);
                 return false;
             }
-            //
+
             if (route.parentName) {
                 const __routes = flattedRoutes.filter(m => m.parentName === route.parentName);
                 this.setSidebarNavigations(__routes);
+                this.setTopbarNavigations([]);
             } else {
-                this.setTopbarOrSidebarNavigation(route.children);
+                this.setTopbarAndSidebarNavigation(route.children);
             }
 
         }
@@ -91,12 +87,28 @@ export class AppNavgationService {
      * 设置topbar或者sidebar
      * @param routes appbar中当前选中的路由
      */
-    setTopbarOrSidebarNavigation(routes: ABP.Route[]) {
+    setTopbarAndSidebarNavigation(routes: ABP.FullRoute[]) {
         const includes = routes.some(m => m.parentName);
         console.warn(`includes为${includes}`);
         if (includes) {
             this.setTopbarNavigations(routes);
-            this.setSidebarNavigations([]);
+
+            if (routes.length) {
+                const route = routes.find(m => window.location.pathname.includes(m.path));
+
+                if (route && this.getRouteGranted(route)) {
+                    this.setSidebarNavigations(route.children);
+                    return;
+                }
+
+                for (const _route of routes) {
+                    if (this.getRouteGranted(route)) {
+                        this.setSidebarNavigations(route.children);
+                    }
+                }
+            } else {
+                this.setSidebarNavigations([]);
+            }
         } else {
             this.setTopbarNavigations([]);
             this.setSidebarNavigations(routes);
@@ -106,18 +118,18 @@ export class AppNavgationService {
     /**
      * 设置app顶部导航，默认为选中第一级路由的子集
      */
-    setTopbarNavigations(routes: ABP.Route[]) {
+    setTopbarNavigations(routes: ABP.FullRoute[]) {
         this.store.dispatch(new SetTopbarNavigationState(routes));
     }
 
     /**
      * 设置app左侧导航，默认为选中的第二级的子集，也就是选中第一级的孙子
      */
-    setSidebarNavigations(routes: ABP.Route[]) {
+    setSidebarNavigations(routes: ABP.FullRoute[]) {
         this.store.dispatch(new SetSidebarNavigationState(routes));
     }
 
-    private getRoutes(routes: ABP.FullRoute[]): ABP.FullRoute[] {
+    private getAppbarNavigations(routes: ABP.FullRoute[]): ABP.FullRoute[] {
         const _routers = [];
         for (const item of routes) {
             if (this.getRouteGranted(item)) {
@@ -127,22 +139,48 @@ export class AppNavgationService {
         return _routers;
     }
 
+    /**
+     * 判断路由是否授权
+     * @param item item
+     */
     private getRouteGranted(item: ABP.FullRoute): boolean {
+
         if (item.invisible) {
             return false;
         }
 
-        if (item.children && item.children.length) {
-            for (const _route of item.children) {
-                return this.getRouteGranted(_route);
-            }
-        }
-
-        if (this.getGrantedPolicy(item.requiredPolicy)) {
+        if (!item.requiredPolicy && !item.children.length) {
             return true;
         }
 
-        return false;
+        const routes = this.getRoutes(item.children, []);
+        for (const route of routes) {
+            if (route.requiredPolicy) {
+                if (this.getGrantedPolicy(route.requiredPolicy)) {
+                    return true;
+                }
+            } else {
+                return true;
+            }
+        }
+
+        return undefined;
+    }
+
+    /**
+     * 获取最小级路由
+     * @param routes 根据路由子数据取最小级数据
+     * @param _routes 处理过程变量
+     */
+    getRoutes(routes: ABP.FullRoute[], _routes: ABP.FullRoute[]) {
+        for (const route of routes) {
+            if (route.children && route.children.length) {
+                this.getRoutes(route.children, _routes);
+            } else {
+                _routes.push(route);
+            }
+        }
+        return _routes;
     }
 
     private getGrantedPolicy(requiredPolicy: string): boolean {

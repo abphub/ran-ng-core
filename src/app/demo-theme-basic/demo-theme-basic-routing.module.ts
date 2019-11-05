@@ -9,6 +9,7 @@ const routes: Routes = [
         path: 'light',
         component: DynamicLayoutComponent,
         children: [
+            { path: '', redirectTo: 'theme-one', pathMatch: 'full' },
             { path: 'theme-one', component: DemoThemeBasicComponent },
             { path: 'theme-two', component: DemoThemeBasicComponent },
             { path: 'theme-three', component: DemoThemeBasicComponent }
@@ -18,6 +19,7 @@ const routes: Routes = [
         path: 'dark',
         component: DynamicLayoutComponent,
         children: [
+            { path: '', redirectTo: 'theme-one', pathMatch: 'full' },
             { path: 'theme-one', component: DemoThemeBasicComponent },
             { path: 'theme-two', component: DemoThemeBasicComponent },
             { path: 'theme-three', component: DemoThemeBasicComponent }

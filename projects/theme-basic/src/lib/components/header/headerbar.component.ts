@@ -21,8 +21,4 @@ export class AppHeaderBarComponent {
         private store: Store
     ) {
     }
-
-    navigationByRoute() {
-
-    }
 }

@@ -20,19 +20,4 @@ export class AppSidebarComponent {
     }
 
     trackByFn: TrackByFunction<ABP.FullRoute> = (_, item) => item.name;
-
-    getVisibleRoutes(routes: ABP.FullRoute[]) {
-        return routes.reduce((acc, val) => {
-
-            if (val.invisible) {
-                return acc;
-            }
-
-            if (val.children && val.children.length) {
-                val.children = this.getVisibleRoutes(val.children);
-            }
-
-            return [...acc, val];
-        }, []);
-    }
 }
