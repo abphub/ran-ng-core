@@ -26,6 +26,7 @@ import { RanLayoutState } from './states/layout.state';
 import { AppHeaderBarComponent } from './components/header/header-bar.component';
 import { PageSidebarComponent } from './components/page/page-sidebar.component';
 import { NgxValidateCoreModule } from '@ngx-validate/core';
+import { PageTopToolsComponent } from './components/page/page-top-tools.component';
 
 export const RAN_LAYOUTS = [ApplicationLayoutComponent, AccountLayoutComponent, EmptyLayoutComponent];
 
@@ -40,6 +41,7 @@ export const RAN_LAYOUTS = [ApplicationLayoutComponent, AccountLayoutComponent, 
         PageSidebarComponent,
         PageContentComponent,
         PageTableComponent,
+        PageTopToolsComponent,
         ValidationErrorComponent
     ],
     imports: [
@@ -76,7 +78,8 @@ export const RAN_LAYOUTS = [ApplicationLayoutComponent, AccountLayoutComponent, 
         PageHeaderComponent,
         PageSidebarComponent,
         PageContentComponent,
-        PageTableComponent
+        PageTableComponent,
+        PageTopToolsComponent
     ],
     entryComponents: [
         ...RAN_LAYOUTS,
