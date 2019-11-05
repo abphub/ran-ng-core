@@ -80,7 +80,7 @@ export const RAN_LAYOUTS = [ApplicationLayoutComponent, AccountLayoutComponent, 
         PageHeaderComponent,
         PageSidebarComponent,
         PageContentComponent,
-        PageTableComponent
+        PageTableComponent,
         PageTopToolsComponent
     ],
     entryComponents: [
