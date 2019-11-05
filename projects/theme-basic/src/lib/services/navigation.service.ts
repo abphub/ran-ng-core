@@ -89,13 +89,12 @@ export class AppNavgationService {
      */
     setTopbarAndSidebarNavigation(routes: ABP.FullRoute[]) {
         const includes = routes.some(m => m.parentName);
-        console.warn(`includes为${includes}`);
         if (includes) {
             this.setTopbarNavigations(routes);
 
             if (routes.length) {
                 const route = routes.find(m => window.location.pathname.includes(m.path));
-
+                debugger
                 if (route && this.getRouteGranted(route)) {
                     this.setSidebarNavigations(route.children);
                     return;
@@ -149,7 +148,7 @@ export class AppNavgationService {
             return false;
         }
 
-        if (!item.requiredPolicy && !item.children.length) {
+        if (!item.requiredPolicy && (item.children === undefined || !item.children.length)) {
             return true;
         }
 
