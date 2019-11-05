@@ -9,6 +9,7 @@ import { Router } from '@angular/router';
 @Component({
     selector: 'ran-appbar',
     templateUrl: './appbar.component.html',
+    styleUrls: ['../header/header.component.scss']
 })
 export class AppbarComponent {
     @Select(RanNavigationState.getAppbarNavigationState)

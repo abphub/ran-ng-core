@@ -11,6 +11,28 @@
 <ran-app-header-bar></ran-app-header-bar>
 <span class="mr-auto"></span>
 
+<!-- 语言管理 -->
+<button mat-button class="h6 bar-button" [matMenuTriggerFor]="appLanguageMenu" matTooltip="语言管理">
+    <i class="fa fa-language"></i>
+</button>
+<mat-menu #appLanguageMenu="matMenu">
+    <button *ngFor="let lang of languages$ | async" mat-menu-item class="pl-3 pr-5"
+        (click)="onChangeLang(lang.cultureName)">
+        {{ lang?.displayName }}
+        <i *ngIf="lang?.cultureName===selectedLangCulture">默认</i>
+    </button>
+</mat-menu>
+<!-- 语言管理 -->
+
+<!-- 文档中心 -->
+<button mat-button class="h6 bar-button" matTooltip="文档中心"> <i class="fa fa-question-circle-o"></i></button>
+<!-- 文档中心 -->
+
+<!-- 消息中心 -->
+<button mat-button class="h6 bar-button" matTooltip="消息中心">
+    <i class="fa fa-bell-o" matBadge="{{unReadCount}}" matBadgeColor="accent" [matBadgeHidden]="unReadCount===0"></i>
+</button>
+<!-- 消息中心 -->
 
 <!-- app导航 -->
 <ran-appbar></ran-appbar>
@@ -18,7 +40,7 @@
 
 <!-- 个人中心 -->
 <a *ngIf="(currentUser$|async)?.userName" [matMenuTriggerFor]="appMenu" matTooltip="个人中心" class="position-relative">
-    <div class="hover">
+    <div class="user-overlay">
         <i class="fa fa-cog" aria-hidden="true"></i>
     </div>
     <img class="rounded-circle" style="max-width: 30px;"

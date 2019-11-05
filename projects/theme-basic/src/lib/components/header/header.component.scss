@@ -1,4 +1,4 @@
-.hover {
+.user-overlay {
     color: white;
     background-color: rgba(38, 38, 38, .6);
     border-radius: 50%;
@@ -13,12 +13,8 @@
     transition: all .2s;
 }
 
-.hover:hover {
+.user-overlay:hover {
     opacity: 1 !important;
-}
-
-.active:hover {
-    color: #1b9aee;
 }
 
 .bar-button {
@@ -26,4 +22,8 @@
     min-width: 30px !important;
     line-height: 28px !important;
     margin-right: 10px;
+}
+
+.bar-button:hover {
+    color: #1b9aee;
 }

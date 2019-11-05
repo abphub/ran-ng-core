@@ -1,13 +1,12 @@
 import { ABP, ApplicationConfiguration, Config, ConfigState, GetAppConfiguration, SessionState, SetLanguage } from '@abp/ng.core';
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
 import { Navigate, RouterState } from '@ngxs/router-plugin';
 import { Select, Store } from '@ngxs/store';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { Observable } from 'rxjs';
 import { SetDrawbarState, SetSidebarState } from '../../actions/layout.action';
-import { RanNavigationState } from '../../states/navigation.state';
 import { AppNavgationService } from '../../services/navigation.service';
+import { RanNavigationState } from '../../states/navigation.state';
 
 @Component({
     selector: 'ran-app-header',
