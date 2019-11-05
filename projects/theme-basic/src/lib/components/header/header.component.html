@@ -11,31 +11,9 @@
 <ran-app-header-bar></ran-app-header-bar>
 <span class="mr-auto"></span>
 
-<!-- 快速导航 -->
-<button mat-button class="h6" matTooltip="{{appInfo.name}}应用" [matMenuTriggerFor]="apps">
-    <i class="fa fa-th"></i>
-</button>
-<mat-menu #apps="matMenu" class="apps" xPosition='before'>
-    <div class="row mt-3 mx-3">
-        <div class="col-4" *ngFor="let route of navigations">
-            <div class="app" (click)='navigationByRoute(route)'>
-                <h4 class="rounded app-logo" [title]="route.name"
-                    style="background-image: url(https://tcs.teambition.net/thumbnail/111m49f5d454a8c0e22efc2a8d448db612e2/w/220/h/220);">
-                </h4>
-                <p class="text-center mw-100 text-truncate">{{route.name | abpLocalization}}</p>
-            </div>
-        </div>
-        <div class="col-4">
-            <div class="app">
-                <h4 class="rounded app-logo"
-                    style="background-image: url(https://www.teambition.com/appstore/assets/images/appstore.png);">
-                </h4>
-                <p class="text-center mw-100 text-truncate">app store</p>
-            </div>
-        </div>
-    </div>
-</mat-menu>
-<!-- 快速导航 -->
+<!-- app导航 -->
+<ran-appbar></ran-appbar>
+<!-- app导航 -->
 
 <!-- 文档中心 -->
 <button mat-button class="h6" matTooltip="文档中心"> <i class="fa fa-question-circle"></i></button>

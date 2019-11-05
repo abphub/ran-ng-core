@@ -3,7 +3,7 @@ import { Component, TrackByFunction } from '@angular/core';
 import { Select } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
-import { RanLayoutState } from '../../states';
+import { RanNavigationState } from '../../states/navigation.state';
 
 @Component({
     selector: 'ran-app-sidebar',
@@ -12,7 +12,7 @@ import { RanLayoutState } from '../../states';
 })
 export class AppSidebarComponent {
 
-    @Select(RanLayoutState.getMainNavigationState)
+    @Select(RanNavigationState.getSidebarNavigationState)
     routes$: Observable<ABP.FullRoute[]>;
 
     public get showSidebar$(): Observable<boolean> {
