@@ -1,3 +1,4 @@
-<button mat-button class="h6 m-1" *ngFor="let navgation of navigations$|async" [routerLink]='navgation.url'>
+<button mat-button class="h6 mx-1 px-1 bar-button" *ngFor="let navgation of navigations$|async" [routerLink]='navgation.url'
+    routerLinkActive="active">
     {{navgation.name}}
 </button>
