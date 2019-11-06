@@ -1,5 +1,5 @@
 /*基于bootstrap card 改造*/
-@mixin _appCard($materialTheme) {
+@mixin app-card($materialTheme) {
 
     $card-header-bg-color: mat-color(map-get($materialTheme, primary));
 

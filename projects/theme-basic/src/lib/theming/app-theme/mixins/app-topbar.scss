@@ -1,4 +1,4 @@
-@mixin _appTopbar($materialTheme) {
+@mixin app-topbar($materialTheme) {
 
     $primary: mat-color(map-get($materialTheme, primary));
     $font-color: white;

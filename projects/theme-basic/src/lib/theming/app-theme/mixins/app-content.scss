@@ -1,4 +1,4 @@
-@mixin _appContent($materialTheme) {
+@mixin app-content($materialTheme) {
     $is-dark-theme: map-get($materialTheme, is-dark);
     $font-color: white;
 

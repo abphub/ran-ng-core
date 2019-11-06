@@ -1,0 +1,5 @@
+@import './mixins//app-topbar.scss';
+
+@mixin app-theme($materialTheme) {
+    @include app-topbar($materialTheme);
+}
