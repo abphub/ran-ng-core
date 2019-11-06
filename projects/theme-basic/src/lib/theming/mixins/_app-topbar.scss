@@ -3,66 +3,7 @@
     $primary: mat-color(map-get($materialTheme, primary));
     $font-color: white;
 
-    app-topbar {
-        display: block;
-        width: 100%;
-        height: 64px;
-        // margin-bottom: 4px;
-        // box-shadow: 0 1px 4px rgba(0, 21, 41, .08);
-
-        mat-toolbar {
-            position: fixed;
-            top: 0;
-            left: 0;
-
-            a.logo {
-                font-size: 1.1rem;
-                padding-top: 0.2rem;
-                text-decoration: none;
-                color: $font-color;
-
-                img {
-                    max-height: 45px;
-                }
-            }
-
-            nav.topmenu {
-                margin-left: 1rem;
-                font-size: .9rem;
-
-                ul {
-                    display: flex;
-                    align-items: center;
-                    padding: 0;
-                    margin: 0;
-
-                    li {
-                        padding-bottom: 2px;
-                        list-style-type: none;
-                        cursor: pointer;
-
-                        a {
-                            display: inline-block;
-                            color: $font-color;
-                            text-decoration: none;
-                            margin: 0 3px;
-                            padding: 4px 14px;
-                            border-radius: 5px;
-
-                            i {
-                                font-size: 1.2rem;
-                            }
-
-                            &:hover,
-                            &:active,
-                            &:focus,
-                            &.active {
-                                background-color: rgba(0, 0, 0, .1);
-                            }
-                        }
-                    }
-                }
-            }
-        }
+    ran-app-header {
+        background: $primary;
     }
 }

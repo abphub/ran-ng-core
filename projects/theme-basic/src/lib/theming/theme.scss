@@ -1,19 +1,23 @@
 // 默认主题
 body {
     @include angular-material-theme($material-light-theme);
+    @include _appTopbar($material-light-theme);
 }
 
 // 红色主题
 body[theme="partyred"] {
     @include angular-material-theme($material-partyred-theme);
+    @include _appTopbar($material-light-theme);
 }
 
 // 白色主题
 body[theme="blue"] {
     @include angular-material-theme($material-blue-theme);
+    @include _appTopbar($material-light-theme);
 }
 
 // 黑色主题
 body[theme="dark"] {
     @include angular-material-theme($material-dark-theme);
+    @include _appTopbar($material-light-theme);
 }
