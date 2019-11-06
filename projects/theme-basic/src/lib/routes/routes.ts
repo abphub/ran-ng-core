@@ -22,11 +22,11 @@ export const THEME_BASIC_ROUTES = {
       name: '::Menu:Theme:Dark',
       parentName: '::Menu:Theme',
       path: 'dark',
-      // children: [
-      //   { path: 'theme-one', name: '::Menu:Theme:Dark:One', order: 1 },
-      //   { path: 'theme-two', name: '::Menu:Theme:Dark:Two', order: 2 },
-      //   { path: 'theme-three', name: '::Menu:Theme:Dark:Three', order: 3, requiredPolicy: 'fasdfad' },
-      // ]
+      children: [
+        { path: 'theme-one', name: '::Menu:Theme:Dark:One', order: 1 },
+        { path: 'theme-two', name: '::Menu:Theme:Dark:Two', order: 2 },
+        { path: 'theme-three', name: '::Menu:Theme:Dark:Three', order: 3, requiredPolicy: 'fasdfad' },
+      ]
     }]
   }] as ABP.FullRoute[]
 };

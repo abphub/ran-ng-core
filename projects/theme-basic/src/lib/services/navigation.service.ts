@@ -45,7 +45,7 @@ export class AppNavgationService {
                 return _route.url;
             }
         }
-        return '';
+        return route.url || '';
     }
 
 
@@ -54,33 +54,31 @@ export class AppNavgationService {
      * @param event angular路由事件
      */
     setNavigations(event: RouterEvent) {
-        if (event instanceof NavigationEnd) {
-            const segmentGroup = this.router.parseUrl(event.url).root.children.primary;
-            const { flattedRoutes } = this.store.selectSnapshot(ConfigState.getAll);
-            const segments = segmentGroup ? segmentGroup.segments : [];
+        const segmentGroup = this.router.parseUrl(event.url).root.children.primary;
+        const { flattedRoutes } = this.store.selectSnapshot(ConfigState.getAll);
+        const segments = segmentGroup ? segmentGroup.segments : [];
 
-            if (!segments.length) {
-                this.setTopbarAndSidebarNavigation([]);
-                return;
-            }
-
-            // 查找一级菜单中匹配的项
-            const route = flattedRoutes.find(m => m.path === segments[0].path);
-            // 如果不可见
-            if (route.invisible) {
-                this.setTopbarAndSidebarNavigation([]);
-                return false;
-            }
-
-            if (route.parentName) {
-                const __routes = flattedRoutes.filter(m => m.parentName === route.parentName);
-                this.setSidebarNavigations(__routes);
-                this.setTopbarNavigations([]);
-            } else {
-                this.setTopbarAndSidebarNavigation(route.children);
-            }
-
+        if (!segments.length) {
+            this.setTopbarAndSidebarNavigation([]);
+            return;
         }
+
+        // 查找一级菜单中匹配的项
+        const route = flattedRoutes.find(m => m.path === segments[0].path);
+        // 如果不可见
+        if (route.invisible) {
+            this.setTopbarAndSidebarNavigation([]);
+            return false;
+        }
+
+        if (route.parentName) {
+            const __routes = flattedRoutes.filter(m => m.parentName === route.parentName);
+            this.setSidebarNavigations(__routes);
+            this.setTopbarNavigations([]);
+        } else {
+            this.setTopbarAndSidebarNavigation(route.children);
+        }
+
     }
 
     /**
@@ -88,25 +86,22 @@ export class AppNavgationService {
      * @param routes appbar中当前选中的路由
      */
     setTopbarAndSidebarNavigation(routes: ABP.FullRoute[]) {
+
         const includes = routes.some(m => m.parentName);
+        // 是否包含parentName,如果包含，则设置
         if (includes) {
             this.setTopbarNavigations(routes);
+            const route = routes.find(m => window.location.pathname.includes(m.path));
+            if (route && this.getRouteGranted(route)) {
+                this.setSidebarNavigations(route.children);
+                return;
+            }
 
-            if (routes.length) {
-                const route = routes.find(m => window.location.pathname.includes(m.path));
-                debugger
-                if (route && this.getRouteGranted(route)) {
+            for (const _route of routes) {
+                if (this.getRouteGranted(route)) {
                     this.setSidebarNavigations(route.children);
                     return;
                 }
-
-                for (const _route of routes) {
-                    if (this.getRouteGranted(route)) {
-                        this.setSidebarNavigations(route.children);
-                    }
-                }
-            } else {
-                this.setSidebarNavigations([]);
             }
         } else {
             this.setTopbarNavigations([]);

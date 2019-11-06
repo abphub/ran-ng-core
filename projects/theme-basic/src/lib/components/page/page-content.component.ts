@@ -8,5 +8,4 @@ import { PageSidebarComponent } from './page-sidebar.component';
 })
 export class PageContentComponent {
     @ContentChild(PageSidebarComponent, { static: true }) pageSidebar: PageSidebarComponent;
-
 }
