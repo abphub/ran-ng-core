@@ -52,29 +52,50 @@
 
      ran-application-layout {
 
-         ran-app-header.fixed-top+mat-sidenav-container {
-             position: relative;
-             top: 49px;
-         }
-
          ran-app-header {
-             height: 48px;
-             color: #8c8c8c;
-             z-index: 999 !important;
+             display: flex;
+             box-sizing: border-box;
+             padding: 0 16px;
+             margin: 0;
+             width: 100%;
+             flex-direction: row;
+             align-items: center;
+             white-space: nowrap;
+             color: rgba(0, 0, 0, 0.87);
+             font: 500 20px/32px Roboto, "Helvetica Neue", sans-serif;
+
+             &.app-header-sigle-row {
+                 height: 56px;
+             }
+
+             &.app-header-fixed-top {
+                 position: fixed;
+                 top: 0;
+                 left: 0;
+                 width: 100%;
+                 z-index: 999;
+                 box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075) !important;
+             }
 
              button:focus {
                  outline: none !important;
              }
          }
 
+         ran-app-header.app-header-fixed-top+mat-sidenav-container {
+             position: relative;
+             top: 56px;
+         }
+
+
          mat-sidenav-container {
              mat-sidenav-content {
                  padding: 15px;
 
                  ran-page-content {
-                    height: calc(100% - 40px);
-                    overflow-x: hidden;
-                    overflow-y: auto;
+                     height: calc(100% - 40px);
+                     overflow-x: hidden;
+                     overflow-y: auto;
                  }
 
                  ran-page-content.w-75 {
