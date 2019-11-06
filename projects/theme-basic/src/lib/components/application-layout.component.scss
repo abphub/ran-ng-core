@@ -95,9 +95,7 @@
                  padding: 15px;
 
                  ran-page-content {
-                    height: calc(100% - 40px);
-                    // overflow-x: hidden;
-                    // overflow-y: auto;
+                    height: 100%;
                  }
 
                  ran-page-content.w-75 {
@@ -160,9 +158,9 @@
                      background: rgba(0, 0, 0, 0.04);
                  }
 
-                 .card.scrollbar {
-                    height: calc(100% - 70px);
-                 }
+                //  .card.scrollbar {
+                //     height: calc(100% - 70px);
+                //  }
 
                  .card {
                      width: 100%;
