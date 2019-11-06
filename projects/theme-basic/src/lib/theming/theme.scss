@@ -1,0 +1,19 @@
+// 默认主题
+body {
+    @include angular-material-theme($material-light-theme);
+}
+
+// 红色主题
+body[theme="partyred"] {
+    @include angular-material-theme($material-partyred-theme);
+}
+
+// 白色主题
+body[theme="blue"] {
+    @include angular-material-theme($material-blue-theme);
+}
+
+// 黑色主题
+body[theme="dark"] {
+    @include angular-material-theme($material-dark-theme);
+}
