@@ -6,7 +6,7 @@ import {
     MatBadgeModule, MatButtonModule, MatListModule,
     MatMenuModule, MatSidenavModule, MatToolbarModule, MatTooltipModule
 } from '@angular/material';
-import { Router, RouterEvent } from '@angular/router';
+import { Router, RouterEvent, NavigationEnd } from '@angular/router';
 import { NgxValidateCoreModule } from '@ngx-validate/core';
 import { NgxsModule } from '@ngxs/store';
 import { CoreModule as RanCoreModule } from '@ran-ng/core';
@@ -28,6 +28,7 @@ import { RanLayoutState } from './states/layout.state';
 import { RanNavigationState } from './states/navigation.state';
 import { AppbarComponent } from './components/appbar/appbar.component';
 import { PageTopToolsComponent } from './components/page/page-top-tools.component';
+import { filter } from 'rxjs/operators';
 
 export const RAN_LAYOUTS = [ApplicationLayoutComponent, AccountLayoutComponent, EmptyLayoutComponent];
 
@@ -96,8 +97,11 @@ export class ThemeBasicModule {
         router: Router,
         appNavgationService: AppNavgationService,
     ) {
-        router.events.subscribe((event: RouterEvent) => {
-            appNavgationService.setNavigations(event);
-        });
+        // 监听路由变更
+        router.events
+            .pipe(filter(event => event instanceof NavigationEnd))
+            .subscribe((event: NavigationEnd) => {
+                appNavgationService.setNavigations(event);
+            });
     }
 }
