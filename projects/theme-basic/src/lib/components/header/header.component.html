@@ -1,23 +1,23 @@
 <a class="logo" target="_blank">
     <!-- <img [src]="appInfo.logoUrl" style="max-width: 40px;"> -->
-    <span class="ml-3 text-muted">{{appInfo.name}}</span>
+    <span style="color: #6c757d!important;">{{appInfo.name}}</span>
 </a>
 
-<div class="px-2 d-none" (click)='setSidebarState()'>
+<!-- <div class="" (click)='setSidebarState()'>
     <i class="fa fa-indent"></i>
-</div>
+</div> -->
 
-<span class="mr-auto"></span>
+<span class="flex-spacer"></span>
 <ran-app-header-bar></ran-app-header-bar>
-<span class="mr-auto"></span>
+<span class="flex-spacer"></span>
 
 
 <!-- 语言管理 -->
-<button mat-button class="h6 bar-button" [matMenuTriggerFor]="appLanguageMenu" matTooltip="语言管理">
+<button mat-button class="header-bar-button" [matMenuTriggerFor]="appLanguageMenu" matTooltip="语言管理">
     <i class="fa fa-language"></i>
 </button>
 <mat-menu #appLanguageMenu="matMenu">
-    <button *ngFor="let lang of languages$ | async" mat-menu-item class="pl-3 pr-5"
+    <button *ngFor="let lang of languages$ | async" mat-menu-item class="menu-button"
         (click)="onChangeLang(lang.cultureName)">
         {{ lang?.displayName }}
         <i *ngIf="lang?.cultureName===selectedLangCulture">默认</i>
@@ -26,11 +26,11 @@
 <!-- 语言管理 -->
 
 <!-- 文档中心 -->
-<button mat-button class="h6 bar-button" matTooltip="文档中心"> <i class="fa fa-question-circle-o"></i></button>
+<button mat-button class="header-bar-button" matTooltip="文档中心"> <i class="fa fa-question-circle-o"></i></button>
 <!-- 文档中心 -->
 
 <!-- 消息中心 -->
-<button mat-button class="h6 bar-button" matTooltip="消息中心">
+<button mat-button class="header-bar-button" matTooltip="消息中心">
     <i class="fa fa-bell-o" matBadge="{{unReadCount}}" matBadgeColor="accent" [matBadgeHidden]="unReadCount===0"></i>
 </button>
 <!-- 消息中心 -->
@@ -40,11 +40,11 @@
 <!-- app导航 -->
 
 <!-- 个人中心 -->
-<a *ngIf="(currentUser$|async)?.userName" [matMenuTriggerFor]="appMenu" matTooltip="个人中心" class="position-relative">
+<a *ngIf="(currentUser$|async)?.userName" [matMenuTriggerFor]="appMenu" matTooltip="个人中心" class="avatar">
     <div class="user-overlay">
         <i class="fa fa-cog" aria-hidden="true"></i>
     </div>
-    <img class="rounded-circle" style="max-width: 30px;"
+    <img class="avatar-img"
         src="https://tcs.teambition.net/thumbnail/111m599c5e15c4bfcdf6fd04ba59bc983451/w/200/h/200">
 </a>
 <mat-menu #appMenu="matMenu">

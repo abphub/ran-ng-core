@@ -62,33 +62,35 @@
              align-items: center;
              white-space: nowrap;
              color: rgba(0, 0, 0, 0.87);
+             border-bottom: 1px solid #efefef;
              font: 500 20px/32px Roboto, "Helvetica Neue", sans-serif;
 
              &.app-header-sigle-row {
-                 height: 56px;
+                 height: 65px;
              }
 
-             &.app-header-fixed-top {
-                 position: fixed;
-                 top: 0;
-                 left: 0;
-                 width: 100%;
-                 z-index: 999;
-                 box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075) !important;
-             }
+            //  &.app-header-fixed-top {
+            //      position: fixed;
+            //      top: 0;
+            //      left: 0;
+            //      width: 100%;
+            //      z-index: 1;
+            //      box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075) !important;
+            //  }
 
              button:focus {
                  outline: none !important;
              }
          }
 
-         ran-app-header.app-header-fixed-top+mat-sidenav-container {
-             position: relative;
-             top: 56px;
-         }
+        //  ran-app-header.app-header-fixed-top+mat-sidenav-container {
+        //      position: relative;
+        //      top: 56px;
+        //  }
 
 
          mat-sidenav-container {
+             z-index: 2;
              mat-sidenav-content {
                  padding: 15px;
 
@@ -100,7 +102,7 @@
 
                  ran-page-content.w-75 {
                      height: calc(100% - 120px);
-                     margin: 60px auto;
+                     margin: 0 auto;
                      width: 75%;
                  }
 
@@ -181,12 +183,6 @@
                      border: 0;
                      box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075);
                  }
-
-                //  .card-body {
-                //     height: calc(100% - 120px);
-                //     overflow-x: hidden;
-                //     overflow-y: auto;
-                //  }
 
                  .card-header {
                      padding: 30px 30px 0 30px;
