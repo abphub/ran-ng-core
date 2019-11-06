@@ -33,15 +33,21 @@
      }
 
      .modal-content {
-        height: 90%;
+         height: 70%;
      }
+
      .modal-body {
-        height: 100%;
-        overflow-x: hidden;
-        overflow-y: auto;
+         height: 100%;
+         overflow-x: hidden;
+         overflow-y: auto;
      }
+
      .modal-dialog {
          height: 100%;
+     }
+
+     .mat-drawer-content {
+         overflow: hidden;
      }
 
      ran-application-layout {
@@ -66,10 +72,13 @@
                  padding: 15px;
 
                  ran-page-content {
-                     height: calc(100% - 120px);
+                    height: calc(100% - 40px);
+                    overflow-x: hidden;
+                    overflow-y: auto;
                  }
 
                  ran-page-content.w-75 {
+                     height: calc(100% - 120px);
                      margin: 60px auto;
                      width: 75%;
                  }

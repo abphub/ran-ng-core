@@ -6,24 +6,13 @@
         <i class="fa fa-times m-1"></i>
     </div>
 </ran-page-top-tools> -->
-<ran-page-content class="w-75">
+<!-- <ran-page-content class="w-75">
     <div style="width:100%">
         <ran-page-header>
             <h4>编辑字段</h4>
             <button type="button" class="btn btn-primary btn-sm ml-3"><i class="fa fa-plus m-1"></i>新增版块</button>
         </ran-page-header>
         <div class="card scrollbar">
-            <!-- <div class="card-header">
-                <h5 class="m-0">
-                    字段
-                </h5>
-                <div>
-                    <i class="fa fa-refresh mr-3" style="color: #8f959e;"></i>
-                    <i class="fa fa-th-list mr-3" style="color: #8f959e;"></i>
-                    <i class="fa fa-filter mr-2 border-left pl-2" style="color: #8f959e;"></i>
-                    <i class="fa fa-" style="font-size: 14px;">筛选</i>
-                </div>
-            </div> -->
             <div class="card-body">
                 <table class="table table-hover table-borderless" style="width: 100%;">
                     <tr class="border-bottom headers">
@@ -67,44 +56,24 @@
 
     <ran-page-sidebar class="scrollbar">
         <mat-nav-list>
-            <!-- <div class="d-flex justify-content-between p-3 pt-2">
-                            <div style="font-size: 14px;">字段管理</div>
-                            <div>
-                                <i class="fa fa-plus mr-3" style="color: #8f959e;font-size: 14px;"></i>
-                                <i class="fa fa-ellipsis-v" style="color: #8f959e;font-size: 14px;"></i>
-                            </div>
-                        </div> -->
             <h3 mat-subheader class="m-0">
-                <!-- <i class="fa fa-file-text-o mr-2"></i> -->
                 字段群组
             </h3>
             <mat-list-item class="mat-list-item active">
                 <a matLine>
                     主页</a>
-                <!-- <button mat-button class="h6 bar-button active">
-                                <i class="fa fa-ellipsis-v" style="color: #8f959e;"></i>
-                            </button> -->
             </mat-list-item>
             <mat-list-item class="mat-list-item">
                 <a matLine>
                     页面</a>
-                <!-- <button mat-button class="h6 bar-button active">
-                                <i class="fa fa-ellipsis-v" style="color: #8f959e;"></i>
-                            </button> -->
             </mat-list-item>
             <mat-list-item class="mat-list-item">
                 <a matLine>
                     组件</a>
-                <!-- <button mat-button class="h6 bar-button active">
-                                <i class="fa fa-ellipsis-v" style="color: #8f959e;"></i>
-                            </button> -->
             </mat-list-item>
             <mat-list-item class="mat-list-item">
                 <a matLine>
                     其他</a>
-                <!-- <button mat-button class="h6 bar-button active">
-                                <i class="fa fa-ellipsis-v" style="color: #8f959e;"></i>
-                            </button> -->
             </mat-list-item>
             <div class="d-flex justify-content-center mt-3 mb-3 pb-3">
                 <button type="button" class="btn btn-link" style="margin-left: -20px;"><i
@@ -113,4 +82,55 @@
         </mat-nav-list>
     </ran-page-sidebar>
 
+</ran-page-content> -->
+
+
+
+<ran-page-content>
+    <div style="width:100%">
+        <ran-page-header>
+            <h5>编辑字段</h5>
+            <button type="button" class="btn btn-primary ml-3"><i class="fa fa-plus m-1"></i>新增版块</button>
+        </ran-page-header>
+        <div class="card scrollbar">
+            <div class="card-body">
+                <table class="table table-hover table-borderless" style="width: 100%;">
+                    <tr class="border-bottom headers">
+                        <th scope="col" style="width: 28px;">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" id="customCheck1">
+                                <label class="custom-control-label" for="customCheck1"></label>
+                            </div>
+                        </th>
+                        <th scope="col">名称</th>
+                        <th scope="col">Name</th>
+                        <th scope="col">用户</th>
+                        <th scope="col">操作</th>
+                    </tr>
+                    <tr class="border-bottom dataSource" *ngFor="let item of dataSource">
+                        <th scope="row" style="width: 28px;vertical-align: inherit;">
+                            <div class="custom-control custom-checkbox">
+                                <input type="checkbox" class="custom-control-input" [attr.id]="item.position">
+                                <label class="custom-control-label" [attr.for]="item.position"></label>
+                            </div>
+                        </th>
+                        <td style="vertical-align: inherit;">
+                            <a></a>
+                            {{item.name}}
+                        </td>
+                        <td style="vertical-align: inherit;">{{item.symbol}}</td>
+                        <td style="vertical-align: inherit;">{{item.weight}}</td>
+                        <td style="vertical-align: inherit;">
+                            <button type="button" class="btn btn-link text-decoration-none">
+                                修改
+                            </button>
+                            <button type="button" class="btn btn-link text-decoration-none">
+                                删除
+                            </button>
+                        </td>
+                    </tr>
+                </table>
+            </div>
+        </div>
+    </div>
 </ran-page-content>
