@@ -1,0 +1,15 @@
+:host {
+    display: flex;
+    height: 60px;
+    background: white;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid #e9eaf2;
+    box-sizing: border-box;
+    padding: 0px 35px 0 25px;
+    margin: -15px -15px 0 -15px;
+    position: fixed;
+    bottom: 0;
+    z-index: 999;
+    width: 100%;
+}

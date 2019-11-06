@@ -29,6 +29,7 @@ import { RanNavigationState } from './states/navigation.state';
 import { AppbarComponent } from './components/appbar/appbar.component';
 import { PageTopToolsComponent } from './components/page/page-top-tools.component';
 import { filter } from 'rxjs/operators';
+import { PageFootComponent } from './components/page/page-foot.component';
 
 export const RAN_LAYOUTS = [ApplicationLayoutComponent, AccountLayoutComponent, EmptyLayoutComponent];
 
@@ -45,6 +46,7 @@ export const RAN_LAYOUTS = [ApplicationLayoutComponent, AccountLayoutComponent, 
         PageContentComponent,
         PageTableComponent,
         PageTopToolsComponent,
+        PageFootComponent,
         ValidationErrorComponent
     ],
     imports: [
@@ -82,7 +84,8 @@ export const RAN_LAYOUTS = [ApplicationLayoutComponent, AccountLayoutComponent, 
         PageSidebarComponent,
         PageContentComponent,
         PageTableComponent,
-        PageTopToolsComponent
+        PageTopToolsComponent,
+        PageFootComponent
     ],
     entryComponents: [
         ...RAN_LAYOUTS,
