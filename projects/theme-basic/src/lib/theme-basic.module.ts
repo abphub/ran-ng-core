@@ -1,12 +1,12 @@
 import { CoreModule } from '@abp/ng.core';
 import { ThemeSharedModule } from '@abp/ng.theme.shared';
 import { CommonModule } from '@angular/common';
-import { NgModule } from '@angular/core';
+import { NgModule, ModuleWithProviders } from '@angular/core';
 import {
     MatBadgeModule, MatButtonModule, MatListModule,
     MatMenuModule, MatSidenavModule, MatToolbarModule, MatTooltipModule
 } from '@angular/material';
-import { Router, RouterEvent, NavigationEnd } from '@angular/router';
+import { Router, NavigationEnd } from '@angular/router';
 import { NgxValidateCoreModule } from '@ngx-validate/core';
 import { NgxsModule } from '@ngxs/store';
 import { CoreModule as RanCoreModule } from '@ran-ng/core';
@@ -103,5 +103,15 @@ export class ThemeBasicModule {
             .subscribe((event: NavigationEnd) => {
                 appNavgationService.setNavigations(event);
             });
+    }
+
+
+    static forRoot(): ModuleWithProviders {
+        return {
+            ngModule: ThemeBasicModule,
+            providers: [
+
+            ]
+        };
     }
 }

@@ -1,0 +1,61 @@
+@mixin _appContent($materialTheme) {
+    $is-dark-theme: map-get($materialTheme, is-dark);
+    $font-color: white;
+
+    app-content {
+        position: absolute !important;
+        width: 100%;
+        height: calc(100% - 64px - 4px); // 高度计算减掉顶部导航 - 顶部margin
+        background-color: transparent !important;
+        overflow: hidden !important;
+
+
+        mat-sidenav-container {
+
+            height: 100%;
+
+            &>.mat-drawbar {
+                position: fixed;
+                width: 400px;
+                height: 100%;
+            }
+
+            &>.mat-sidebar {
+                border-right: none;
+                // box-shadow: 2px 0 8px 0 rgba(29, 35, 41, .05);
+
+                &>.mat-drawer-inner-container {
+                    overflow: hidden !important;
+                }
+
+                app-sidebar {
+                    display: block;
+                    overflow: hidden;
+                    width: 230px;
+                    height: 100%;
+                    border-right: 1px solid #efefef !important;
+
+
+                    .active {
+                        background: rgba(0, 0, 0, .04);
+                    }
+
+                    &:hover {
+                        overflow: auto !important;
+                    }
+
+                    .mat-list-item {
+                        i.icon {
+                            font-size: 1.2rem;
+                            margin-right: 0.5rem;
+                        }
+                    }
+                }
+            }
+
+            &>mat-sidenav-content {
+                overflow: hidden !important;
+            }
+        }
+    }
+}
