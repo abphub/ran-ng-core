@@ -47,7 +47,7 @@
      }
 
      .mat-drawer-content {
-         overflow: hidden;
+         height: calc(100% - 50px);
      }
 
      ran-application-layout {
@@ -73,8 +73,8 @@
 
                  ran-page-content {
                     height: calc(100% - 40px);
-                    overflow-x: hidden;
-                    overflow-y: auto;
+                    // overflow-x: hidden;
+                    // overflow-y: auto;
                  }
 
                  ran-page-content.w-75 {
@@ -138,11 +138,12 @@
                  }
 
                  .card.scrollbar {
-                     height: calc(100% - 70px);
+                    height: calc(100% - 70px);
                  }
 
                  .card {
                      width: 100%;
+                    //  height: calc(100% - 120px);
                      overflow-x: hidden;
                      overflow-y: auto;
                      //  margin: 0 1px;
@@ -159,6 +160,12 @@
                      border: 0;
                      box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075);
                  }
+
+                //  .card-body {
+                //     height: calc(100% - 120px);
+                //     overflow-x: hidden;
+                //     overflow-y: auto;
+                //  }
 
                  .card-header {
                      padding: 30px 30px 0 30px;
