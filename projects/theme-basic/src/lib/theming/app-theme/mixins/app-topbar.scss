@@ -2,8 +2,38 @@
 
     $primary: mat-color(map-get($materialTheme, primary));
     $font-color: white;
+    $accent: mat-color(map-get($materialTheme, accent ));
 
     ran-app-header {
-        background: $primary;
+        background-color: $primary;
+        display: flex;
+        box-sizing: border-box;
+        padding: 0 16px;
+        margin: 0;
+        width: 100%;
+        flex-direction: row;
+        align-items: center;
+        white-space: nowrap;
+        color: $font-color;
+        // color: rgba(0, 0, 0, 0.87);
+        border-bottom: 1px solid #efefef;
+        font: 500 20px/32px Roboto, "Helvetica Neue", sans-serif;
+
+        &.app-header-sigle-row {
+            height: 65px;
+        }
+
+       //  &.app-header-fixed-top {
+       //      position: fixed;
+       //      top: 0;
+       //      left: 0;
+       //      width: 100%;
+       //      z-index: 1;
+       //      box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075) !important;
+       //  }
+
+        button:focus {
+            outline: none !important;
+        }
     }
 }
