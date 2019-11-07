@@ -9,7 +9,6 @@ import {
 import { Router, NavigationEnd } from '@angular/router';
 import { NgxValidateCoreModule } from '@ngx-validate/core';
 import { NgxsModule } from '@ngxs/store';
-import { CoreModule as RanCoreModule } from '@ran-ng/core';
 import { SpinnerModule } from '@ran-ng/spinner';
 import { AccountLayoutComponent } from './components/account-layout.component';
 import { ApplicationLayoutComponent } from './components/application-layout.component';
@@ -54,7 +53,6 @@ export const RAN_LAYOUTS = [ApplicationLayoutComponent, AccountLayoutComponent, 
     imports: [
         NgxsModule.forFeature([RanLayoutState, RanNavigationState]),
         CoreModule,
-        RanCoreModule,
         SpinnerModule,
         ThemeSharedModule,
         CommonModule,
