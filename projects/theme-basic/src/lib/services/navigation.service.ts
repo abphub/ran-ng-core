@@ -76,7 +76,7 @@ export class AppNavgationService {
             this.setSidebarNavigations(__routes);
             this.setTopbarNavigations([]);
         } else {
-            this.setTopbarAndSidebarNavigation(route.children);
+            this.setTopbarAndSidebarNavigation(route.children || []);
         }
 
     }
@@ -143,7 +143,14 @@ export class AppNavgationService {
             return false;
         }
 
-        if (!item.requiredPolicy && (item.children === undefined || !item.children.length)) {
+        /**
+         * 如果没有权限，且无子集
+         * 如果有权限，且无子集
+         */
+        if (
+            (!item.requiredPolicy || item.requiredPolicy && this.getGrantedPolicy(item.requiredPolicy) && item.path) &&
+            (item.children === undefined || !item.children.length)
+        ) {
             return true;
         }
 
@@ -158,7 +165,7 @@ export class AppNavgationService {
             }
         }
 
-        return undefined;
+        return false;
     }
 
     /**
@@ -167,11 +174,13 @@ export class AppNavgationService {
      * @param _routes 处理过程变量
      */
     getRoutes(routes: ABP.FullRoute[], _routes: ABP.FullRoute[]) {
-        for (const route of routes) {
-            if (route.children && route.children.length) {
-                this.getRoutes(route.children, _routes);
-            } else {
-                _routes.push(route);
+        if (routes && routes.length) {
+            for (const route of routes) {
+                if (route.children && route.children.length) {
+                    this.getRoutes(route.children, _routes);
+                } else {
+                    _routes.push(route);
+                }
             }
         }
         return _routes;
