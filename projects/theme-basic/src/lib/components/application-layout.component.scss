@@ -2,242 +2,30 @@
 
  body {
      overflow: hidden;
-
-     .cdk-overlay-container {
-         z-index: 2000;
-     }
-
-     .mat-drawer.mat-drawer-side {
-         z-index: 0;
-     }
-
-     .modal.show {
-         overflow-x: visible !important;
-         overflow-y: visible !important;
-     }
-
-     .modal-content {
-         height: 70%;
-     }
-
-     .modal-body {
-         height: 100%;
-         overflow-x: hidden;
-         overflow-y: auto;
-     }
-
-     .modal-dialog {
-         height: 100%;
-     }
-
-     .mat-drawer-content {
-         height: calc(100% - 50px);
-     }
-
-     #ManageProfileWrapper {
-         width: 100%;
-         padding: 15px;
-         background-color: #fff;
-         background-clip: border-box;
-         border-radius: 0;
-         border-bottom-left-radius: .25rem !important;
-         border-bottom-right-radius: .25rem !important;
-         border: 0;
-         box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075);
-     }
-
-     abp-manage-profile {
-         width: 75%;
-         display: block;
-         margin: auto;
-     }
+     
+    
 
      ran-application-layout {
-
-         //  ran-app-header {
-         //      display: flex;
-         //      box-sizing: border-box;
-         //      padding: 0 16px;
-         //      margin: 0;
-         //      width: 100%;
-         //      flex-direction: row;
-         //      align-items: center;
-         //      white-space: nowrap;
-         //      color: rgba(0, 0, 0, 0.87);
-         //      border-bottom: 1px solid #efefef;
-         //      font: 500 20px/32px Roboto, "Helvetica Neue", sans-serif;
-
-         //      &.app-header-sigle-row {
-         //          height: 65px;
-         //      }
-
-         //     //  &.app-header-fixed-top {
-         //     //      position: fixed;
-         //     //      top: 0;
-         //     //      left: 0;
-         //     //      width: 100%;
-         //     //      z-index: 1;
-         //     //      box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075) !important;
-         //     //  }
-
-         //      button:focus {
-         //          outline: none !important;
-         //      }
-         //  }
-
-         //  ran-app-header.app-header-fixed-top+mat-sidenav-container {
-         //      position: relative;
-         //      top: 56px;
-         //  }
-
-
          mat-sidenav-container {
              z-index: 2;
 
              mat-sidenav-content {
                  padding: 15px;
 
-                 ran-page-content {
-                     height: 100%;
-                 }
-
                  ran-page-content.w-75 {
-                     height: calc(100% - 120px);
                      margin: 0 auto;
                      width: 75%;
                  }
-
-                 ran-page-sidebar {
-                     width: 25%;
-                     height: 100%;
-                     overflow-x: hidden;
-                     overflow-y: auto;
-                     background-color: #fff;
-                     padding: 0 15px 0 15px;
-                     box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075) !important;
-                 }
-
-                 .mat-button {
-                     min-width: 45px;
-                     line-height: 30px;
-                 }
-
-                 .bar-button {
-                     padding: 0 !important;
-                     min-width: 28px !important;
-                     line-height: 26px !important;
-                 }
-
-                 .row {
-                     margin: 0;
-                     padding: 5px;
-                 }
-
-                 .entry-row {
-                     display: flex;
-                     align-items: center;
-                     height: 70px;
-                     background-color: #fff;
-                     border-top-left-radius: .25rem !important;
-                     border-top-right-radius: .25rem !important;
-                     box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, 0.075);
-                     border-bottom: 1px solid #dee2e6 !important;
-                 }
-
-                 .entry-row .content-header-title {
-                     font-size: 1.2rem;
-                     margin-bottom: 0;
-                 }
-
-                 .mat-list-item.active {
-                     color: #1b9aee;
-                     border-radius: 5px;
-                     background: rgba(0, 0, 0, 0.04);
-                 }
-
-                 .mat-list-item:hover {
-                     color: #1b9aee;
-                     border-radius: 5px;
-                     background: rgba(0, 0, 0, 0.04);
-                 }
-
-                 //  .card.scrollbar {
-                 //     height: calc(100% - 70px);
-                 //  }
-
-                 .card {
-                     width: 100%;
-                     //  height: calc(100% - 120px);
-                     overflow-x: hidden;
-                     overflow-y: auto;
-                     //  margin: 0 1px;
-                     position: relative;
-                     display: flex;
-                     flex-direction: column;
-                     min-width: 0;
-                     word-wrap: break-word;
-                     background-color: #fff;
-                     background-clip: border-box;
-                     border-radius: 0;
-                     border-bottom-left-radius: .25rem !important;
-                     border-bottom-right-radius: .25rem !important;
-                     border: 0;
-                     box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075);
-                 }
-
-                 .card-header {
-                     padding: 30px 30px 0 30px;
-                     margin-bottom: 0;
-                     background-color: #fff;
-                     display: flex;
-                     justify-content: space-between;
-                     border: 0;
-                 }
-
-                 .scrollbar::-webkit-scrollbar {
-                     width: 4px;
-                     height: 4px;
-                 }
-
-                 .scrollbar::-webkit-scrollbar-thumb {
-                     border-radius: 5px;
-                     -webkit-box-shadow: inset 0 0 5px #a6a6a6;
-                     background: #a6a6a6;
-                 }
-
-                 .scrollbar::-webkit-scrollbar-track {
-                     -webkit-box-shadow: inset 0 0 5px #e5e5e5;
-                     border-radius: 0;
-                     background: #e5e5e5;
-                 }
-
-
-                 .scrollbar {
-                     /*三角箭头的颜色*/
-                     scrollbar-arrow-color: #fff;
-                     /*滚动条滑块按钮的颜色*/
-                     scrollbar-face-color: #0099dd;
-                     /*滚动条整体颜色*/
-                     scrollbar-highlight-color: #0099dd;
-                     /*滚动条阴影*/
-                     scrollbar-shadow-color: #0099dd;
-                     /*滚动条轨道颜色*/
-                     scrollbar-track-color: #0066ff;
-                     /*滚动条3d亮色阴影边框的外观颜色——左边和上边的阴影色*/
-                     scrollbar-3dlight-color: #0099dd;
-                     /*滚动条3d暗色阴影边框的外观颜色——右边和下边的阴影色*/
-                     scrollbar-darkshadow-color: #0099dd;
-                     /*滚动条基准颜色*/
-                     scrollbar-base-color: #0099dd;
-                 }
-
-
              }
 
              .mat-sidebar {
                  width: 230px;
                  z-index: 0;
              }
+
+             .mat-drawer.mat-drawer-side {
+                z-index: 0;
+            }
 
              .mat-drawbar {
                  width: 400px;

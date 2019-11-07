@@ -1,4 +1,4 @@
-import { CoreModule } from '@abp/ng.core';
+import { CoreModule, LazyLoadService } from '@abp/ng.core';
 import { ThemeSharedModule } from '@abp/ng.theme.shared';
 import { CommonModule } from '@angular/common';
 import { NgModule, ModuleWithProviders, APP_INITIALIZER, Injectable, Injector } from '@angular/core';
@@ -31,8 +31,26 @@ import { PageTopToolsComponent } from './components/page/page-top-tools.componen
 import { filter } from 'rxjs/operators';
 import { PageFootComponent } from './components/page/page-foot.component';
 import { ThemeBasicOptions, THEME_BASIC_OPTIONS, themeBasicFactory } from './providers/theme-basic.provider';
+import { forkJoin } from 'rxjs/internal/observable/forkJoin';
+import styles from './contants/styles';
 
 export const RAN_LAYOUTS = [ApplicationLayoutComponent, AccountLayoutComponent, EmptyLayoutComponent];
+
+export function appendScript(injector: Injector) {
+    const fn = () => {
+        const lazyLoadService: LazyLoadService = injector.get(LazyLoadService);
+        return forkJoin(
+            lazyLoadService.load(
+                null,
+                'style',
+                styles,
+                'head',
+                'afterbegin',
+            )
+        ).toPromise();
+    };
+    return fn;
+}
 
 
 @NgModule({
@@ -120,7 +138,13 @@ export class ThemeBasicModule {
                     multi: true,
                     useFactory: themeBasicFactory,
                     deps: [Injector]
-                }
+                },
+                {
+                    provide: APP_INITIALIZER,
+                    multi: true,
+                    deps: [Injector],
+                    useFactory: appendScript,
+                },
             ]
         };
     }
