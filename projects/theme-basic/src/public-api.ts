@@ -7,3 +7,4 @@ export * from './lib/components';
 export * from './lib/models';
 export * from './lib/states';
 export * from './lib/routes/routes';
+export * from './lib/tokens';

@@ -1,7 +1,7 @@
 import { CoreModule } from '@abp/ng.core';
 import { ThemeSharedModule } from '@abp/ng.theme.shared';
 import { CommonModule } from '@angular/common';
-import { NgModule, ModuleWithProviders, APP_INITIALIZER, Injectable, Injector } from '@angular/core';
+import { NgModule, ModuleWithProviders, APP_INITIALIZER, Injector } from '@angular/core';
 import {
     MatBadgeModule, MatButtonModule, MatListModule,
     MatMenuModule, MatSidenavModule, MatToolbarModule, MatTooltipModule
@@ -30,7 +30,7 @@ import { AppbarComponent } from './components/appbar/appbar.component';
 import { PageTopToolsComponent } from './components/page/page-top-tools.component';
 import { filter } from 'rxjs/operators';
 import { PageFootComponent } from './components/page/page-foot.component';
-import { ThemeBasicOptions, THEME_BASIC_OPTIONS, themeBasicFactory } from './providers/theme-basic.provider';
+import { ThemeBasicOptions, THEME_BASIC_OPTIONS, themeBasicFactory } from './tokens/theme-basic.token';
 
 export const RAN_LAYOUTS = [ApplicationLayoutComponent, AccountLayoutComponent, EmptyLayoutComponent];
 

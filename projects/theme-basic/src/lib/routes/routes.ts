@@ -1,6 +1,6 @@
 import { ABP, eLayoutType } from '@abp/ng.core';
 /**
- *
+ * test navigations.service
  * @deprecated since version 1..
  */
 export const THEME_BASIC_ROUTES = {

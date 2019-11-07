@@ -4,18 +4,12 @@
   "lib": {
     "entryFile": "src/public-api.ts",
     "umdModuleIds": {
-      "@abp/ng.core": "^0.8.3",
-      "@abp/ng.theme.shared": "^0.8.3",
-      "@ngxs/store": "^3.5.0",
-      "@ngxs/router-plugin": "^3.5.1",
-      "angular-oauth2-oidc": "^8.0.1"
+      "@abp/ng.core": "^1.0.2",
+      "@abp/ng.theme.shared": "^1.0.2"
     }
   },
   "whitelistedNonPeerDependencies": [
     "@abp/ng.core",
-    "@abp/ng.theme.shared",
-    "@ngxs/store",
-    "@ngxs/router-plugin",
-    "angular-oauth2-oidc"
+    "@abp/ng.theme.shared"
   ]
 }
