@@ -1,7 +1,7 @@
 import { CoreModule } from '@abp/ng.core';
 import { ThemeSharedModule } from '@abp/ng.theme.shared';
 import { CommonModule } from '@angular/common';
-import { NgModule, ModuleWithProviders } from '@angular/core';
+import { NgModule, ModuleWithProviders, APP_INITIALIZER, Injectable, Injector } from '@angular/core';
 import {
     MatBadgeModule, MatButtonModule, MatListModule,
     MatMenuModule, MatSidenavModule, MatToolbarModule, MatTooltipModule
@@ -30,8 +30,10 @@ import { AppbarComponent } from './components/appbar/appbar.component';
 import { PageTopToolsComponent } from './components/page/page-top-tools.component';
 import { filter } from 'rxjs/operators';
 import { PageFootComponent } from './components/page/page-foot.component';
+import { ThemeBasicOptions, THEME_BASIC_OPTIONS, themeBasicFactory } from './providers/theme-basic.provider';
 
 export const RAN_LAYOUTS = [ApplicationLayoutComponent, AccountLayoutComponent, EmptyLayoutComponent];
+
 
 @NgModule({
     declarations: [
@@ -108,12 +110,17 @@ export class ThemeBasicModule {
             });
     }
 
-
-    static forRoot(): ModuleWithProviders {
+    static forRoot(options = {} as ThemeBasicOptions): ModuleWithProviders {
         return {
             ngModule: ThemeBasicModule,
             providers: [
-
+                { provide: THEME_BASIC_OPTIONS, useValue: options },
+                {
+                    provide: APP_INITIALIZER,
+                    multi: true,
+                    useFactory: themeBasicFactory,
+                    deps: [Injector]
+                }
             ]
         };
     }
