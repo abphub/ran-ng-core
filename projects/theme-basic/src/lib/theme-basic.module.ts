@@ -45,7 +45,8 @@ export function appendScript(injector: Injector) {
                 'style',
                 styles,
                 'head',
-                'afterbegin',
+                // type InsertPosition = "beforebegin" | "afterbegin" | "beforeend" | "afterend";
+                'beforeend',
             )
         ).toPromise();
     };

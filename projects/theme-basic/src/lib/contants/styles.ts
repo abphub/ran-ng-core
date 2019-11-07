@@ -1,7 +1,5 @@
 export default `
-body {
-  background-color: red;
-}
+
 .modal.show {
   overflow-x: visible !important;
   overflow-y: visible !important;
@@ -21,10 +19,6 @@ body {
   height: 100%;
 }
 
-.mat-drawer-content {
-  height: calc(100% - 60px);
-}
-
 #ManageProfileWrapper {
   width: 100%;
   padding: 15px;
@@ -41,12 +35,10 @@ abp-manage-profile {
   display: block;
   margin: auto;
 }
-.row {
-  margin: 0;
-  padding: 5px;
-}
 
 .entry-row {
+  margin: 0;
+  padding: 5px;
   display: flex;
   align-items: center;
   height: 70px;
@@ -62,26 +54,13 @@ abp-manage-profile {
   margin-bottom: 0;
 }
 
-.mat-list-item.active {
-  color: #1b9aee;
-  border-radius: 5px;
-  background: rgba(0, 0, 0, 0.04);
-}
-
-.mat-list-item:hover {
-  color: #1b9aee;
-  border-radius: 5px;
-  background: rgba(0, 0, 0, 0.04);
-}
-
-.card {
+.entry-row + .card,ran-page-header + .card {
   width: 100%;
   overflow-x: hidden;
   overflow-y: auto;
   position: relative;
   display: flex;
   flex-direction: column;
-  min-width: 0;
   word-wrap: break-word;
   background-color: #fff;
   background-clip: border-box;
@@ -90,15 +69,6 @@ abp-manage-profile {
   border-bottom-right-radius: .25rem !important;
   border: 0;
   box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075);
-}
-
-.card-header {
-  padding: 30px 30px 0 30px;
-  margin-bottom: 0;
-  background-color: #fff;
-  display: flex;
-  justify-content: space-between;
-  border: 0;
 }
 
 .scrollbar::-webkit-scrollbar {
