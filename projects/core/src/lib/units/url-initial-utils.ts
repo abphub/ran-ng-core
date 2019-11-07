@@ -32,9 +32,7 @@ export function urlInitialUtils(injector: Injector) {
         const store = injector.get(Store);
 
         let apiUrl = store.selectSnapshot(ConfigState.getApiUrl());
-        console.log('apiUrl', apiUrl);
         let tenancyName = getTenancyName(apiUrl);
-        console.log('格式化前的tenancyName', tenancyName);
 
         return new Promise<void>((resolve) => {
             if (tenancyName) {
@@ -47,20 +45,19 @@ export function urlInitialUtils(injector: Injector) {
                     environment.oAuthConfig.issuer = apiUrl;
 
                     const _tenancyName = tenancyName.replace(/\./g, '-');
-                    console.log('格式化后的tenancyName', _tenancyName);
 
                     resolve();
 
                     // 设置tenant
-                    // const restService = injector.get(RestService);
-                    // findTenant(restService, _tenancyName).subscribe(result => {
-                    //     store.dispatch(new SetTenant({
-                    //         id: result.tenantId,
-                    //         name: _tenancyName
-                    //     })).subscribe(() => {
-                    //         resolve();
-                    //     })
-                    // })
+                    const restService = injector.get(RestService);
+                    findTenant(restService, _tenancyName).subscribe(result => {
+                        store.dispatch(new SetTenant({
+                            id: result.tenantId,
+                            name: _tenancyName
+                        })).subscribe(() => {
+                            resolve();
+                        })
+                    })
                 })
             } else {
                 resolve();

@@ -1,6 +1,6 @@
 import { CommonModule } from '@angular/common';
 import { APP_INITIALIZER, Injector, ModuleWithProviders, NgModule } from '@angular/core';
-import { MatCheckboxModule } from '@angular/material';
+import { MatCheckboxModule, MatDialogModule } from '@angular/material';
 import { CheckboxComponent } from './components/checkbox/checkbox.component';
 import { DefaultDataPipe } from './pipes/default-data.pipe';
 import { HtmlPipe } from './pipes/innerhtml.pipe';
@@ -13,6 +13,7 @@ import { urlInitialUtils } from './units/url-initial-utils';
     imports: [
         CommonModule,
         MatCheckboxModule,
+        MatDialogModule,
     ],
     declarations: [
         CheckboxComponent,

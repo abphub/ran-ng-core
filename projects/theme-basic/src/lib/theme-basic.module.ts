@@ -30,7 +30,7 @@ import { AppbarComponent } from './components/appbar/appbar.component';
 import { PageTopToolsComponent } from './components/page/page-top-tools.component';
 import { filter } from 'rxjs/operators';
 import { PageFootComponent } from './components/page/page-foot.component';
-import { ThemeBasicOptions, THEME_BASIC_OPTIONS, themeBasicFactory } from './providers/theme-basic.provider';
+import { ThemeBasicOptions, THEME_BASIC_OPTIONS, themeBasicFactory } from './tokens/theme-basic.token';
 import { forkJoin } from 'rxjs/internal/observable/forkJoin';
 import styles from './contants/styles';
 
