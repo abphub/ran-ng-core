@@ -10,7 +10,7 @@ export const THEME_BASIC_ROUTES = {
   layout: eLayoutType.application,
   requiredPolicy: 'Assets.Folders',
   children: [{
-    name: '字段',
+    name: 'Site::Menu:Sections',
     parentName: '::Menu:Theme',
     path: 'light',
     children: [
@@ -19,7 +19,7 @@ export const THEME_BASIC_ROUTES = {
       { path: 'theme-three', name: '::Menu:Theme:Light:Three', order: 3, requiredPolicy: 'fasdfad', }
     ]
   }, {
-    name: '版块',
+    name: 'Site::Menu:Fields',
     parentName: '::Menu:Theme',
     path: 'dark',
     children: [

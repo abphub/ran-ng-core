@@ -1,125 +1,128 @@
 /*基于bootstrap card 改造*/
 @mixin app-card($materialTheme) {
 
-    $card-header-bg-color: mat-color(map-get($materialTheme, primary));
+    $primary: mat-color(map-get($materialTheme, primary));
 
     .card {
-        border: none;
-
-        .card-header {
-            background-color: white;
-        }
-
-        .card-header-theme-primary {
-            color: white !important;
-            background-color: $card-header-bg-color !important;
-        }
-
-        &.card-default-fixed {
-            &>.card-body {
-                height: calc(100% - 2.2rem);
-                overflow-x: hidden;
-                overflow-y: auto;
-            }
-        }
-
-        &.card-default {
-            margin-bottom: 1.25rem;
-            box-shadow: 0 1px 12px 0 rgba(0, 0, 0, .05);
-
-            &.card-fullheight {
-                height: calc(100% - 20px);
-            }
-
-
-            &>.card-header {
-                background-color: none !important;
-            }
-
-
-            &>.card-body {
-
-                .card-body-list {
-                    .card-body-list-item {
-                        display: flex;
-                        flex: 1;
-                        align-items: flex-start;
-                        border-bottom: 1px solid #e8e8e8;
-                        padding: .5rem 0;
-
-                        .card-body-list-item-avatar {
-                            margin-right: 16px;
-
-                            h5 {
-                                color: white;
-                                background-color: $card-header-bg-color;
-                                box-sizing: border-box;
-                                margin: 0;
-                                padding: 0;
-                                font-size: 14px;
-                                list-style: none;
-                                position: relative;
-                                display: inline-block;
-                                overflow: hidden;
-                                white-space: nowrap;
-                                text-align: center;
-                                vertical-align: middle;
-                                width: 32px;
-                                height: 32px;
-                                line-height: 32px;
-                                border-radius: 50%;
-                            }
-                        }
-
-                        .card-body-list-item-content {
-                            flex: 1 0;
-
-                            p {
-                                margin: 0;
-                            }
-                        }
-
-                        &:last-child {
-                            border-bottom: none;
-                        }
-                    }
-                }
-
-                .list-group {
-                    .list-group-item {
-                        display: flex;
-                        align-items: center;
-                        justify-content: space-between;
-                        font-size: 0.9rem;
-                        align-content: center;
-                        border: none;
-                        text-decoration: none;
-                        color: #666;
-
-                        &:hover {
-                            background: $card-header-bg-color;
-                            color: white;
-                        }
-                    }
-                }
-
-                ul.card-content-list {
-                    padding: 0;
-
-                    li {
-                        color: #888;
-                        font-size: 0.95rem;
-                        padding: 8px;
-                        list-style-position: inside;
-
-                        span {
-                            color: black;
-                        }
-                    }
-                }
-            }
-        }
+        background-color: $primary !important;
     }
+    // .card {
+    //     border: none;
+
+    //     .card-header {
+    //         background-color: white;
+    //     }
+
+    //     .card-header-theme-primary {
+    //         color: white !important;
+    //         background-color: $card-header-bg-color !important;
+    //     }
+
+    //     &.card-default-fixed {
+    //         &>.card-body {
+    //             height: calc(100% - 2.2rem);
+    //             overflow-x: hidden;
+    //             overflow-y: auto;
+    //         }
+    //     }
+
+    //     &.card-default {
+    //         margin-bottom: 1.25rem;
+    //         box-shadow: 0 1px 12px 0 rgba(0, 0, 0, .05);
+
+    //         &.card-fullheight {
+    //             height: calc(100% - 20px);
+    //         }
+
+
+    //         &>.card-header {
+    //             background-color: none !important;
+    //         }
+
+
+    //         &>.card-body {
+
+    //             .card-body-list {
+    //                 .card-body-list-item {
+    //                     display: flex;
+    //                     flex: 1;
+    //                     align-items: flex-start;
+    //                     border-bottom: 1px solid #e8e8e8;
+    //                     padding: .5rem 0;
+
+    //                     .card-body-list-item-avatar {
+    //                         margin-right: 16px;
+
+    //                         h5 {
+    //                             color: white;
+    //                             background-color: $card-header-bg-color;
+    //                             box-sizing: border-box;
+    //                             margin: 0;
+    //                             padding: 0;
+    //                             font-size: 14px;
+    //                             list-style: none;
+    //                             position: relative;
+    //                             display: inline-block;
+    //                             overflow: hidden;
+    //                             white-space: nowrap;
+    //                             text-align: center;
+    //                             vertical-align: middle;
+    //                             width: 32px;
+    //                             height: 32px;
+    //                             line-height: 32px;
+    //                             border-radius: 50%;
+    //                         }
+    //                     }
+
+    //                     .card-body-list-item-content {
+    //                         flex: 1 0;
+
+    //                         p {
+    //                             margin: 0;
+    //                         }
+    //                     }
+
+    //                     &:last-child {
+    //                         border-bottom: none;
+    //                     }
+    //                 }
+    //             }
+
+    //             .list-group {
+    //                 .list-group-item {
+    //                     display: flex;
+    //                     align-items: center;
+    //                     justify-content: space-between;
+    //                     font-size: 0.9rem;
+    //                     align-content: center;
+    //                     border: none;
+    //                     text-decoration: none;
+    //                     color: #666;
+
+    //                     &:hover {
+    //                         background: $card-header-bg-color;
+    //                         color: white;
+    //                     }
+    //                 }
+    //             }
+
+    //             ul.card-content-list {
+    //                 padding: 0;
+
+    //                 li {
+    //                     color: #888;
+    //                     font-size: 0.95rem;
+    //                     padding: 8px;
+    //                     list-style-position: inside;
+
+    //                     span {
+    //                         color: black;
+    //                     }
+    //                 }
+    //             }
+    //         }
+    //     }
+    // }
 
     a.card:hover {
         color: white;

@@ -1,4 +1,4 @@
 <button mat-button class="header-nav-button" *ngFor="let navgation of navigations$|async" [routerLink]='navgation.url'
     routerLinkActive="active">
-    {{navgation.name}}
+    {{navgation.name | abpLocalization}}
 </button>

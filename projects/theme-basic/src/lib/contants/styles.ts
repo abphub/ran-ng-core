@@ -54,7 +54,12 @@ abp-manage-profile {
   margin-bottom: 0;
 }
 
-.entry-row + .card,ran-page-header + .card {
+.card {
+  border-radius: 0;
+  border: 0;
+}
+
+.card-body {
   width: 100%;
   overflow-x: hidden;
   overflow-y: auto;
@@ -68,6 +73,16 @@ abp-manage-profile {
   border-bottom-left-radius: .25rem !important;
   border-bottom-right-radius: .25rem !important;
   border: 0;
+  box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075);
+}
+.card-header {
+  height:70px;
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 0;
+  border-top-left-radius: .25rem !important;
+  border-top-right-radius: .25rem !important;
   box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075);
 }
 
