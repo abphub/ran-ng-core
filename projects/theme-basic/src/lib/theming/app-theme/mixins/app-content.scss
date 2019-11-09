@@ -1,29 +1,23 @@
 @mixin app-content($materialTheme) {
     $primary: mat-color(map-get($materialTheme, primary));
-    $font-color: white;
 
     ran-page-top-tools {
         background-color: $primary !important;
-        color: $font-color;
     }
 
     ran-page-foot {
         background-color: $primary !important;
-        color: $font-color;
     }
 
     ran-page-sidebar {
         background-color: $primary !important;
-        color: $font-color;
     }
 
     ran-page-header {
         background-color: $primary !important;
-        color: $font-color;
     }
 
     .row.entry-row {
         background-color: $primary !important;
-        color: $font-color;
     }
 }

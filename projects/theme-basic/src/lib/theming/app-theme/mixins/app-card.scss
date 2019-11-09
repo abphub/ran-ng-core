@@ -7,7 +7,6 @@
         background-color: $primary !important;
     }
     a.card:hover {
-        color: white;
         background: mat-color(map-get($materialTheme, primary))
     }
 }
