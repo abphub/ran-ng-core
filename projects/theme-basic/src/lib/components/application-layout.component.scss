@@ -10,19 +10,23 @@
          height: 100%;
 
          mat-sidenav-container {
- 
+
              z-index: 2;
              overflow-x: hidden !important;
              overflow-y: auto !important;
-              height: calc(100% - 65px);
+             height: calc(100% - 65px);
 
              mat-sidenav-content {
                  padding: 15px;
-                  overflow: overlay !important;
+                 overflow: overlay !important;
 
                  ran-page-content.w-75 {
                      margin: 0 auto;
                      width: 75%;
+
+                     ran-page-table .card {
+                         height: calc(100% - 70px)!important;
+                     }
                  }
 
              }
