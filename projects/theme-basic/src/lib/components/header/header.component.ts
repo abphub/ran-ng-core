@@ -25,8 +25,7 @@ export class AppHeaderComponent implements OnInit {
     navigations$: Observable<ABP.FullRoute[]>;
 
     unReadCount = 0;
-    isOpenChangePassword = false;
-    isOpenProfile = false;
+
 
     get appInfo(): Config.Application {
         return this.store.selectSnapshot(ConfigState.getApplicationInfo);
@@ -44,7 +43,6 @@ export class AppHeaderComponent implements OnInit {
     }
 
     ngOnInit() {
-        console.log('headerbar onInit,setAppbarNavigations');
         this.appNavationService.setAppbarNavigations();
     }
 

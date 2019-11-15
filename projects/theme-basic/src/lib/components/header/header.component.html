@@ -1,16 +1,11 @@
 <a class="logo" target="_blank">
     <!-- <img [src]="appInfo.logoUrl" style="max-width: 40px;"> -->
-    <span style="color: #6c757d!important;">{{appInfo.name}}</span>
+    {{appInfo.name}}
 </a>
-
-<!-- <div class="" (click)='setSidebarState()'>
-    <i class="fa fa-indent"></i>
-</div> -->
 
 <span class="flex-spacer"></span>
 <ran-app-header-bar></ran-app-header-bar>
 <span class="flex-spacer"></span>
-
 
 <!-- 语言管理 -->
 <button mat-button class="header-bar-button" [matMenuTriggerFor]="appLanguageMenu" matTooltip="语言管理">
@@ -26,7 +21,9 @@
 <!-- 语言管理 -->
 
 <!-- 文档中心 -->
-<button mat-button class="header-bar-button" matTooltip="文档中心"> <i class="fa fa-question-circle-o"></i></button>
+<button mat-button class="header-bar-button" matTooltip="文档中心" [hidden]='true'>
+    <i class="fa fa-question-circle-o"></i>
+</button>
 <!-- 文档中心 -->
 
 <!-- 消息中心 -->
@@ -44,17 +41,16 @@
     <div class="user-overlay">
         <i class="fa fa-cog" aria-hidden="true"></i>
     </div>
-    <img class="avatar-img" src="https://tcs.teambition.net/thumbnail/111m599c5e15c4bfcdf6fd04ba59bc983451/w/200/h/200">
+    <img class="avatar-img" src="assets/images/default-profile-picture.png">
 </a>
 <mat-menu #appMenu="matMenu">
     <button mat-menu-item class="pl-3 pr-5" routerLink="/account/manage-profile">
-        <i class="fa fa-profile pr-2"></i>{{
-                'AbpAccount::ManageYourProfile' | abpLocalization
-              }}
+        <i class="fa fa-profile pr-2"></i>
+        {{'AbpAccount::ManageYourProfile' | abpLocalization }}
     </button>
     <button mat-menu-item class="pl-3 pr-5" (click)="logout()">
-        <i class="fa fa-logout pr-2"></i>{{'AbpUi::Logout' | abpLocalization}}
+        <i class="fa fa-logout pr-2"></i>
+        {{'AbpUi::Logout' | abpLocalization}}
     </button>
-    <a class="dropdown-item"></a>
 </mat-menu>
 <!-- 个人中心 -->

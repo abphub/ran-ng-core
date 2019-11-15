@@ -113,6 +113,9 @@ export class AppNavgationService {
      * 设置app顶部导航，默认为选中第一级路由的子集
      */
     setTopbarNavigations(routes: ABP.FullRoute[]) {
+        if (routes && routes.length === 1) {
+            routes = [];
+        }
         this.store.dispatch(new SetTopbarNavigationState(routes));
     }
 

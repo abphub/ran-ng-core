@@ -1,58 +1,40 @@
-import { CoreModule, LazyLoadService } from '@abp/ng.core';
+import { CoreModule } from '@abp/ng.core';
 import { ThemeSharedModule } from '@abp/ng.theme.shared';
 import { CommonModule } from '@angular/common';
-import { NgModule, ModuleWithProviders, APP_INITIALIZER, Injectable, Injector } from '@angular/core';
+import { ModuleWithProviders, NgModule } from '@angular/core';
 import {
     MatBadgeModule, MatButtonModule, MatListModule,
-    MatMenuModule, MatSidenavModule, MatToolbarModule, MatTooltipModule
+    MatMenuModule, MatSidenavModule, MatToolbarModule,
+    MatTooltipModule
 } from '@angular/material';
-import { Router, NavigationEnd } from '@angular/router';
+import { NavigationEnd, Router } from '@angular/router';
 import { NgxValidateCoreModule } from '@ngx-validate/core';
 import { NgxsModule } from '@ngxs/store';
 import { CoreModule as RanCoreModule } from '@ran-ng/core';
 import { SpinnerModule } from '@ran-ng/spinner';
+import { filter } from 'rxjs/operators';
 import { AccountLayoutComponent } from './components/account-layout.component';
+import { AppbarComponent } from './components/appbar/appbar.component';
 import { ApplicationLayoutComponent } from './components/application-layout.component';
 import { AppDrawerComponent } from './components/drawer/drawer.component';
 import { EmptyLayoutComponent } from './components/empty-layout.component';
-import { AppHeaderBarComponent } from './components/header/headerbar.component';
 import { AppHeaderComponent } from './components/header/header.component';
+import { AppHeaderBarComponent } from './components/header/headerbar.component';
 import { PageContentComponent } from './components/page/page-content.component';
+import { PageFootComponent } from './components/page/page-foot.component';
 import { PageHeaderComponent } from './components/page/page-header.component';
 import { PageSidebarComponent } from './components/page/page-sidebar.component';
 import { PageTableComponent } from './components/page/page-table.component';
+import { PageTopToolsComponent } from './components/page/page-top-tools.component';
 import { AppSidebarComponent } from './components/sidebar/sidebar.component';
 import { ValidationErrorComponent } from './components/validation-error/validation-error.component';
+import { ThemeLazyLoadProvider } from './providers/theme-lazyload.provider';
+import { ThemeOptions, ThemeProvider, THEME_OPTIONS } from './providers/theme.provider';
 import { AppNavgationService } from './services/navigation.service';
 import { RanLayoutState } from './states/layout.state';
 import { RanNavigationState } from './states/navigation.state';
-import { AppbarComponent } from './components/appbar/appbar.component';
-import { PageTopToolsComponent } from './components/page/page-top-tools.component';
-import { filter } from 'rxjs/operators';
-import { PageFootComponent } from './components/page/page-foot.component';
-import { ThemeBasicOptions, THEME_BASIC_OPTIONS, themeBasicFactory } from './tokens/theme-basic.token';
-import { forkJoin } from 'rxjs/internal/observable/forkJoin';
-import styles from './contants/styles';
 
 export const RAN_LAYOUTS = [ApplicationLayoutComponent, AccountLayoutComponent, EmptyLayoutComponent];
-
-export function appendScript(injector: Injector) {
-    const fn = () => {
-        const lazyLoadService: LazyLoadService = injector.get(LazyLoadService);
-        return forkJoin(
-            lazyLoadService.load(
-                null,
-                'style',
-                styles,
-                'head',
-                // type InsertPosition = "beforebegin" | "afterbegin" | "beforeend" | "afterend";
-                'beforeend',
-            )
-        ).toPromise();
-    };
-    return fn;
-}
-
 
 @NgModule({
     declarations: [
@@ -129,23 +111,13 @@ export class ThemeBasicModule {
             });
     }
 
-    static forRoot(options = {} as ThemeBasicOptions): ModuleWithProviders {
+    static forRoot(options = {} as ThemeOptions): ModuleWithProviders {
         return {
             ngModule: ThemeBasicModule,
             providers: [
-                { provide: THEME_BASIC_OPTIONS, useValue: options },
-                {
-                    provide: APP_INITIALIZER,
-                    multi: true,
-                    useFactory: themeBasicFactory,
-                    deps: [Injector]
-                },
-                {
-                    provide: APP_INITIALIZER,
-                    multi: true,
-                    deps: [Injector],
-                    useFactory: appendScript,
-                },
+                { provide: THEME_OPTIONS, useValue: options },
+                ThemeProvider,
+                ThemeLazyLoadProvider
             ]
         };
     }
