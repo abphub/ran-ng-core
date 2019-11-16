@@ -1,12 +1,22 @@
 export default `
 
+html,body{
+  height:100%;
+}
+
+body{
+  overflow-x:hidden;
+  overflow-y:auto;
+}
+
 .modal.show {
   overflow-x: visible !important;
   overflow-y: visible !important;
 }
 
 .modal-content {
-  height: 70%;
+  min-height: 20% !important;
+  max-height: 70% !important;
 }
 
 .modal-body {
@@ -17,6 +27,7 @@ export default `
 
 .modal-dialog {
   height: 100%;
+  margin-top: 8%;
 }
 
 #ManageProfileWrapper {
@@ -34,6 +45,19 @@ abp-manage-profile {
   width: 75%;
   display: block;
   margin: auto;
+}
+
+.card-header .row .text-right {
+  display: flex !important;
+  justify-content: flex-end !important;
+  padding-right: 0px !important;
+}
+.card-header .row {
+  width: 100% !important;
+}
+.card-header .card-title {
+  margin-top: 10px !important;
+  margin-bottom: 0 !important;
 }
 
 .entry-row {

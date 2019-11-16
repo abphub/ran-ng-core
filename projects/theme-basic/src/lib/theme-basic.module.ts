@@ -29,10 +29,11 @@ import { PageTopToolsComponent } from './components/page/page-top-tools.componen
 import { AppSidebarComponent } from './components/sidebar/sidebar.component';
 import { ValidationErrorComponent } from './components/validation-error/validation-error.component';
 import { ThemeLazyLoadProvider } from './providers/theme-lazyload.provider';
-import { ThemeOptions, ThemeProvider, THEME_OPTIONS } from './providers/theme.provider';
+import { ThemeProvider } from './providers/theme.provider';
 import { AppNavgationService } from './services/navigation.service';
 import { RanLayoutState } from './states/layout.state';
 import { RanNavigationState } from './states/navigation.state';
+import { ThemeBasicOptions, THEME_BASIC_OPTIONS } from './tokens/theme-basic.token';
 
 export const RAN_LAYOUTS = [ApplicationLayoutComponent, AccountLayoutComponent, EmptyLayoutComponent];
 
@@ -111,11 +112,11 @@ export class ThemeBasicModule {
             });
     }
 
-    static forRoot(options = {} as ThemeOptions): ModuleWithProviders {
+    static forRoot(options = {} as ThemeBasicOptions): ModuleWithProviders {
         return {
             ngModule: ThemeBasicModule,
             providers: [
-                { provide: THEME_OPTIONS, useValue: options },
+                { provide: THEME_BASIC_OPTIONS, useValue: options },
                 ThemeProvider,
                 ThemeLazyLoadProvider
             ]

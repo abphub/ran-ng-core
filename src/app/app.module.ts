@@ -30,7 +30,7 @@ const LOGGERS = [NgxsLoggerPluginModule.forRoot({ disabled: false })];
         layouts: RAN_LAYOUTS,
       },
     }),
-    ThemeBasicModule.forRoot({ theme: 'light' }),
+    ThemeBasicModule.forRoot({ theme: 'light', sidebarOpened: true }),
     ThemeSharedModule.forRoot(),
     AccountConfigModule.forRoot({ redirectUrl: '/' }),
     IdentityConfigModule,
