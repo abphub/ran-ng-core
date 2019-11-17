@@ -65,7 +65,7 @@ abp-manage-profile {
   padding: 5px;
   display: flex;
   align-items: center;
-  height: 70px;
+  height: 60px;
   background-color: #fff;
   border-top-left-radius: .25rem !important;
   border-top-right-radius: .25rem !important;
@@ -78,9 +78,24 @@ abp-manage-profile {
   margin-bottom: 0;
 }
 
+.entry-row .pt-2{
+  padding:0!important;
+}
+
 .card {
   border-radius: 0;
   border: 0;
+}
+
+.card-header {
+  height:60px;
+  display: flex;
+  align-items: center;
+  background-color: #fff;
+  border-radius: 0;
+  border-top-left-radius: .25rem !important;
+  border-top-right-radius: .25rem !important;
+  box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075);
 }
 
 .card-body {
@@ -99,16 +114,7 @@ abp-manage-profile {
   border: 0;
   box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075);
 }
-.card-header {
-  height:70px;
-  display: flex;
-  align-items: center;
-  background-color: #fff;
-  border-radius: 0;
-  border-top-left-radius: .25rem !important;
-  border-top-right-radius: .25rem !important;
-  box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075);
-}
+
 
 .scrollbar::-webkit-scrollbar {
   width: 4px;

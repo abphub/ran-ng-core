@@ -3,8 +3,7 @@ import { PageSidebarComponent } from './page-sidebar.component';
 
 @Component({
     selector: 'ran-page-content',
-    templateUrl: './page-content.component.html',
-    styleUrls: ['./page-content.component.scss']
+    templateUrl: './page-content.component.html'
 })
 export class PageContentComponent {
     @ContentChild(PageSidebarComponent, { static: true }) pageSidebar: PageSidebarComponent;
