@@ -1,17 +1,20 @@
 <mat-nav-list>
-    <ng-container *ngFor="let route of routes$ | async; trackBy: trackByFn"
-        [ngTemplateOutlet]="route?.children?.length ? dropdownLink : defaultLink"
-        [ngTemplateOutletContext]="{ $implicit: route }">
+    <ng-container *ngFor="let route of routes$ | async; trackBy: trackByFn">
+        <ng-container *ngIf="!route.invisible" [ngTemplateOutlet]="route?.children?.length ? dropdownLink : defaultLink"
+            [ngTemplateOutletContext]="{ $implicit: route }">
+        </ng-container>
     </ng-container>
-
-    <ng-template #defaultLink let-route>
-        <a mat-list-item [abpPermission]="route.requiredPolicy" [routerLink]="[route.url]"
-            routerLinkActive="active">{{ route.name | abpLocalization }}</a>
-    </ng-template>
-
-    <ng-template #dropdownLink let-route>
-        <h3 matSubheader>{{ route.name | abpLocalization }}</h3>
-        <a *ngFor="let item of route.children" mat-list-item [abpPermission]="item.requiredPolicy"
-            [routerLink]="[item.url]" routerLinkActive="active">{{ item.name | abpLocalization }}</a>
-    </ng-template>
 </mat-nav-list>
+
+<ng-template #defaultLink let-route>
+    <a mat-list-item [abpPermission]="route.requiredPolicy" [routerLink]="[route.url]"
+        routerLinkActive="active">{{ route.name | abpLocalization }}
+    </a>
+</ng-template>
+
+<ng-template #dropdownLink let-route>
+    <h3 matSubheader>{{ route.name | abpLocalization }}</h3>
+    <a *ngFor="let item of route.children" mat-list-item [abpPermission]="item.requiredPolicy" [routerLink]="[item.url]"
+        routerLinkActive="active">{{ item.name | abpLocalization }}
+    </a>
+</ng-template>

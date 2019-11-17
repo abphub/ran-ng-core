@@ -17,17 +17,11 @@ export class AppSidebarComponent {
     routes$: Observable<ABP.FullRoute[]>;
 
     constructor(
-        @Inject(THEME_BASIC_OPTIONS) private themeBasicOptions: ThemeBasicOptions
     ) {
     }
 
     public get showSidebar$(): Observable<boolean> {
-
-        if (this.themeBasicOptions.sidebarOpened === false) {
-            return of(false);
-        }
-
-        return this.routes$.pipe(map(m => m && m.length ? true : false));
+        return this.routes$.pipe(map(m => m && m.some(n => !n.invisible) && m.length ? true : false));
     }
 
     trackByFn: TrackByFunction<ABP.FullRoute> = (_, item) => item.name;

@@ -1,2 +1,4 @@
 <ng-content select="ran-page-sidebar"></ng-content>
-<ng-content></ng-content>
+<div class="ran-page-content" [ngClass]="{'ran-page-sidebar-content':pageSidebar}">
+    <ng-content></ng-content>
+</div>

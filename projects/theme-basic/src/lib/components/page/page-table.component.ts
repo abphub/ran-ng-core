@@ -1,4 +1,4 @@
-import { AfterContentInit, Component, ContentChild, Input } from '@angular/core';
+import { Component, ContentChild, Input } from '@angular/core';
 import { MatPaginator } from '@angular/material';
 
 @Component({
