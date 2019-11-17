@@ -3,12 +3,15 @@ import { PageSidebarComponent } from './page-sidebar.component';
 
 @Component({
     selector: 'ran-page-content',
-    templateUrl: './page-content.component.html'
+    templateUrl: './page-content.component.html',
+    styles: [
+        `flex:{display:flex;height:100%}`
+    ]
 })
 export class PageContentComponent {
     @ContentChild(PageSidebarComponent, { static: true }) pageSidebar: PageSidebarComponent;
 
-    @HostBinding('class.d-flex')
+    @HostBinding('class.flex')
     get pageSidebarComponent() {
         return this.pageSidebar;
     }

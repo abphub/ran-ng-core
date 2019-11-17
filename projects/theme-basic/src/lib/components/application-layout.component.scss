@@ -17,14 +17,19 @@
                  padding: 15px;
                  overflow: overlay !important;
 
-                 ran-page-content.w-90 {
-                     width: 90%;
-                 }
-
                  ran-page-content {
                      display: block;
                      margin: 0 auto;
-                     height: 100%;
+
+
+                     &.flex {
+                         display: flex;
+                         height: 100%;
+                     }
+
+                     &.w-90 {
+                         width: 90%;
+                     }
 
                      ran-page-sidebar {
                          width: 25%;
@@ -54,10 +59,7 @@
 
                      }
 
-                     .ran-page-default-content {
-                         width: 100%;
-                         margin-bottom: 15px;
-                     }
+                    //  .ran-page-default-content {}
 
                      .ran-page-sidebar-content {
                          display: flex;
