@@ -2,15 +2,15 @@ import { ComponentType } from '@angular/cdk/overlay/index';
 import { EventEmitter, Injectable, TemplateRef } from '@angular/core';
 import { MatDialog, MatDialogConfig } from '@angular/material';
 
-type modalClassTypes = 'modal-xs' | 'modal-sm' | 'modal-md' | 'modal-lg' | 'modal-fullscreen';
+type ModalClassTypes = 'modal-xs' | 'modal-sm' | 'modal-md' | 'modal-lg' | 'modal-fullscreen';
 
 interface IModalParams<T = { [key: string]: string | number }> {
-    modalClass?: modalClassTypes;
+    modalClass?: ModalClassTypes;
     data?: T;
 }
 
 interface IModalConfig {
-    modalClass: modalClassTypes;
+    modalClass: ModalClassTypes;
     config: MatDialogConfig<{}>;
 }
 
