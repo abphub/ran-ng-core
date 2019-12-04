@@ -1,9 +1,12 @@
 import { CoreModule } from '@abp/ng.core';
 import { ThemeSharedModule } from '@abp/ng.theme.shared';
 import { CommonModule } from '@angular/common';
-import { APP_INITIALIZER, Injector, ModuleWithProviders, NgModule } from '@angular/core';
-// tslint:disable-next-line:max-line-length
-import { MatBadgeModule, MatButtonModule, MatListModule, MatMenuModule, MatSidenavModule, MatToolbarModule, MatTooltipModule } from '@angular/material';
+import { ModuleWithProviders, NgModule } from '@angular/core';
+import {
+    MatBadgeModule, MatButtonModule, MatListModule,
+    MatMenuModule, MatSidenavModule, MatToolbarModule,
+    MatTooltipModule
+} from '@angular/material';
 import { NavigationEnd, Router } from '@angular/router';
 import { NgxValidateCoreModule } from '@ngx-validate/core';
 import { NgxsModule } from '@ngxs/store';
@@ -25,11 +28,12 @@ import { PageTableComponent } from './components/page/page-table.component';
 import { PageTopToolsComponent } from './components/page/page-top-tools.component';
 import { AppSidebarComponent } from './components/sidebar/sidebar.component';
 import { ValidationErrorComponent } from './components/validation-error/validation-error.component';
-import { lazyLoadFactory } from './providers/theme-lazyload.provider';
-import { ThemeOptions, THEME_OPTIONS, themeFactory } from './providers/theme.provider';
+import { ThemeLazyLoadProvider } from './providers/theme-lazyload.provider';
+import { ThemeProvider } from './providers/theme.provider';
 import { AppNavgationService } from './services/navigation.service';
 import { RanLayoutState } from './states/layout.state';
 import { RanNavigationState } from './states/navigation.state';
+import { ThemeBasicOptions, THEME_BASIC_OPTIONS } from './tokens/theme-basic.token';
 
 export const RAN_LAYOUTS = [ApplicationLayoutComponent, AccountLayoutComponent, EmptyLayoutComponent];
 
@@ -108,23 +112,13 @@ export class ThemeBasicModule {
             });
     }
 
-    static forRoot(options = {} as ThemeOptions): ModuleWithProviders {
+    static forRoot(options = {} as ThemeBasicOptions): ModuleWithProviders {
         return {
             ngModule: ThemeBasicModule,
             providers: [
-                { provide: THEME_OPTIONS, useValue: options },
-                {
-                    provide: APP_INITIALIZER,
-                    multi: true,
-                    deps: [Injector],
-                    useFactory: themeFactory
-                },
-                {
-                    provide: APP_INITIALIZER,
-                    multi: true,
-                    deps: [Injector],
-                    useFactory: lazyLoadFactory,
-                }
+                { provide: THEME_BASIC_OPTIONS, useValue: options },
+                ThemeProvider,
+                ThemeLazyLoadProvider
             ]
         };
     }

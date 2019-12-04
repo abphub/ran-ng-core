@@ -1,19 +1,20 @@
-.spin-opacity{
-    z-index: 999!important;
-    opacity: 1!important;
+.spin-opacity {
+    z-index: 1050 !important;
+    opacity: 1 !important;
 }
-.spin-content{
+
+.spin-content {
     position: absolute;
     top: 0;
     left: 0;
-    background: rgba(255,255,255,0.8);
+    background: rgba(255, 255, 255, 0.8);
     height: 100%;
     width: 100%;
     opacity: 0;
     transition: opacity 0.2s;
     z-index: -9999;
 
-    .spin-dot{
+    .spin-dot {
         position: absolute;
         top: 50%;
         left: 50%;
@@ -21,7 +22,7 @@
         transform: rotate(45deg);
         animation: 1.2s linear infinite spinRotate;
 
-        i{
+        i {
             display: block;
             position: absolute;
             width: 12px;
@@ -58,12 +59,14 @@
         }
     }
 }
+
 @keyframes spinRotate {
     100% {
         transform: rotate(405deg);
     }
 }
- @keyframes spinMove {
+
+@keyframes spinMove {
     100% {
         opacity: 1;
     }

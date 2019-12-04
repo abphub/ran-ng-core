@@ -1,9 +1,4 @@
-<div [ngClass]="{'d-flex': pageSidebar}">
-    <ng-container *ngIf="pageSidebar">
-        <ng-content select="ran-page-sidebar"></ng-content>
-    </ng-container>
+<ng-content select="ran-page-sidebar"></ng-content>
+<div [ngClass]="{'ran-page-default-content':!pageSidebar,'ran-page-sidebar-content':pageSidebar}">
     <ng-content></ng-content>
 </div>
-<!-- <ng-container *ngIf="!pageSidebar">
-    <ng-content></ng-content>
-</ng-container> -->

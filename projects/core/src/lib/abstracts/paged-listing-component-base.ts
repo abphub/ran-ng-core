@@ -1,14 +1,16 @@
 import { ABP } from '@abp/ng.core';
-import { ConfirmationService } from '@abp/ng.theme.shared';
-import { Injector, OnInit } from '@angular/core';
-import { MatDialog } from '@angular/material';
-import { MatPaginator, PageEvent } from '@angular/material/paginator';
-import { MatSort } from '@angular/material/sort';
+import { ConfirmationService, ToasterService } from '@abp/ng.theme.shared';
+import { AfterViewInit, Injector, OnInit, ViewChild } from '@angular/core';
+import { MatDialog, MatPaginator, MatSort, PageEvent } from '@angular/material';
+import { ModalService } from '../services/modal.service';
 
-export abstract class PagedListingComponentBase<T> implements OnInit {
+/**
+ * 如果派生类中实现了OnInit和AfterViewInit,则需要手动执行super.ngOnInit,super.ngAfterViewInit
+ */
+export abstract class PagedListingComponentBase<T> implements OnInit, AfterViewInit {
 
-    abstract matPaginator: MatPaginator;
-    matSort: MatSort;
+    @ViewChild(MatPaginator, { static: false }) matPaginator: MatPaginator;
+    @ViewChild(MatSort, { static: false }) matSort: MatSort;
 
     isLoading = false;
     result: ABP.PagedResponse<T>;
@@ -21,12 +23,15 @@ export abstract class PagedListingComponentBase<T> implements OnInit {
     public pageSizeOptions = [10, 25, 50, 100, 300, 500];
 
     protected _matDialog: MatDialog;
+    protected _modalService: ModalService;
     protected _confirmationService: ConfirmationService;
-
+    protected _toasterService: ToasterService;
 
     constructor(injector: Injector) {
         this._matDialog = injector.get(MatDialog);
+        this._modalService = injector.get(ModalService);
         this._confirmationService = injector.get(ConfirmationService);
+        this._toasterService = injector.get(ToasterService);
         this.result = {
             items: [],
             totalCount: 0
@@ -34,12 +39,10 @@ export abstract class PagedListingComponentBase<T> implements OnInit {
     }
 
     ngOnInit(): void {
-
         this.refresh();
+    }
 
-        /**
-         * 监听分页方法
-         */
+    ngAfterViewInit() {
         if (this.matPaginator) {
             this.matPaginator.page.subscribe((page: PageEvent) => {
                 this.pageSize = page.pageSize;
@@ -47,9 +50,6 @@ export abstract class PagedListingComponentBase<T> implements OnInit {
             });
         }
 
-        /**
-         * 监听排序
-         */
         if (this.matSort) {
             this.matSort.sortChange.subscribe((sort: { active: string, direction: string }) => {
                 this.sorting = sort.active + '' + sort.direction;
@@ -60,6 +60,7 @@ export abstract class PagedListingComponentBase<T> implements OnInit {
 
     refresh(pageNumber?: number): void {
         if (pageNumber) {
+            // this.matPaginator.
             this.getDataPage(pageNumber);
             return;
         }

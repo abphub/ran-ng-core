@@ -1,15 +1,17 @@
-import { InjectionToken, Injector, Provider, APP_INITIALIZER } from '@angular/core';
+import { APP_INITIALIZER, Injector, Provider } from '@angular/core';
+import { ThemeBasicOptions, THEME_BASIC_OPTIONS } from '../tokens/theme-basic.token';
 
-export const THEME_OPTIONS = new InjectionToken('THEME_OPTIONS');
-
-export interface ThemeOptions {
-    theme?: 'partyred' | 'blue' | 'light';
-}
-
-export function themeFactory(injector: Injector) {
-    const { theme } = injector.get<ThemeOptions>(THEME_OPTIONS);
+function themeFactory(injector: Injector) {
+    const { theme } = injector.get<ThemeBasicOptions>(THEME_BASIC_OPTIONS);
     if (theme) {
         document.querySelector('body').setAttribute('theme', theme);
     }
     return () => { };
 }
+
+export const ThemeProvider: Provider = {
+    provide: APP_INITIALIZER,
+    multi: true,
+    deps: [Injector],
+    useFactory: themeFactory
+};

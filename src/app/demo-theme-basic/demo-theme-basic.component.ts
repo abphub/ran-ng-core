@@ -26,6 +26,8 @@ const ELEMENT_DATA: PeriodicElement[] = [
 })
 export class DemoThemeBasicComponent {
     isOpen: boolean = false;
-    displayedColumns: string[] = ['position', 'name', 'weight', 'symbol', 'actions'];
+    pollutant: string;
+    filter: string;
+    displayedColumns: string[] = ['name', 'position', 'weight', 'symbol', 'actions'];
     dataSource = ELEMENT_DATA;
 }

@@ -4,7 +4,7 @@ import { NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
 import { DemoThemeBasicRoutingModule } from './demo-theme-basic-routing.module';
 import { DemoThemeBasicComponent } from './demo-theme-basic.component';
-import { MatListModule } from '@angular/material';
+import { MatListModule, MatTableModule } from '@angular/material';
 import { ThemeBasicModule } from 'projects/theme-basic/src/public-api';
 
 @NgModule({
@@ -15,6 +15,7 @@ import { ThemeBasicModule } from 'projects/theme-basic/src/public-api';
         ThemeBasicModule,
         DemoThemeBasicRoutingModule,
         MatListModule,
+        MatTableModule
     ],
     declarations: [
         DemoThemeBasicComponent
