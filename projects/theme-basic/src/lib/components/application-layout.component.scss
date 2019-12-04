@@ -15,10 +15,9 @@
 
              mat-sidenav-content {
                  padding: 15px;
-                 overflow: overlay !important;
 
                  ran-page-top-tools+ran-page-content {
-                     margin-top: 48px !important;
+                     margin-top: 48px;
                  }
 
                  ran-page-content {
@@ -48,23 +47,35 @@
                      }
 
                      ran-page-table {
+                         display: block;
+                         background: white;
+                         padding: 10px;
 
-                         .mat-table {
-                             tr.mat-header-row {
-                                 height: 50px;
+                         .table-container {
+                             position: relative;
+
+                             .fa-20 {
+                                 font-size: 20px
                              }
 
-                             th.mat-header-cell {
-                                 font-size: 1rem;
-                                 color: #495057;
-                                 background-color: #e9ecef;
-                                 border-color: #dee2e6;
+                             table {
+                                 width: 100%;
+                             }
+
+                             .mat-table {
+                                 tr.mat-header-row {
+                                     height: 50px;
+                                 }
+
+                                 th.mat-header-cell {
+                                     font-size: 1rem;
+                                     color: #495057;
+                                     background-color: #e9ecef;
+                                     border-color: #dee2e6;
+                                 }
                              }
                          }
-
                      }
-
-                     //  .ran-page-default-content {}
 
                      .ran-page-sidebar-content {
                          display: flex;
