@@ -177,3 +177,15 @@
          outline: none !important;
      }
  }
+
+ mat-radio-button+mat-radio-button {
+     margin-left: 0.5rem;
+ }
+
+ .form-group .col-form-label {
+     &.required::before {
+         content: '*';
+         margin-right: 5px;
+         color: red;
+     }
+ }
