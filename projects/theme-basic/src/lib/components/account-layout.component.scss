@@ -48,7 +48,7 @@ ran-account-layout {
                 }
 
                 .row {
-                    .col-md-4 {
+                    &>* {
                         max-width: 100% !important;
                         flex: 1 !important;
                     }

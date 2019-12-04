@@ -13,7 +13,7 @@
   },
   "private": true,
   "dependencies": {
-    "@abp/ng.account": "^1.0.2",
+    "@abp/ng.account": "^1.0.4",
     "@abp/ng.identity": "^1.0.2",
     "@abp/ng.setting-management": "^1.0.2",
     "@abp/ng.tenant-management": "^1.0.2",
@@ -36,6 +36,7 @@
     "@ngxs/hmr-plugin": "^3.5.0",
     "@ngxs/logger-plugin": "^3.5.1",
     "@ngxs/router-plugin": "^3.5.1",
+    "@ran-ng/account-config": "^0.8.0",
     "@ran-ng/ckeditor": "^0.2.1",
     "@ran-ng/core": "^0.3.18",
     "@ran-ng/spinner": "0.0.1",
