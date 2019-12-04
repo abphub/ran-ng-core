@@ -24,7 +24,7 @@ ran-account-layout {
         .account-card {
             width: 500px;
             margin: 0 auto;
-            padding: 30px 15px;
+            padding: 15px;
             box-sizing: border-box;
             text-align: center;
             background: white;
@@ -72,7 +72,6 @@ ran-account-layout {
                         background-color: $themeColor;
                     }
 
-
                     .form-control {
                         display: block;
                         width: 250px !important;
@@ -90,9 +89,10 @@ ran-account-layout {
                         transition: 0.2s all;
 
                         &:focus {
-                            background-color: #eff6f4;
+                            background-color: #eff6f4 !important;
                             width: 300px !important;
-                            color: $themeColor;
+                            color: $themeColor !important;
+                            border-color: $themeColor !important;
                         }
                     }
 
