@@ -4,9 +4,10 @@ import { Injector, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
 import { ModalService } from '../services/modal.service';
 import { Observable } from 'rxjs';
+import { finalize } from 'rxjs/operators';
 
 /**
- * 如果派生类中实现了OnInit和AfterViewInit,则需要手动执行super.ngOnInit,super.ngAfterViewInit
+ * 如果派生类中实现了OnInit则需要手动执行super.ngOnInit
  */
 export abstract class ListingComponentBase<T> implements OnInit {
 
@@ -21,6 +22,9 @@ export abstract class ListingComponentBase<T> implements OnInit {
     constructor(injector: Injector) {
         this._matDialog = injector.get(MatDialog);
         this._confirmationService = injector.get(ConfirmationService);
+        this._toasterService = injector.get(ToasterService);
+        this._modalService = injector.get(ModalService);
+
         this.result = {
             items: []
         };
@@ -32,16 +36,16 @@ export abstract class ListingComponentBase<T> implements OnInit {
 
     refresh() {
         this.isLoading = true;
-        this.getListResult().subscribe(items => {
-            this.isLoading = false;
-            this.result = { items };
-        });
+        this.getListResult()
+            .pipe(finalize(() => this.isLoading = false))
+            .subscribe(result => {
+                this.isLoading = false;
+                this.result = result;
+            });
     }
 
     /**
-     * 数据列表方法
-     * @param successCallbak 成功回调
-     * @param finishedCallback 完成回调
+     * 获取列表数据
      */
-    protected abstract getListResult(): Observable<T[]>;
+    protected abstract getListResult(): Observable<ABP.PagedItemsResponse<T>>;
 }
