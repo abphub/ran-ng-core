@@ -1,4 +1,4 @@
-import { AccountConfigModule } from '@abp/ng.account.config';
+import { AccountConfigModule } from '@ran-ng/account-config';
 import { CoreModule } from '@abp/ng.core';
 import { IdentityConfigModule } from '@abp/ng.identity.config';
 import { SettingManagementConfigModule } from '@abp/ng.setting-management.config';

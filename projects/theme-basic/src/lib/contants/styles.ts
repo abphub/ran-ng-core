@@ -9,6 +9,11 @@ body{
   overflow-y:auto;
 }
 
+body {
+  margin: 0;
+  font-family: Roboto, "Helvetica Neue", sans-serif; 
+}
+
 .modal.show {
   overflow-x: visible !important;
   overflow-y: visible !important;
