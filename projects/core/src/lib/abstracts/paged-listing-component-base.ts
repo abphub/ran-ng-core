@@ -60,8 +60,8 @@ export abstract class PagedListingComponentBase<T> implements OnInit, AfterViewI
 
     refresh(pageNumber?: number): void {
         if (pageNumber) {
-            // this.matPaginator.
             this.getDataPage(pageNumber);
+            this.matPaginator.pageIndex = pageNumber;
             return;
         }
         this.getDataPage(this.pageNumber);
