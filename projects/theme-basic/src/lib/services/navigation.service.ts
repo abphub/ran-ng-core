@@ -41,7 +41,10 @@ export class AppNavgationService {
     getNavigationUrlByRoute(route: ABP.FullRoute): string {
         const routes = this.getRoutes(route.children, []);
         for (const _route of routes) {
-            if (this.getGrantedPolicy(_route.requiredPolicy) && _route.url && !_route.invisible) {
+            /**
+             *  去掉判断是否隐藏，如果是隐藏一样可以进行跳转 && !_route.invisible
+             */
+            if (this.getGrantedPolicy(_route.requiredPolicy) && _route.url) {
                 return _route.url;
             }
         }
