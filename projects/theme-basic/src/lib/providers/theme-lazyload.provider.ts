@@ -10,3 +10,4 @@ export function lazyLoadFactory(injector: Injector) {
     };
     return fn;
 }
+

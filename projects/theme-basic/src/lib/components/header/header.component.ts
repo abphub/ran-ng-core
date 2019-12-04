@@ -62,7 +62,7 @@ export class AppHeaderComponent implements OnInit {
     logout() {
         this.oauthService.logOut();
         this.store.dispatch(
-            new Navigate(['/'], null, {
+            new Navigate(['/account/login'], null, {
                 state: { redirectUrl: this.store.selectSnapshot(RouterState).state.url },
             }),
         );
