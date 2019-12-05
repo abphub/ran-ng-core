@@ -4,10 +4,9 @@
     <!-- 无数据时 -->
     <div class="border-bottom bg-white" *ngIf="!totalCount">
         <p class="p-2 m-0 text-black-50 d-flex justify-content-center align-items-center">
-            <i class="mr-1 fa fa-frown-o fa-20"></i> {{ 'Assets::NoData' |abpLocalization }}
+            <i class="mr-1 fa fa-frown-o fa-20"></i> {{ '::NoDataAvailableInDatatable' |abpLocalization }}
         </p>
     </div>
-
     <!-- 分页 -->
     <ng-content select="mat-paginator"></ng-content>
 

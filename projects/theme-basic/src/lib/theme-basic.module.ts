@@ -2,7 +2,11 @@ import { CoreModule } from '@abp/ng.core';
 import { ThemeSharedModule } from '@abp/ng.theme.shared';
 import { CommonModule } from '@angular/common';
 import { APP_INITIALIZER, Injector, ModuleWithProviders, NgModule } from '@angular/core';
-import { MatBadgeModule, MatButtonModule, MatListModule, MatMenuModule, MatSidenavModule, MatToolbarModule, MatTooltipModule } from '@angular/material';
+import {
+    MatBadgeModule, MatButtonModule, MatListModule,
+    MatMenuModule, MatPaginatorIntl, MatSidenavModule,
+    MatToolbarModule, MatTooltipModule
+} from '@angular/material';
 import { NavigationEnd, Router } from '@angular/router';
 import { NgxValidateCoreModule } from '@ngx-validate/core';
 import { NgxsModule } from '@ngxs/store';
@@ -24,6 +28,7 @@ import { PageTableComponent } from './components/page/page-table.component';
 import { PageTopToolsComponent } from './components/page/page-top-tools.component';
 import { AppSidebarComponent } from './components/sidebar/sidebar.component';
 import { ValidationErrorComponent } from './components/validation-error/validation-error.component';
+import { getPaginatorTranslateFactory } from './providers/paginator-translate.provider';
 import { lazyLoadFactory } from './providers/theme-lazyload.provider';
 import { themeFactory } from './providers/theme.provider';
 import { AppNavgationService } from './services/navigation.service';
@@ -124,6 +129,12 @@ export class ThemeBasicModule {
                     multi: true,
                     deps: [Injector],
                     useFactory: lazyLoadFactory,
+                },
+                {
+                    provide: MatPaginatorIntl,
+                    multi: false,
+                    deps: [Injector],
+                    useFactory: getPaginatorTranslateFactory
                 }
             ]
         };

@@ -1,5 +1,5 @@
-import { APP_INITIALIZER, Injector } from '@angular/core';
 import { LazyLoadService } from '@abp/ng.core';
+import { Injector } from '@angular/core';
 import { forkJoin } from 'rxjs';
 import styles from '../contants/styles';
 

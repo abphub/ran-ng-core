@@ -3,7 +3,7 @@ export const environment = {
   hmr: false,
   application: {
     name: 'ABP.hub',
-    logoUrl: 'https://www.baidu.com/img/bd_logo1.png?where=super',
+    logoUrl: 'http://bangfu.ran.xyz/favicon.ico',
   },
   oAuthConfig: {
     issuer: 'https://localhost:44385',
