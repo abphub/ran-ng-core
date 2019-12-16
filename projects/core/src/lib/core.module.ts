@@ -8,15 +8,23 @@ import { JoinPipe } from './pipes/join.pipe';
 import { MomentFormatPipe } from './pipes/moment-format.pipe';
 import { momentInitializer } from './units/moment-initial-utils';
 import { urlInitialUtils } from './units/url-initial-utils';
+import { ReactiveFormsModule } from '@angular/forms';
+import { CalendarModule } from 'primeng/calendar';
+import { InputDateTimePickerComponent } from './components/input/input-datepicker-time.component';
+import { InputDateRangePickerComponent } from './components/input/input-datepicker-range.component';
 
 @NgModule({
     imports: [
         CommonModule,
         MatCheckboxModule,
         MatDialogModule,
+        ReactiveFormsModule,
+        CalendarModule
     ],
     declarations: [
         CheckboxComponent,
+        InputDateTimePickerComponent,
+        InputDateRangePickerComponent,
         DefaultDataPipe,
         HtmlPipe,
         JoinPipe,
@@ -24,6 +32,8 @@ import { urlInitialUtils } from './units/url-initial-utils';
     ],
     exports: [
         CheckboxComponent,
+        InputDateTimePickerComponent,
+        InputDateRangePickerComponent,
         DefaultDataPipe,
         HtmlPipe,
         JoinPipe,
