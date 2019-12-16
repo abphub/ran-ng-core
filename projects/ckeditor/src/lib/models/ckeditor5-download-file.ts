@@ -43,7 +43,6 @@ export class Ckeditor5DownloadFile {
         this.dataTransfer = data.dataTransfer;
         this.editorView = data.editor.editing.view;
         this.fileService = data.injector.get(FileService);
-        this.baseUrl = data.injector.get(Store).selectSnapshot(ConfigState.getApiUrl());
     }
 
     getBody(callback: () => void): Promise<any> {
@@ -56,7 +55,7 @@ export class Ckeditor5DownloadFile {
 
             if (src) {
                 promises.push(this.loadRemoteFile(src).then(result => {
-                    item._setAttribute('src', this.baseUrl + result.webUrl);
+                    item._setAttribute('src', result.webUrl);
                 }));
             }
         }

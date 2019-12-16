@@ -55,7 +55,7 @@ export class Ckeditor5ImageUploadAdapter {
                     }
 
                     resolve({
-                        default: this.store.selectSnapshot(ConfigState.getApiUrl()) + result.webUrl
+                        default: result.webUrl
                     });
                 });
             }));
