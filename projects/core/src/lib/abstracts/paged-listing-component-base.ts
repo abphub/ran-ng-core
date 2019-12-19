@@ -43,6 +43,9 @@ export abstract class PagedListingComponentBase<T> implements OnInit, AfterViewI
     }
 
     ngAfterViewInit() {
+
+        console.log(this.matPaginator);
+
         if (this.matPaginator) {
             this.matPaginator.page.subscribe((page: PageEvent) => {
                 this.pageSize = page.pageSize;

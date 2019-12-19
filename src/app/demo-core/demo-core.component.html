@@ -2,7 +2,6 @@
     demo core 组件演示
 </ran-page-header>
 <ran-page-content>
-    {{result|json}}
     <div class="card">
         <div class="card-header">
             当前时间
@@ -11,6 +10,10 @@
             {{'2019-10-24T14:20:50.7405603'|momentFormat:'L LTS'}}
             <br>
             {{dateTimeNow|momentFormat:'L LTS'}}
+            <br>
+            <ran-date-range-picker></ran-date-range-picker>
+            <ran-date-time-picker [showTime]="true"></ran-date-time-picker>
+            <ran-date-time-picker [showTime]="false"></ran-date-time-picker>
         </div>
     </div>
     <div class="card">

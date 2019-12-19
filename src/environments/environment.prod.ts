@@ -2,24 +2,24 @@ export const environment = {
   production: true,
   hmr: false,
   application: {
-    name: 'Assets',
-    logoUrl: '',
+    name: 'ABP.hub',
+    logoUrl: 'http://bangfu.ran.xyz/favicon.ico',
   },
   oAuthConfig: {
-    issuer: 'https://localhost:44331',
-    clientId: 'Assets_App',
+    issuer: 'https://localhost:44385',
+    clientId: 'Edms_App',
     dummyClientSecret: '1q2w3e*',
-    scope: 'Assets',
+    scope: 'Edms',
     showDebugInformation: true,
     oidc: false,
     requireHttps: false,
   },
   apis: {
     default: {
-      url: 'https://localhost:44331',
+      url: 'https://localhost:44385',
     },
   },
   localization: {
-    defaultResourceName: 'Assets',
+    defaultResourceName: 'Edms',
   },
 };

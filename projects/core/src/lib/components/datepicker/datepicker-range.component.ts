@@ -1,14 +1,16 @@
 import { Component, EventEmitter, Input, OnInit, Output } from '@angular/core';
 import { FormControl } from '@angular/forms';
-import * as moment from 'moment';
 import { Store } from '@ngxs/store';
+import * as _moment from 'moment';
+import { zh, en } from '../../constants/datepicker-locales';
+
+const moment = _moment;
 
 @Component({
-    // tslint:disable-next-line: component-selector
     selector: 'ran-date-range-picker',
     template: `<p-calendar selectionMode="range" appendTo="body" [formControl]="formControl" [locale]='locale'></p-calendar>`,
 })
-export class InputDateRangePickerComponent implements OnInit {
+export class DateRangePickerComponent implements OnInit {
 
     formControl = new FormControl();
 
@@ -25,7 +27,6 @@ export class InputDateRangePickerComponent implements OnInit {
         if (value) {
             this.patchValue();
         }
-        // this.startTimeChange.emit(value);s
     }
 
     private _endTime: string;
@@ -38,13 +39,9 @@ export class InputDateRangePickerComponent implements OnInit {
         if (value) {
             this.patchValue();
         }
-        // this.endTimeChange.emit(value);
     }
 
     locale: any;
-
-    en: any;
-    zh: any;
 
     constructor(
         private store: Store
@@ -53,34 +50,8 @@ export class InputDateRangePickerComponent implements OnInit {
 
 
     ngOnInit() {
-        this.en = {
-            firstDayOfWeek: 0,
-            dayNames: ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'],
-            dayNamesShort: ['Sun', 'Mon', 'Tue', 'Wed', 'Thu', 'Fri', 'Sat'],
-            dayNamesMin: ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'],
-            // tslint:disable-next-line:max-line-length
-            monthNames: ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'],
-            monthNamesShort: ['Jan', 'Feb', 'Mar', 'Apr', 'May', 'Jun', 'Jul', 'Aug', 'Sep', 'Oct', 'Nov', 'Dec'],
-            today: 'Today',
-            clear: 'Clear',
-            dateFormat: 'mm/dd/yy',
-            weekHeader: 'Wk'
-        };
-        this.zh = {
-            firstDayOfWeek: 0,
-            dayNames: ['星期天', '星期一', '星期二', '星期三', '星期四', '星期五', '星期六'],
-            dayNamesShort: ['周日', '周日', '周二', '周三', '周四', '周五', '周六'],
-            dayNamesMin: ['日', '一', '二', '三', '四', '五', '六'],
-            // tslint:disable-next-line:max-line-length
-            monthNames: ['一月', '二月', '三月', '四月', '五月', '六月', '七月', '八月', '九月', '十月', '十一月', '十二月'],
-            monthNamesShort: ['1月', '2月', '3月', '4月', '5月', '6月', '7月', '8月', '9月', '10月', '11月', '12月'],
-            today: '今天',
-            clear: '清空',
-            dateFormat: 'mm/dd/yy',
-            weekHeader: 'Wk'
-        };
         const localeValue = this.store.selectSnapshot(state => state.SessionState.language) || 'en';
-        this.locale = localeValue === 'zh-Hans' ? this.zh : this.en;
+        this.locale = localeValue === 'zh-Hans' ? zh : en;
         this.formControl.valueChanges.subscribe((value: Date[]) => {
             if (this.formControl.dirty) {
                 for (let index = 0; index < value.length; index++) {

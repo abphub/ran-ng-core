@@ -1,6 +1,6 @@
 {
   "name": "@ran-ng/core",
-  "version": "0.8.3",
+  "version": "0.8.6",
   "dependencies": {
     "moment": "^2.24.0"
   },
