@@ -1,0 +1,50 @@
+<!-- <div class="d-flex justify-content-start mt-3 mx-3 app-content">
+    <div class="apps" *ngFor="let route of navigations$|async">
+        <div class="app" (click)='navigationByRoute(route)'>
+            <h4 class="rounded app-logo" [title]="route.name| abpLocalization"
+                style="background-image: url(https://tcs.teambition.net/thumbnail/111m49f5d454a8c0e22efc2a8d448db612e2/w/220/h/220);">
+            </h4>
+            <p class="text-center mw-100 text-truncate">{{route.name | abpLocalization}}</p>
+        </div>
+    </div>
+</div> -->
+
+
+
+<div class="d-flex justify-content-center">
+    <div class="d-flex justify-content-start flex-wrap mt-3 mx-3 app-content">
+        <div class="apps" *ngFor="let route of navigations$|async">
+            <div class="app" (click)='navigationByRoute(route)'>
+                <h4 class="rounded app-logo" [title]="route.name| abpLocalization"
+                    style="margin-top: 0.5rem;background-image: url(https://tcs.teambition.net/thumbnail/111m49f5d454a8c0e22efc2a8d448db612e2/w/220/h/220);">
+                </h4>
+                <p class="text-center mw-100 text-truncate pt-1">{{route.name | abpLocalization}}</p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- <div class="bg-white d-flex justify-content-center" style="margin: -15px;width: auto;height: 108%;">
+    <div class="d-flex flex-wrap mt-3 mx-3 app-content" style="height: 10px;max-width: 800px;">
+        <div class="apps" *ngFor="let route of navigations$|async">
+            <div class="app" (click)='navigationByRoute(route)'>
+                <h4 class="rounded app-logo" [title]="route.name| abpLocalization"
+                    style="margin-top: 0.5rem;background-image: url(https://tcs.teambition.net/thumbnail/111m49f5d454a8c0e22efc2a8d448db612e2/w/220/h/220);">
+                </h4>
+                <p class="text-center mw-100 text-truncate pt-1">{{route.name | abpLocalization}}</p>
+
+            </div>
+        </div>
+    </div>
+</div> -->
+
+
+<!-- <button class="btn btn-sm btn-link menu" style="color: lightslategray" [matMenuTriggerFor]="entityTypesMenu">
+                    <i class="fa fa-ellipsis-v mr-1"></i>
+                </button>
+                <mat-menu #entityTypesMenu="matMenu" class="meunHover">
+					<button mat-menu-item >{{ 'AbpIdentity::Edit' | abpLocalization }}</button>
+					<button mat-menu-item >
+						{{ 'AbpIdentity::Delete' | abpLocalization }}
+					</button>
+				</mat-menu> -->
