@@ -43,6 +43,12 @@
       ],
       "spinner/*": [
         "dist/spinner/*"
+      ],
+      "home": [
+        "dist/home"
+      ],
+      "home/*": [
+        "dist/home/*"
       ]
     }
   }

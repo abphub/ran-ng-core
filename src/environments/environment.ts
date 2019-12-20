@@ -2,17 +2,17 @@ export const environment = {
   production: false,
   hmr: false,
   application: {
-    name: 'ABP.hub',
-    logoUrl: 'http://bangfu.ran.xyz/favicon.ico',
+    name: '圆融翠宫',
+    logoUrl: '',
   },
   oAuthConfig: {
     issuer: 'https://localhost:44385',
-    clientId: 'Edms_App',
+    clientId: 'Commerce_App',
     dummyClientSecret: '1q2w3e*',
-    scope: 'Edms',
+    scope: 'Commerce',
     showDebugInformation: true,
     oidc: false,
-    requireHttps: false,
+    requireHttps: true,
   },
   apis: {
     default: {
@@ -20,6 +20,7 @@ export const environment = {
     },
   },
   localization: {
-    defaultResourceName: 'Edms',
+    defaultResourceName: 'Commerce',
   },
 };
+
