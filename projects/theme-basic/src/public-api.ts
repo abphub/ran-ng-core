@@ -9,3 +9,4 @@ export * from './lib/states';
 export * from './lib/routes/routes';
 export * from './lib/providers';
 export * from './lib/tokens';
+export * from './lib/services';

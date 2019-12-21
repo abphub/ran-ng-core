@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { PagedListingComponentBase } from 'projects/core/src/public-api';
+import { ɵl } from '@abp/ng.core';
 
 export interface PeriodicElement {
     name: string;
@@ -24,10 +26,19 @@ const ELEMENT_DATA: PeriodicElement[] = [
     selector: 'demo-theme-basic',
     templateUrl: './demo-theme-basic.component.html'
 })
-export class DemoThemeBasicComponent {
-    isOpen: boolean = false;
+export class DemoThemeBasicComponent extends PagedListingComponentBase<any> {
+
+    isOpen = false;
     pollutant: string;
     filter: string;
     displayedColumns: string[] = ['name', 'position', 'weight', 'symbol', 'actions'];
     dataSource = ELEMENT_DATA;
+
+    protected getPagedResult(request: ɵl.PageQueryParams, successCallback: (result: ɵl.PagedResponse<any>) => void): void {
+        console.log(this.dataSource);
+        successCallback({
+            items: this.dataSource,
+            totalCount: 0
+        });
+    }
 }

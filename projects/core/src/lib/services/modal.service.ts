@@ -61,7 +61,6 @@ export class ModalService {
     constructor(
         private dialog: MatDialog
     ) {
-        console.log(dialog);
     }
 
 

@@ -1,6 +1,6 @@
 {
   "name": "@ran-ng/theme-basic",
-  "version": "0.8.25",
+  "version": "0.8.24",
   "dependencies": {
     "@abp/ng.core": "^1.1.1",
     "@abp/ng.theme.shared": "^1.1.1"

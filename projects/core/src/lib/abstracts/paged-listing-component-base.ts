@@ -1,6 +1,6 @@
 import { ABP } from '@abp/ng.core';
 import { ConfirmationService, ToasterService } from '@abp/ng.theme.shared';
-import { AfterViewInit, Injector, OnInit, ViewChild } from '@angular/core';
+import { AfterViewInit, Injector, OnInit, ViewChild, AfterContentInit } from '@angular/core';
 import { MatDialog, MatPaginator, MatSort, PageEvent } from '@angular/material';
 import { ModalService } from '../services/modal.service';
 
@@ -44,8 +44,6 @@ export abstract class PagedListingComponentBase<T> implements OnInit, AfterViewI
 
     ngAfterViewInit() {
 
-        console.log(this.matPaginator);
-
         if (this.matPaginator) {
             this.matPaginator.page.subscribe((page: PageEvent) => {
                 this.pageSize = page.pageSize;
@@ -85,7 +83,7 @@ export abstract class PagedListingComponentBase<T> implements OnInit, AfterViewI
             maxResultCount: this.pageSize,
             skipCount: (page - 1) * this.pageSize
         };
-
+        console.log(req);
         this.getPagedResult(req, (result) => {
             this.isLoading = false;
             this.result = result;

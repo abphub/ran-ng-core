@@ -36,6 +36,7 @@ export class DemoCoreComponent extends PagedListingComponentBase<any> implements
     }
 
     protected getPagedResult(request: ABP.PageQueryParams, successCallback?: (result: ABP.PagedResponse<any>) => void): any {
+        console.log('走子类了');
         successCallback({ totalCount: 10, items: [] });
     }
 }
