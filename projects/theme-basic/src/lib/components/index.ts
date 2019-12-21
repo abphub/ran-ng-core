@@ -14,7 +14,7 @@ export * from './page/page-content.component';
 export * from './page/page-foot.component';
 export * from './page/page-table.component';
 
-
+export * from './layout.component';
 export * from './account-layout.component';
 export * from './application-layout.component';
 export * from './empty-layout.component';

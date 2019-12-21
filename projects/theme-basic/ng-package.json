@@ -4,8 +4,8 @@
   "lib": {
     "entryFile": "src/public-api.ts",
     "umdModuleIds": {
-      "@abp/ng.core": "^1.0.2",
-      "@abp/ng.theme.shared": "^1.0.2"
+      "@abp/ng.core": "^1.1.1",
+      "@abp/ng.theme.shared": "^1.1.1"
     }
   },
   "whitelistedNonPeerDependencies": [

@@ -1,9 +1,9 @@
 {
   "name": "@ran-ng/theme-basic",
-  "version": "0.8.23",
+  "version": "0.8.25",
   "dependencies": {
-    "@abp/ng.core": "^1.0.2",
-    "@abp/ng.theme.shared": "^1.0.2"
+    "@abp/ng.core": "^1.1.1",
+    "@abp/ng.theme.shared": "^1.1.1"
   },
   "publishConfig": {
     "access": "public"
