@@ -8,4 +8,6 @@ export * from './lib/models';
 export * from './lib/services';
 export * from './lib/units';
 export * from './lib/constants';
-export * from './lib/abstracts';
+export * from './lib/abstracts/listing-component-base';
+export * from './lib/abstracts/paged-listing-component-base';
+

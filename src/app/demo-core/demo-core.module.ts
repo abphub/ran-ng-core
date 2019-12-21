@@ -5,6 +5,7 @@ import { CoreModule } from 'projects/core/src/public-api';
 import { DemoCoreRoutingModule } from './demo-core-routing.module';
 import { DemoCoreComponent } from './demo-core.component';
 import { ThemeBasicModule } from 'projects/theme-basic/src/public-api';
+import { MatPaginatorModule } from '@angular/material';
 
 
 @NgModule({
@@ -17,7 +18,8 @@ import { ThemeBasicModule } from 'projects/theme-basic/src/public-api';
         ReactiveFormsModule,
         ThemeBasicModule,
         CommonModule,
-        DemoCoreRoutingModule
+        DemoCoreRoutingModule,
+        MatPaginatorModule
     ]
 })
 export class DemoCoreModule { }
