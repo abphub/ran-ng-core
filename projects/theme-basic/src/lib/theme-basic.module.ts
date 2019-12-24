@@ -35,11 +35,13 @@ import { AppNavgationService } from './services/navigation.service';
 import { RanLayoutState } from './states/layout.state';
 import { RanNavigationState } from './states/navigation.state';
 import { ThemeBasicOptions, THEME_BASIC_OPTIONS } from './tokens/theme-basic.token';
+import { LayoutComponent } from './components/layout.component';
 
 export const RAN_LAYOUTS = [ApplicationLayoutComponent, AccountLayoutComponent, EmptyLayoutComponent];
 
 @NgModule({
     declarations: [
+        LayoutComponent,
         ...RAN_LAYOUTS,
         AppbarComponent,
         AppHeaderComponent,
