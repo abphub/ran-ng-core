@@ -1,26 +1,41 @@
-<div class="account-container">
-    <div class="account-card">
-        <div class="account-card-header">
-            <img *ngIf="appInfo.logoUrl" src="{{appInfo.logoUrl}}" alt="logo" />
-            <h3 class="account-title">{{appInfo.name?appInfo.name:'系统名称'}}</h3>
-        </div>
-        <div class="account-card-body">
-            <router-outlet></router-outlet>
+<div class="abp-account-layout bg-light">
+    <div class="page-bg" style="background-image: url(http://host.limeauto.com.cn/files/focus-image/lv2ukrtv.jpg)">
+    </div>
+
+    <div class="container-fluid">
+
+        <div class="row">
+            <div class="col-7">
+                <div class="introductory-bg"
+                    style="background-image: url(http://host.limeauto.com.cn/files/focus-image/lv2ukrtv.jpg)">
+                    <h1>@BrandingProvider.AppName</h1>
+                    <h4>这里是宣传导语</h4>
+                </div>
+            </div>
+            <div class="col-5">
+                <div class="account-content">
+                    <img src="" class="mx-auto d-block" style="max-height:70px;" />
+                    <div class="card shadow-sm rounded mb-3">
+                        <div class="card-body px-5">
+                            <div class="row">
+                                <div class="col">
+                                    <span style="font-size: .8em;"
+                                        class="text-uppercase text-muted">@MultiTenancyStringLocalizer["Tenant"]</span><br />
+                                    <h6 class="m-0 d-inline-block">
+                                        fasdfasdfadsf
+                                    </h6>
+                                </div>
+                                <div class="col-auto">
+                                    <a id="AbpTenantSwitchLink" href="javascript:;"
+                                        class="btn btn-sm mt-3 btn-outline-primary">@MultiTenancyStringLocalizer["Switch"]</a>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
     </div>
 </div>
-
-<ul class="bg-bubbles">
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-    <li></li>
-</ul>
 <abp-confirmation></abp-confirmation>
 <abp-toast></abp-toast>
