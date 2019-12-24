@@ -2,8 +2,8 @@ export const environment = {
   production: false,
   hmr: false,
   application: {
-    name: '圆融翠宫',
-    logoUrl: '',
+    name: '燃点登录',
+    logoUrl: '/assets/images/logo.png',
   },
   oAuthConfig: {
     issuer: 'https://localhost:44385',
