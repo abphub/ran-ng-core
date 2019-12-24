@@ -1,135 +1,138 @@
 ran-application-layout {
 
-    display: flex;
-    flex-direction: column;
-    height: 100%;
-
-    mat-sidenav-container {
-
-        z-index: 2;
-        overflow: hidden !important;
+    ran-layout {
+        display: flex;
+        flex-direction: column;
         height: 100%;
 
-        mat-sidenav-content {
-            padding: 15px;
+        mat-sidenav-container {
 
-            ran-page-top-tools+ran-page-content {
-                margin-top: 48px;
-            }
+            z-index: 2;
+            overflow: hidden !important;
+            height: 100%;
 
-            ran-page-content {
-                display: block;
-                margin: 0 auto;
+            mat-sidenav-content {
+                padding: 15px;
 
-
-                &.flex {
-                    display: flex;
-                    height: 100%;
+                ran-page-top-tools+ran-page-content {
+                    margin-top: 48px;
                 }
 
-                &.w-90 {
-                    width: 90%;
-                }
-
-                ran-page-sidebar {
-                    width: 25%;
-                    max-width: 249px;
-                    margin-right: 1px;
-                    border-radius: 4px;
-                    background-color: #fff;
-                    padding: 0 15px 0 15px;
-                    box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075) !important;
-                    overflow-x: hidden;
-                    overflow-y: auto;
-                }
-
-                ran-page-table {
+                ran-page-content {
                     display: block;
-                    background: white;
-                    padding: 10px;
+                    margin: 0 auto;
 
-                    .table-container {
-                        position: relative;
 
-                        .fa-20 {
-                            font-size: 20px
-                        }
-
-                        table {
-                            width: 100%;
-                        }
-
-                        .mat-table {
-                            tr.mat-header-row {
-                                height: 50px;
-                            }
-
-                            th.mat-header-cell {
-                                font-size: 1rem;
-                                color: #495057;
-                            }
-
-                            tr.bg-light {
-                                background-color: #efefef;
-                                border-color: #efefef;
-                            }
-                        }
+                    &.flex {
+                        display: flex;
+                        height: 100%;
                     }
-                }
 
-                .ran-page-sidebar-content {
-                    display: flex;
-                    flex-direction: column;
-                    width: 100%;
-                    height: 100%;
-                    box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, .075);
-                    background: white;
+                    &.w-90 {
+                        width: 90%;
+                    }
 
-                    .card-body {
-                        box-shadow: none;
+                    ran-page-sidebar {
+                        width: 25%;
+                        max-width: 249px;
+                        margin-right: 1px;
+                        border-radius: 4px;
+                        background-color: #fff;
+                        padding: 0 15px 0 15px;
+                        box-shadow: 0 .125rem .25rem rgba(0, 0, 0, .075) !important;
+                        overflow-x: hidden;
+                        overflow-y: auto;
                     }
 
                     ran-page-table {
-                        flex: 1;
-                        overflow: auto;
+                        display: block;
+                        background: white;
+                        padding: 10px;
+
+                        .table-container {
+                            position: relative;
+
+                            .fa-20 {
+                                font-size: 20px
+                            }
+
+                            table {
+                                width: 100%;
+                            }
+
+                            .mat-table {
+                                tr.mat-header-row {
+                                    height: 50px;
+                                }
+
+                                th.mat-header-cell {
+                                    font-size: 1rem;
+                                    color: #495057;
+                                }
+
+                                tr.bg-light {
+                                    background-color: #efefef;
+                                    border-color: #efefef;
+                                }
+                            }
+                        }
                     }
 
+                    .ran-page-sidebar-content {
+                        display: flex;
+                        flex-direction: column;
+                        width: 100%;
+                        height: 100%;
+                        box-shadow: 0 0.125rem 0.25rem rgba(0, 0, 0, .075);
+                        background: white;
+
+                        .card-body {
+                            box-shadow: none;
+                        }
+
+                        ran-page-table {
+                            flex: 1;
+                            overflow: auto;
+                        }
+
+                    }
                 }
+
             }
 
-        }
 
+            .mat-list-item.active {
+                color: #1b9aee;
+                border-radius: 5px;
+                background: rgba(0, 0, 0, 0.04);
+            }
 
-        .mat-list-item.active {
-            color: #1b9aee;
-            border-radius: 5px;
-            background: rgba(0, 0, 0, 0.04);
-        }
+            .mat-list-item:hover {
+                color: #1b9aee;
+                border-radius: 5px;
+                background: rgba(0, 0, 0, 0.04);
+            }
 
-        .mat-list-item:hover {
-            color: #1b9aee;
-            border-radius: 5px;
-            background: rgba(0, 0, 0, 0.04);
-        }
+            .mat-list-item:hover .invisible {
+                visibility: visible !important;
+            }
 
-        .mat-list-item:hover .invisible {
-            visibility: visible !important;
-        }
+            .mat-sidebar {
+                width: 230px;
+                z-index: 0;
+            }
 
-        .mat-sidebar {
-            width: 230px;
-            z-index: 0;
-        }
+            .mat-drawer.mat-drawer-side {
+                z-index: 0;
+            }
 
-        .mat-drawer.mat-drawer-side {
-            z-index: 0;
-        }
-
-        .mat-drawbar {
-            width: 400px;
-            top: 0;
+            .mat-drawbar {
+                width: 400px;
+                top: 0;
+            }
         }
     }
+
 }
 
 .apps {
