@@ -1,6 +1,5 @@
 import { AccountConfigModule } from '@ran-ng/account-config';
 import { CoreModule } from '@abp/ng.core';
-import { LAYOUTS, ThemeBasicModule } from '@abp/ng.theme.basic';
 import { IdentityConfigModule } from '@abp/ng.identity.config';
 import { SettingManagementConfigModule } from '@abp/ng.setting-management.config';
 import { TenantManagementConfigModule } from '@abp/ng.tenant-management.config';
@@ -16,7 +15,7 @@ import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
-// import { ThemeBasicModule } from 'projects/theme-basic/src/public-api';
+import { RAN_LAYOUTS, ThemeBasicModule } from 'projects/theme-basic/src/public-api';
 
 const LOGGERS = [NgxsLoggerPluginModule.forRoot({ disabled: false })];
 
@@ -28,11 +27,11 @@ const LOGGERS = [NgxsLoggerPluginModule.forRoot({ disabled: false })];
     CoreModule.forRoot({
       environment,
       requirements: {
-        layouts: LAYOUTS,
+        layouts: RAN_LAYOUTS,
       },
     }),
     AppRoutingModule,
-    ThemeBasicModule,
+    ThemeBasicModule.forRoot({ theme: 'light' }),
     ThemeSharedModule.forRoot(),
     AccountConfigModule.forRoot({ redirectUrl: '/' }),
     IdentityConfigModule,
