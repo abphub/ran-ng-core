@@ -1,14 +1,13 @@
 import { ABP, Config, ConfigState } from '@abp/ng.core';
-import { Component, OnInit } from '@angular/core';
-import { Router, ActivatedRoute } from '@angular/router';
-import { Select, Store } from '@ngxs/store';
-import { RanNavigationState, AppNavgationService } from '@ran-ng/theme-basic';
-import { Observable } from 'rxjs';
-import { HomeService } from '../services/home.service';
-import { Home } from '../models/home.model';
-import { finalize } from 'rxjs/operators';
 import { ToasterService } from '@abp/ng.theme.shared';
+import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { Select, Store } from '@ngxs/store';
 import { OAuthService } from 'angular-oauth2-oidc';
+import { AppNavgationService, RanNavigationState } from 'projects/theme-basic/src/public-api';
+import { Observable } from 'rxjs';
+import { Home } from '../models/home.model';
+import { HomeService } from '../services/home.service';
 
 
 

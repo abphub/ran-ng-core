@@ -1,7 +1,6 @@
 import { ABP, eLayoutType } from '@abp/ng.core';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { THEME_BASIC_ROUTES } from 'projects/theme-basic/src/public-api';
 
 const routes: Routes = [
   {
@@ -36,7 +35,6 @@ const routes: Routes = [
   {
     path: 'theme',
     loadChildren: () => import('./demo-theme-basic/demo-theme-basic.module').then(m => m.DemoThemeBasicModule),
-    data: { routes: THEME_BASIC_ROUTES },
   },
   {
     path: 'account',

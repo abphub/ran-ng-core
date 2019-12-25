@@ -4,7 +4,7 @@ import { Navigate, RouterState } from '@ngxs/router-plugin';
 import { Select, Store } from '@ngxs/store';
 import { OAuthService } from 'angular-oauth2-oidc';
 import { Observable } from 'rxjs';
-import { RanNavigationState, AppNavgationService, SetSidebarState, SetDrawbarState } from '@ran-ng/theme-basic';
+import { RanNavigationState, AppNavgationService, SetSidebarState, SetDrawbarState } from 'projects/theme-basic/src/public-api';
 
 
 @Component({
