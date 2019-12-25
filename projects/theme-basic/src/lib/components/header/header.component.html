@@ -1,6 +1,5 @@
 <a class="logo" target="_blank">
-    <img [src]="appInfo.logoUrl" style="max-width: 40px;">
-    <!-- {{appInfo.name}} -->
+    <img [src]="appInfo.logoUrl" title="{{appInfo.name}}">
 </a>
 
 <span class="flex-spacer"></span>
@@ -40,20 +39,29 @@
 <!-- app导航 -->
 
 <!-- 个人中心 -->
-<a *ngIf="(currentUser$|async)?.userName" [matMenuTriggerFor]="appMenu" matTooltip="个人中心" class="avatar">
-    <div class="user-overlay">
+<a *ngIf="(currentUser$|async)?.userName" [matMenuTriggerFor]="appMenu" matTooltip="个人中心" class="user-avatar">
+    <div class="user-avatar-overlay">
         <i class="fa fa-cog" aria-hidden="true"></i>
     </div>
-    <img class="avatar-img" src="assets/images/default-profile-picture.png">
+    <img class="user-avatar-img" src="assets/images/default-profile-picture.png">
 </a>
 <mat-menu #appMenu="matMenu">
-    <!-- <div class="p-2">admin</div> -->
+
+    <div class="user-menu-header">
+        <div class="user-menu-avatar">
+            <img class="user-menu-avatar-img" src="assets/images/default-profile-picture.png">
+        </div>
+        <div class="user-menu-info">
+            {{(currentUser$|async)?.userName}}
+        </div>
+    </div>
+    <mat-divider></mat-divider>
     <button mat-menu-item class="pl-3 pr-5" routerLink="/account/manage-profile">
-        <i class="fa fa-profile pr-2"></i>
+        <i class="fa fa-user pr-2"></i>
         {{'AbpAccount::ManageYourProfile' | abpLocalization }}
     </button>
     <button mat-menu-item class="pl-3 pr-5" (click)="logout()">
-        <i class="fa fa-logout pr-2"></i>
+        <i class="fa fa-sign-out pr-2"></i>
         {{'AbpUi::Logout' | abpLocalization}}
     </button>
 </mat-menu>

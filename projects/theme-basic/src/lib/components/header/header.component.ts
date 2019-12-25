@@ -59,6 +59,14 @@ export class AppHeaderComponent implements OnInit {
         window.location.reload();
     }
 
+    changePassword() {
+
+    }
+
+    personalSettings() {
+
+    }
+
     logout() {
         this.oauthService.logOut();
         this.store.dispatch(

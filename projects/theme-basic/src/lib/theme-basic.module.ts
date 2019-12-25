@@ -5,7 +5,7 @@ import { APP_INITIALIZER, Injector, ModuleWithProviders, NgModule } from '@angul
 import {
     MatBadgeModule, MatButtonModule, MatListModule,
     MatMenuModule, MatPaginatorIntl, MatSidenavModule,
-    MatToolbarModule, MatTooltipModule
+    MatToolbarModule, MatTooltipModule, MatDividerModule
 } from '@angular/material';
 import { NavigationEnd, Router } from '@angular/router';
 import { NgxValidateCoreModule } from '@ngx-validate/core';
@@ -68,6 +68,7 @@ export const RAN_LAYOUTS = [ApplicationLayoutComponent, AccountLayoutComponent, 
         MatToolbarModule,
         MatBadgeModule,
         MatButtonModule,
+        MatDividerModule,
         MatMenuModule,
         MatTooltipModule,
         NgxValidateCoreModule,
