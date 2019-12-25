@@ -1,8 +1,7 @@
 {
-  "name": "home",
-  "version": "0.0.1",
-  "peerDependencies": {
-    "@angular/common": "^8.2.13",
-    "@angular/core": "^8.2.13"
+  "name": "@ran-ng/home",
+  "version": "0.1.1",
+  "publishConfig": {
+    "access": "public"
   }
 }

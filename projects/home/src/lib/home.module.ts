@@ -1,18 +1,37 @@
-import { NgModule } from '@angular/core';
-import { HomeComponent } from './home.component';
-import { HomeRoutingModule } from './home-routing.module';
 import { CoreModule } from '@abp/ng.core';
 import { ThemeSharedModule } from '@abp/ng.theme.shared';
-import { ThemeBasicModule } from 'projects/theme-basic/src/public-api';
-import { MatMenuModule } from '@angular/material';
+import { NgModule } from '@angular/core';
+import {
+  MatMenuModule,
+  MatSidenavModule, MatListModule, MatToolbarModule, MatBadgeModule, MatButtonModule, MatTooltipModule
+} from '@angular/material';
+import { ThemeBasicModule } from '@ran-ng/theme-basic';
+import { HomeRoutingModule } from './home-routing.module';
+import { HomeComponent } from './components/home.component';
+import { AppHeaderComponent } from './components/header/header.component';
+import { CommonModule } from '@angular/common';
+import { SpinnerModule } from '@ran-ng/spinner';
+import { CoreModule as RanCoreModule } from '@ran-ng/core';
 
 @NgModule({
-  declarations: [HomeComponent],
+  declarations: [HomeComponent, AppHeaderComponent],
   imports: [
-    CoreModule, ThemeSharedModule, ThemeBasicModule,
-    MatMenuModule,
+    CoreModule,
+    RanCoreModule,
+    ThemeSharedModule,
+    CommonModule,
+    ThemeBasicModule,
     HomeRoutingModule,
+    SpinnerModule,
+    MatMenuModule,
+    MatSidenavModule,
+    MatListModule,
+    MatToolbarModule,
+    MatBadgeModule,
+    MatButtonModule,
+    MatMenuModule,
+    MatTooltipModule,
   ],
-  exports: [HomeComponent]
+  exports: [HomeComponent],
 })
 export class HomeModule { }
