@@ -1,14 +1,14 @@
 import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
-import { HomeComponent } from './home.component';
-import { ApplicationLayoutComponent } from 'projects/theme-basic/src/public-api';
+import { HomeComponent } from './components/home.component';
 import { PermissionGuard, AuthGuard } from '@abp/ng.core';
+import { EmptyLayoutComponent } from '@ran-ng/theme-basic';
 
 const routes: Routes = [
   {
-    canActivate: [AuthGuard, PermissionGuard],
+    // canActivate: [AuthGuard, PermissionGuard],
     path: '',
-    component: ApplicationLayoutComponent,
+    component: EmptyLayoutComponent,
     children: [{ path: '', component: HomeComponent }],
   },
 ];
