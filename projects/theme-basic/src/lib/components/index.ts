@@ -2,8 +2,8 @@
  * Public API Surface of layout
  */
 export * from './drawer/drawer.component';
-export * from './header/header.component';
-export * from './header/headerbar.component';
+export * from './header/header-bar.component';
+export * from './header/header-menu.component';
 export * from './appbar/appbar.component';
 export * from './sidebar/sidebar.component';
 

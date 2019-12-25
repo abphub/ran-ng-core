@@ -18,8 +18,8 @@ import { AppbarComponent } from './components/appbar/appbar.component';
 import { ApplicationLayoutComponent } from './components/application-layout.component';
 import { AppDrawerComponent } from './components/drawer/drawer.component';
 import { EmptyLayoutComponent } from './components/empty-layout.component';
-import { AppHeaderComponent } from './components/header/header.component';
-import { AppHeaderBarComponent } from './components/header/headerbar.component';
+import { AppHeaderBarComponent } from './components/header/header-bar.component';
+import { AppHeaderMenuComponent } from './components/header/header-menu.component';
 import { PageContentComponent } from './components/page/page-content.component';
 import { PageFootComponent } from './components/page/page-foot.component';
 import { PageHeaderComponent } from './components/page/page-header.component';
@@ -36,6 +36,7 @@ import { RanLayoutState } from './states/layout.state';
 import { RanNavigationState } from './states/navigation.state';
 import { ThemeBasicOptions, THEME_BASIC_OPTIONS } from './tokens/theme-basic.token';
 import { LayoutComponent } from './components/layout.component';
+import { AppHeaderRightMenuComponent } from './components/header/header-right-menu.component';
 
 export const RAN_LAYOUTS = [ApplicationLayoutComponent, AccountLayoutComponent, EmptyLayoutComponent];
 
@@ -44,8 +45,9 @@ export const RAN_LAYOUTS = [ApplicationLayoutComponent, AccountLayoutComponent, 
         LayoutComponent,
         ...RAN_LAYOUTS,
         AppbarComponent,
-        AppHeaderComponent,
         AppHeaderBarComponent,
+        AppHeaderMenuComponent,
+        AppHeaderRightMenuComponent,
         AppSidebarComponent,
         AppDrawerComponent,
         PageHeaderComponent,
@@ -88,6 +90,7 @@ export const RAN_LAYOUTS = [ApplicationLayoutComponent, AccountLayoutComponent, 
     ],
     exports: [
         ...RAN_LAYOUTS,
+        AppHeaderRightMenuComponent,
         PageHeaderComponent,
         PageSidebarComponent,
         PageContentComponent,

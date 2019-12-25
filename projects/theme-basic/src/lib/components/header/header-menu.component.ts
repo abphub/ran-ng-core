@@ -5,11 +5,11 @@ import { Select, Store } from '@ngxs/store';
 import { ABP, ConfigState, Config } from '@abp/ng.core';
 
 @Component({
-    selector: 'ran-app-header-bar',
-    templateUrl: './headerbar.component.html',
+    selector: 'ran-app-header-menu',
+    templateUrl: './header-menu.component.html',
     styleUrls: ['./header.component.scss']
 })
-export class AppHeaderBarComponent {
+export class AppHeaderMenuComponent {
 
     @Select(RanNavigationState.getTopbarNavigationState)
     navigations$: Observable<ABP.FullRoute[]>;

@@ -1,11 +1,3 @@
-<a class="logo" target="_blank">
-    <img [src]="appInfo.logoUrl" title="{{appInfo.name}}">
-</a>
-
-<span class="flex-spacer"></span>
-<ran-app-header-bar></ran-app-header-bar>
-<span class="flex-spacer"></span>
-
 <!-- 语言管理 -->
 <button mat-button class="header-bar-button" [matMenuTriggerFor]="appLanguageMenu" matTooltip="语言管理">
     <i class="fa fa-language"></i>
@@ -32,8 +24,7 @@
 <!-- 消息中心 -->
 
 <!-- app导航 -->
-<!-- <ran-appbar></ran-appbar> -->
-<button mat-button class="header-bar-button" routerLink="" matTooltip="{{appInfo.name}}应用">
+<button *ngIf="showHomeButton" mat-button class="header-bar-button" routerLink="" matTooltip="{{appInfo.name}}应用">
     <i class="fa fa-th"></i>
 </button>
 <!-- app导航 -->
@@ -46,7 +37,6 @@
     <img class="user-avatar-img" src="assets/images/default-profile-picture.png">
 </a>
 <mat-menu #appMenu="matMenu">
-
     <div class="user-menu-header">
         <div class="user-menu-avatar">
             <img class="user-menu-avatar-img" src="assets/images/default-profile-picture.png">

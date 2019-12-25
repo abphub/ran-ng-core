@@ -1,19 +1,18 @@
-import { ABP, ApplicationConfiguration, Config, ConfigState, GetAppConfiguration, SessionState, SetLanguage } from '@abp/ng.core';
-import { Component, OnInit } from '@angular/core';
-import { Navigate, RouterState } from '@ngxs/router-plugin';
+import { ApplicationConfiguration, ConfigState, SetLanguage, GetAppConfiguration, SessionState, Config } from '@abp/ng.core';
+import { Component, Input } from '@angular/core';
 import { Select, Store } from '@ngxs/store';
-import { OAuthService } from 'angular-oauth2-oidc';
 import { Observable } from 'rxjs';
-import { SetDrawbarState, SetSidebarState } from '../../actions/layout.action';
+import { Navigate, RouterState } from '@ngxs/router-plugin';
+import { SetDrawbarState } from '../../actions/layout.action';
 import { AppNavgationService } from '../../services/navigation.service';
-import { RanNavigationState } from '../../states/navigation.state';
+import { OAuthService } from 'angular-oauth2-oidc';
 
 @Component({
-    selector: 'ran-app-header',
-    templateUrl: './header.component.html',
+    selector: 'ran-app-header-right-menu',
+    templateUrl: './header-right-menu.component.html',
     styleUrls: ['./header.component.scss']
 })
-export class AppHeaderComponent implements OnInit {
+export class AppHeaderRightMenuComponent {
 
     @Select(ConfigState.getOne('currentUser'))
     currentUser$: Observable<ApplicationConfiguration.CurrentUser>;
@@ -21,11 +20,7 @@ export class AppHeaderComponent implements OnInit {
     @Select(ConfigState.getDeep('localization.languages'))
     languages$: Observable<ApplicationConfiguration.Language[]>;
 
-    @Select(RanNavigationState.getAppbarNavigationState)
-    navigations$: Observable<ABP.FullRoute[]>;
-
-    unReadCount = 0;
-
+    @Input() showHomeButton = false;
 
     get appInfo(): Config.Application {
         return this.store.selectSnapshot(ConfigState.getApplicationInfo);
@@ -35,6 +30,8 @@ export class AppHeaderComponent implements OnInit {
         return this.store.selectSnapshot(SessionState.getLanguage);
     }
 
+    unReadCount = 0;
+
     constructor(
         private store: Store,
         private oauthService: OAuthService,
@@ -42,13 +39,6 @@ export class AppHeaderComponent implements OnInit {
     ) {
     }
 
-    ngOnInit() {
-        this.appNavationService.setAppbarNavigations();
-    }
-
-    setSidebarState() {
-        this.store.dispatch(new SetSidebarState());
-    }
 
     setDrawbarState() {
         this.store.dispatch(new SetDrawbarState());
@@ -57,14 +47,6 @@ export class AppHeaderComponent implements OnInit {
     onChangeLang(cultureName: string) {
         this.store.dispatch(new SetLanguage(cultureName));
         window.location.reload();
-    }
-
-    changePassword() {
-
-    }
-
-    personalSettings() {
-
     }
 
     logout() {
@@ -78,4 +60,5 @@ export class AppHeaderComponent implements OnInit {
         // 重新设置app导航
         this.appNavationService.setAppbarNavigations();
     }
+
 }
