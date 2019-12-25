@@ -3,7 +3,7 @@ import { SetDrawbarState, SetSidebarContentScoll, SetSidebarState } from '../act
 import { RanLayout } from '../models/layout';
 
 @State<RanLayout.State>({
-    name: 'RanLayoutState',
+    name: 'RanLayoutState1',
     defaults: { sidebarState: true, drawbarState: false, $scrollEvent: null } as RanLayout.State
 })
 export class RanLayoutState {

@@ -1,27 +1,18 @@
 import { ABP } from '@abp/ng.core';
 
-
-// tslint:disable-next-line:no-namespace
 export namespace Home {
     export type ITenantApplicationResponse = ABP.PagedItemsResponse<ITenantApplication>;
 
     export interface ITenantApplication {
-        /// <summary>
-        /// 名字
-        /// </summary>
+        // 名字
         applicationName: string;
-        /// <summary>
-        /// 有效期
-        /// </summary>
+
+        // 有效期
         expireDate: string;
 
-        /// <summary>
-        /// 图标
-        /// </summary>
+        // 图标
         icon: string;
 
-
         url: string;
-
     }
 }

@@ -10,6 +10,7 @@ import { OAuthService } from 'angular-oauth2-oidc';
 @Component({
     selector: 'ran-app-header-right-menu',
     templateUrl: './header-right-menu.component.html',
+    styles: [`:host{display:flex}`],
     styleUrls: ['./header.component.scss']
 })
 export class AppHeaderRightMenuComponent {
@@ -20,7 +21,7 @@ export class AppHeaderRightMenuComponent {
     @Select(ConfigState.getDeep('localization.languages'))
     languages$: Observable<ApplicationConfiguration.Language[]>;
 
-    @Input() showHomeButton = false;
+    @Input() showHomeButton = true;
 
     get appInfo(): Config.Application {
         return this.store.selectSnapshot(ConfigState.getApplicationInfo);

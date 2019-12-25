@@ -9,8 +9,6 @@ import { Observable } from 'rxjs';
 import { Home } from '../models/home.model';
 import { HomeService } from '../services/home.service';
 
-
-
 @Component({
   selector: 'ran-home',
   templateUrl: './home.component.html',

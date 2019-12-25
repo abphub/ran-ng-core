@@ -5,6 +5,12 @@ ran-application-layout {
         flex-direction: column;
         height: 100%;
 
+        ran-app-header {
+            button:focus {
+                outline: none !important;
+            }
+        }
+
         mat-sidenav-container {
 
             z-index: 2;

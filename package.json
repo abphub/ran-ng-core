@@ -39,7 +39,7 @@
     "@ngxs/logger-plugin": "^3.5.1",
     "@ngxs/router-plugin": "^3.5.1",
     "@ran-ng/account-config": "^0.8.0",
-    "@ran-ng/ckeditor": "^0.2.1",
+    "@ran-ng/ckeditor": "^0.8.3",
     "@ran-ng/core": "^0.8.8",
     "@ran-ng/spinner": "0.0.1",
     "@ran-ng/theme-basic": "^0.8.30",

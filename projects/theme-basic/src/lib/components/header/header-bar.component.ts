@@ -4,7 +4,7 @@ import { Store } from '@ngxs/store';
 import { AppNavgationService } from '../../services/navigation.service';
 
 @Component({
-    selector: 'ran-app-header-bar',
+    selector: 'ran-app-header',
     templateUrl: './header-bar.component.html',
     styleUrls: ['./header.component.scss']
 })
