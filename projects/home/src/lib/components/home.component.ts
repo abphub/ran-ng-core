@@ -4,7 +4,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
 import { OAuthService } from 'angular-oauth2-oidc';
-import { AppNavgationService, RanNavigationState } from 'projects/theme-basic/src/public-api';
+import { AppNavgationService, RanNavigationState } from '@ran-ng/theme-basic';
 import { Observable } from 'rxjs';
 import { Home } from '../models/home.model';
 import { HomeService } from '../services/home.service';
@@ -18,7 +18,9 @@ export class HomeComponent implements OnInit {
 
   @Select(RanNavigationState.getAppbarNavigationState)
   navigations$: Observable<ABP.FullRoute[]>;
+
   tenantApplications: Home.ITenantApplication[] = [];
+
   apiUrl: string;
 
   get navigations(): ABP.FullRoute[] {
@@ -40,7 +42,7 @@ export class HomeComponent implements OnInit {
     private homeService: HomeService,
     private toasterService: ToasterService,
     private oAuthService: OAuthService,
-    private activatedRoute: ActivatedRoute
+    private activatedRoute: ActivatedRoute,
   ) {
   }
 
@@ -50,7 +52,9 @@ export class HomeComponent implements OnInit {
         relativeTo: this.activatedRoute,
       });
     }
+
     this.apiUrl = this.store.selectSnapshot(ConfigState.getApiUrl());
+    this.appNavigationService.setAppbarNavigations();
     this.homeService.getTenantApplications().subscribe(reslut => {
       this.tenantApplications = reslut.items;
     });

@@ -4,6 +4,7 @@
 export * from './drawer/drawer.component';
 export * from './header/header-bar.component';
 export * from './header/header-menu.component';
+export * from './header/header-right-menu.component';
 export * from './appbar/appbar.component';
 export * from './sidebar/sidebar.component';
 

@@ -18,6 +18,10 @@ export class DemoCoreComponent extends PagedListingComponentBase<any> implements
     formgroup: FormGroup;
     dateTimeNow = moment();
 
+
+    minCheckDate = moment().subtract(5, 'y').format('L');
+    maxCheckDate = moment().format('L');
+
     constructor(
         injector: Injector,
         private fb: FormBuilder,

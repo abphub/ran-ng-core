@@ -11,7 +11,12 @@
             <br>
             {{dateTimeNow|momentFormat:'L LTS'}}
             <br>
-            <ran-date-range-picker></ran-date-range-picker>
+            <br>
+            minCheckDate:{{minCheckDate}}
+            <br>
+            maxCheckDate:{{maxCheckDate}}
+            <br>
+            <ran-date-range-picker [(startTime)]="minCheckDate" [(endTime)]="maxCheckDate"></ran-date-range-picker>
             <ran-date-time-picker [showTime]="true"></ran-date-time-picker>
             <ran-date-time-picker [showTime]="false"></ran-date-time-picker>
         </div>
