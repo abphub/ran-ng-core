@@ -1,12 +1,11 @@
 <div class="abp-account-layout bg-light">
-    <div class="page-bg" style="background-image: url(assets/images/login-bg.png)">
+    <div class="page-bg" [style.background-image]="backgroundImage">
     </div>
 
     <div class="container">
         <div class="row no-gutters">
             <div class="col-md-7">
-                <div class="introductory-bg"
-                    style="background-image: url({{loginBg}})">
+                <div class="introductory-bg" [style.background-image]="backgroundImage">
                     <h1>{{appInfo.name}}</h1>
                 </div>
             </div>
