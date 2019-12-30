@@ -15,6 +15,10 @@ export class AccountLayoutComponent {
         return this.store.selectSnapshot(ConfigState.getApplicationInfo);
     }
 
+    get loginBg(): string {
+        return this.store.selectSnapshot(ConfigState.getApiUrl()) + '/common/images/login-bg.png';
+    }
+
     constructor(
         private store: Store,
     ) {
