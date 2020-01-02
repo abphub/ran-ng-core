@@ -1,6 +1,7 @@
-@import './mixins//app-topbar.scss';
-@import './mixins//app-card.scss';
-@import './mixins//app-content.scss';
+@import './mixins/app-topbar.scss';
+@import './mixins/app-card.scss';
+@import './mixins/app-content.scss';
+@import './mixins/app-swiper.scss';
 
 
 @mixin app-theme($materialTheme) {
