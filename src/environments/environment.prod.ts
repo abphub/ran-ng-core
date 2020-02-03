@@ -6,7 +6,7 @@ export const environment = {
     logoUrl: 'http://bangfu.ran.xyz/favicon.ico',
   },
   oAuthConfig: {
-    issuer: 'https://localhost:44385',
+    issuer: 'https://host.{TENANCY_NAME}.{DOMAIN_SUFFIX}',
     clientId: 'Edms_App',
     dummyClientSecret: '1q2w3e*',
     scope: 'Edms',
