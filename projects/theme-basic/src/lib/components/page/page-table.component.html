@@ -4,7 +4,7 @@
     <!-- 无数据时 -->
     <div class="border-bottom bg-white" *ngIf="!totalCount">
         <p class="p-2 m-0 text-black-50 d-flex justify-content-center align-items-center">
-            <i class="mr-1 fa fa-frown-o fa-20"></i> {{ '::NoDataAvailableInDatatable' |abpLocalization }}
+            <i class="mr-1 fa fa-frown-o fa-20"></i> {{ 'AbpUi::NoDataAvailableInDatatable' |abpLocalization }}
         </p>
     </div>
     <!-- 分页 -->
@@ -13,8 +13,8 @@
     <!-- 总数 -->
     <div class="p-3 text-right bg-white" *ngIf="!paginator">
         <p class="m-0 text-black-50">
-            <span *ngIf="totalCount">{{ 'Assets::TotalCount' | abpLocalization: totalCount.toString() }}</span>
-            <span *ngIf="!totalCount">{{ 'Assets::TotalCount' | abpLocalization: '0' }}</span>
+            <span *ngIf="totalCount">{{ '::TotalCount' | abpLocalization: totalCount.toString() }}</span>
+            <span *ngIf="!totalCount">{{ '::TotalCount' | abpLocalization: '0' }}</span>
         </p>
     </div>
     <ran-spinner [loading]='isLoading'></ran-spinner>
