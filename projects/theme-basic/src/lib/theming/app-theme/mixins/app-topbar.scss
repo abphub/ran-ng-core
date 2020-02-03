@@ -1,5 +1,4 @@
 @mixin app-topbar($materialTheme) {
-
     $primary: mat-color(map-get($materialTheme, primary));
     $font-color: white;
     $accent: mat-color(map-get($materialTheme, accent ));
@@ -21,6 +20,8 @@
 
         &.app-header-sigle-row {
             height: 65px;
+            min-height: 65px;
         }
     }
+
 }

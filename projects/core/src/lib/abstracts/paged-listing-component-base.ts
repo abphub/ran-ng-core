@@ -83,7 +83,6 @@ export abstract class PagedListingComponentBase<T> implements OnInit, AfterViewI
             maxResultCount: this.pageSize,
             skipCount: (page - 1) * this.pageSize
         };
-        console.log(req);
         this.getPagedResult(req, (result) => {
             this.isLoading = false;
             this.result = result;

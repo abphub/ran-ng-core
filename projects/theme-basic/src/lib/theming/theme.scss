@@ -11,6 +11,11 @@ body {
 body[theme="partyred"] {
     @include angular-material-theme($material-partyred-theme);
     @include app-theme($material-partyred-theme);
+
+    .header-bar-button:hover {
+        font-weight: bold;
+        color: #ffffff;
+    }
 }
 
 // 白色主题
@@ -23,4 +28,49 @@ body[theme="blue"] {
 body[theme="dark"] {
     @include angular-material-theme($material-dark-theme);
     @include app-theme($material-dark-theme);
+
+    ran-app-header {
+        border-bottom: 1px solid #212121;
+    }
+
+    .card {
+        background-color: #424242 !important;
+
+        .card-header {
+            background-color: #424242 !important;
+        }
+
+        .card-body {
+            background-color: #424242 !important;
+        }
+    }
+    .row.entry-row {
+        background-color: #424242 !important;
+    }
+
+}
+
+// 灰色主题
+body[theme="grey"] {
+    @include angular-material-theme($material-grey-theme);
+    @include app-theme($material-grey-theme);
+
+    ran-app-header {
+        border-bottom: none;
+    }
+    ran-page-sidebar {
+        background-color: #ffffff !important;
+    }
+
+    .mat-drawer {
+        background-color: rgb(250, 250, 250) !important;
+    }
+
+    .mat-drawer-side {
+        border-right: none;
+    }
+
+    .mat-button {
+        color: #8c8c8c !important;
+    }
 }
