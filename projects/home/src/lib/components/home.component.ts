@@ -4,10 +4,11 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { Select, Store } from '@ngxs/store';
 import { OAuthService } from 'angular-oauth2-oidc';
-import { AppNavgationService, RanNavigationState } from '@ran-ng/theme-basic';
+// import { AppNavgationService, RanNavigationState } from '@ran-ng/theme-basic';
 import { Observable } from 'rxjs';
 import { Home } from '../models/home.model';
 import { HomeService } from '../services/home.service';
+import { AppNavgationService, RanNavigationState } from 'projects/theme-basic/src/public-api';
 
 @Component({
   selector: 'ran-home',

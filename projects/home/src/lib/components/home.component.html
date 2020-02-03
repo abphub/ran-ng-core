@@ -1,14 +1,19 @@
 <ran-app-header-right-menu [showHomeButton]="false"></ran-app-header-right-menu>
 
-<div class="ran-logo">
-    <a class="logo" target="_blank" [title]="appInfo.name">
-        <img [src]="appInfo.logoUrl" style="height:92px;">
-    </a>
-</div>
+<div class="d-flex align-items-center" style="height: calc(100% - 62px);">
+    <div class="" style="width: 100%;">
+        <div class="ran-logo">
+            <a class="logo" target="_blank" [title]="appInfo.name">
+                <img [src]="appInfo.logoUrl" style="height:92px;">
+            </a>
+        </div>
 
-<div class="ran-apps">
-    <a href="javascirpt:;" class="app" *ngFor="let item of tenantApplications" (click)='navigationByRoute(item)'>
-        <img [title]="item.applicationName| abpLocalization" [src]="apiUrl+item.icon">
-        <p>{{item.applicationName | abpLocalization}}</p>
-    </a>
+        <div class="ran-apps">
+            <a href="javascirpt:;" class="app" *ngFor="let item of tenantApplications"
+                (click)='navigationByRoute(item)'>
+                <img [title]="item.applicationName| abpLocalization" [src]="apiUrl+item.icon">
+                <p>{{item.applicationName | abpLocalization}}</p>
+            </a>
+        </div>
+    </div>
 </div>
