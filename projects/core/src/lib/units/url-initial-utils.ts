@@ -81,7 +81,7 @@ export function urlInitialUtils(injector: Injector) {
             tenancyName = hostUrl.slice(0, findIndex);
             domainSuffix = hostUrl.slice(findIndex + 1);
         }
-debugger
+
         return new Promise<void>((resolve) => {
             if (domainSuffix) {
                 apiUrl = apiUrl.replace(DOMAIN_SUFFIX, domainSuffix);

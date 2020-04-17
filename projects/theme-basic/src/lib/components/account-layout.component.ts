@@ -15,6 +15,10 @@ export class AccountLayoutComponent {
         return this.store.selectSnapshot(ConfigState.getApplicationInfo);
     }
 
+    get accountLogo() {
+        return `${this.store.selectSnapshot(ConfigState.getApiUrl())}/common/images/account-logo.png`;
+    }
+
     get backgroundImage(): string {
         return `url(${this.store.selectSnapshot(ConfigState.getApiUrl())}/common/images/login-bg.png)`;
     }

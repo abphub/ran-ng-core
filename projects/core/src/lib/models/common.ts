@@ -2,6 +2,10 @@ import * as moment from 'moment';
 
 export namespace RAN {
 
+    export interface TableRowIndex {
+        index: number;
+    }
+
     export interface EntityDto<T = string> {
         id: T;
     }

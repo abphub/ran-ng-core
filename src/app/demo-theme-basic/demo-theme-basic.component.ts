@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, Injector } from '@angular/core';
 import { PagedListingComponentBase } from 'projects/core/src/public-api';
 import { ɵl } from '@abp/ng.core';
 
@@ -31,8 +31,12 @@ export class DemoThemeBasicComponent extends PagedListingComponentBase<any> {
     isOpen = false;
     pollutant: string;
     filter: string;
-    displayedColumns: string[] = ['name', 'position', 'weight', 'symbol', 'actions'];
+    headers: string[] = ['name', 'position', 'weight', 'symbol', 'actions'];
     dataSource = ELEMENT_DATA;
+
+    constructor(injector: Injector) {
+        super(injector);
+    }
 
     protected getPagedResult(request: ɵl.PageQueryParams, successCallback: (result: ɵl.PagedResponse<any>) => void): void {
         console.log(this.dataSource);

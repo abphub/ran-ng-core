@@ -5,7 +5,7 @@ import { DynamicLayoutComponent } from '@abp/ng.core';
 
 const routes: Routes = [
     {
-        path: '',
+        path: 'ckeditor',
         component: DynamicLayoutComponent,
         children: [{ path: '', component: DemoCkeditorComponent }],
     },

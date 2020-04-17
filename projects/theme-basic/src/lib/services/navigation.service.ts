@@ -56,8 +56,14 @@ export class AppNavgationService {
      * 监听路由变更事件
      * @param event angular路由事件
      */
-    setNavigations(event: RouterEvent) {
-        const segmentGroup = this.router.parseUrl(event.url).root.children.primary;
+    setNavigations(event: NavigationEnd) {
+        let url = event.url;
+
+        if (url === '/') {
+            url = event.urlAfterRedirects;
+        }
+
+        const segmentGroup = this.router.parseUrl(url).root.children.primary;
         const { flattedRoutes } = this.store.selectSnapshot(ConfigState.getAll);
         const segments = segmentGroup ? segmentGroup.segments : [];
 

@@ -1,6 +1,7 @@
 import { Config, ConfigState } from '@abp/ng.core';
 import { Component, OnInit } from '@angular/core';
 import { Store } from '@ngxs/store';
+import { SetSidebarState } from '../../actions/layout.action';
 import { AppNavgationService } from '../../services/navigation.service';
 
 @Component({
@@ -22,5 +23,9 @@ export class AppHeaderBarComponent implements OnInit {
 
     ngOnInit() {
         this.appNavationService.setAppbarNavigations();
+    }
+
+    setSidebarState() {
+        this.store.dispatch(new SetSidebarState());
     }
 }

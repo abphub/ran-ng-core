@@ -35,21 +35,21 @@ export const environment = {
     }]
   },
   oAuthConfig: {
-    issuer: 'http://host.aotu.com.cn',
-    clientId: 'Commerce_App',
+    issuer: 'https://localhost:44385',
+    clientId: 'Edms_App',
     dummyClientSecret: '1q2w3e*',
-    scope: 'Commerce',
+    scope: 'Edms',
     showDebugInformation: true,
     oidc: false,
     requireHttps: true,
   },
   apis: {
     default: {
-      url: 'http://host.aotu.com.cn',
+      url: 'https://localhost:44385',
     },
   },
   localization: {
-    defaultResourceName: 'Commerce',
+    defaultResourceName: 'RanEdms',
   },
 };
 

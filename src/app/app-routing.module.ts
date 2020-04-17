@@ -1,17 +1,10 @@
 import { ABP, eLayoutType } from '@abp/ng.core';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { THEME_BASIC_ROUTES } from 'projects/theme-basic/src/public-api';
 
 const routes: Routes = [
-  {
-    path: '',
-    loadChildren: () => import('./lazy-libs/home-wrapper.module').then(m => m.HomeWrapperModule),
-    data: {
-      routes: {
-        name: '::Menu:Home',
-      } as ABP.Route,
-    },
-  },
+  { path: '', redirectTo: '/theme/light/theme-one', pathMatch: 'full' },
   {
     path: 'ckeditor',
     loadChildren: () => import('./demo-ckeditor/demo-ckeditor.module').then(m => m.DemoCkeditorModule),
@@ -19,6 +12,11 @@ const routes: Routes = [
       routes: {
         name: '::Menu:Ckeditor',
         layout: eLayoutType.application,
+        children: [{
+          name: '::Menu:Ckeditor:cc',
+          path: 'ckeditor',
+          iconClass: 'assets/images/lake.png'
+        }]
       } as ABP.FullRoute,
     },
   },
@@ -35,6 +33,9 @@ const routes: Routes = [
   {
     path: 'theme',
     loadChildren: () => import('./demo-theme-basic/demo-theme-basic.module').then(m => m.DemoThemeBasicModule),
+    data: {
+      routes: THEME_BASIC_ROUTES,
+    },
   },
   {
     path: 'account',

@@ -2,7 +2,6 @@ import { ABP } from '@abp/ng.core';
 import { ConfirmationService, ToasterService } from '@abp/ng.theme.shared';
 import { Injector, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material';
-import { ModalService } from '../services/modal.service';
 
 /**
  * 如果派生类中实现了OnInit则需要手动执行super.ngOnInit
@@ -13,7 +12,6 @@ export abstract class ListingComponentBase<T> implements OnInit {
     result: ABP.PagedItemsResponse<T>;
 
     protected _matDialog: MatDialog;
-    protected _modalService: ModalService;
     protected _confirmationService: ConfirmationService;
     protected _toasterService: ToasterService;
 
@@ -21,7 +19,6 @@ export abstract class ListingComponentBase<T> implements OnInit {
         this._matDialog = injector.get(MatDialog);
         this._confirmationService = injector.get(ConfirmationService);
         this._toasterService = injector.get(ToasterService);
-        this._modalService = injector.get(ModalService);
 
         this.result = {
             items: []

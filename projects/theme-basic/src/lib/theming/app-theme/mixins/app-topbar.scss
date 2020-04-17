@@ -1,7 +1,7 @@
 @mixin app-topbar($materialTheme) {
     $primary: mat-color(map-get($materialTheme, primary));
     $font-color: white;
-    $accent: mat-color(map-get($materialTheme, accent ));
+    $accent: mat-color(map-get($materialTheme, accent));
 
     ran-app-header {
         background-color: $primary;

@@ -3,7 +3,7 @@
  */
 export class SetSidebarState {
     static readonly type = '[Sidebar] Set';
-    constructor() { }
+    constructor(public payload?: boolean) { }
 }
 
 export class SetDrawbarState {

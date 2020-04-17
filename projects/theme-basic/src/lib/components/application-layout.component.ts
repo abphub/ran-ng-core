@@ -23,7 +23,6 @@ export class ApplicationLayoutComponent implements AfterViewInit {
     @Select(RanLayoutState.getSidebarState)
     sidebarState$: Observable<boolean>;
 
-
     @Select(RanLayoutState.getDrawbarState)
     drawbarState$: Observable<boolean>;
 

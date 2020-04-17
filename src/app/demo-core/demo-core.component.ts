@@ -12,7 +12,7 @@ const moment = _moment;
     styleUrls: ['./demo-core.component.scss']
 })
 export class DemoCoreComponent extends PagedListingComponentBase<any> implements OnInit {
-
+    headers: string[];
     edit: any = {};
 
     formgroup: FormGroup;

@@ -1,5 +1,3 @@
-import { ConfigState } from '@abp/ng.core';
-import { Store } from '@ngxs/store';
 import { Injector } from '@angular/core';
 import ViewMatcher from '@ckeditor/ckeditor5-engine/src/view/matcher';
 import { FileService } from '../services/file.service';
@@ -25,7 +23,6 @@ export class Ckeditor5DownloadFile {
 
     private editorView: any;
     private fileService: FileService;
-    private baseUrl: string;
 
 
     constructor(data: ICkeditor5DownloadFile) {

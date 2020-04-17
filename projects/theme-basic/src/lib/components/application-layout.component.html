@@ -2,7 +2,8 @@
     <ran-app-header class="app-header-sigle-row"></ran-app-header>
     <mat-sidenav-container>
         <!-- 左侧导航 -->
-        <mat-sidenav class="mat-sidebar scrollbar" mode="side" [opened]='appSidebar?.showSidebar$|async'>
+        <mat-sidenav class="mat-sidebar scrollbar" mode="side"
+            [opened]='(appSidebar?.showSidebar$|async) && (sidebarState$|async)'>
             <ran-app-sidebar class="scrollbar" #appSidebar></ran-app-sidebar>
         </mat-sidenav>
         <!-- 左侧导航 -->

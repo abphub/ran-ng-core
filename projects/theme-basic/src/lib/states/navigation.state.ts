@@ -4,7 +4,7 @@ import { RanNavigation } from '../models/navigation';
 import { ABP } from '@abp/ng.core';
 
 @State<RanNavigation.State>({
-    name: 'RanNavigationState1',
+    name: 'RanNavigationState',
     defaults: { appbarNavations: [], topbarNavigations: [], sidebarNavigations: [] } as RanNavigation.State
 })
 export class RanNavigationState {

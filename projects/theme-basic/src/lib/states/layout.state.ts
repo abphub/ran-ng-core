@@ -3,7 +3,7 @@ import { SetDrawbarState, SetSidebarContentScoll, SetSidebarState } from '../act
 import { RanLayout } from '../models/layout';
 
 @State<RanLayout.State>({
-    name: 'RanLayoutState1',
+    name: 'RanLayoutState',
     defaults: { sidebarState: true, drawbarState: false, $scrollEvent: null } as RanLayout.State
 })
 export class RanLayoutState {
@@ -24,9 +24,13 @@ export class RanLayoutState {
     }
 
     @Action(SetSidebarState)
-    setSidebarState({ getState, patchState }: StateContext<RanLayout.State>) {
+    setSidebarState({ getState, patchState }: StateContext<RanLayout.State>, { payload }: SetSidebarState) {
         const { sidebarState } = getState();
-        patchState({ sidebarState: !sidebarState });
+        let _sidebarState = !sidebarState;
+        if (payload !== undefined) {
+            _sidebarState = payload;
+        }
+        patchState({ sidebarState: _sidebarState });
     }
 
     @Action(SetDrawbarState)

@@ -8,7 +8,7 @@ export function getPaginatorTranslateFactory(injector: Injector) {
 
     const dutchRangeLabel = (page: number, pageSize: number, length: number) => {
 
-        if (length === 0 || pageSize === 0) { return `0 ${localization.transform('Assets::-')} ${length}`; }
+        if (length === 0 || pageSize === 0) { return `0 ${localization.transform('::-')} ${length}`; }
 
         length = Math.max(length, 0);
 
@@ -20,20 +20,20 @@ export function getPaginatorTranslateFactory(injector: Injector) {
 
             startIndex + pageSize;
 
-        return `${startIndex + 1} ${localization.transform('Assets::-')} ${endIndex} ${localization.transform('Assets::of')} ${length}`;
+        return `${startIndex + 1} ${localization.transform('::-')} ${endIndex} ${localization.transform('::of')} ${length}`;
     };
 
     const paginatorIntl = new MatPaginatorIntl();
 
-    paginatorIntl.itemsPerPageLabel = localization.transform('Assets::ItemsPerPage');
+    paginatorIntl.itemsPerPageLabel = localization.transform('::ItemsPerPage');
 
-    paginatorIntl.firstPageLabel = localization.transform('Assets::PagerFirst');
+    paginatorIntl.firstPageLabel = localization.transform('::PagerFirst');
 
-    paginatorIntl.lastPageLabel = localization.transform('Assets::PagerLast');
+    paginatorIntl.lastPageLabel = localization.transform('::PagerLast');
 
-    paginatorIntl.previousPageLabel = localization.transform('Assets::PagerPrevious');
+    paginatorIntl.previousPageLabel = localization.transform('::PagerPrevious');
 
-    paginatorIntl.nextPageLabel = localization.transform('Assets::PagerNext');
+    paginatorIntl.nextPageLabel = localization.transform('::PagerNext');
 
     paginatorIntl.getRangeLabel = dutchRangeLabel;
 

@@ -1,8 +1,7 @@
 import { ABP } from '@abp/ng.core';
 import { ConfirmationService, ToasterService } from '@abp/ng.theme.shared';
-import { AfterViewInit, Injector, OnInit, ViewChild, AfterContentInit } from '@angular/core';
+import { AfterViewInit, Injector, OnInit, ViewChild } from '@angular/core';
 import { MatDialog, MatPaginator, MatSort, PageEvent } from '@angular/material';
-import { ModalService } from '../services/modal.service';
 
 /**
  * 如果派生类中实现了OnInit和AfterViewInit,则需要手动执行super.ngOnInit,super.ngAfterViewInit
@@ -23,13 +22,11 @@ export abstract class PagedListingComponentBase<T> implements OnInit, AfterViewI
     public pageSizeOptions = [10, 25, 50, 100, 300, 500];
 
     protected _matDialog: MatDialog;
-    protected _modalService: ModalService;
     protected _confirmationService: ConfirmationService;
     protected _toasterService: ToasterService;
 
     constructor(injector: Injector) {
         this._matDialog = injector.get(MatDialog);
-        this._modalService = injector.get(ModalService);
         this._confirmationService = injector.get(ConfirmationService);
         this._toasterService = injector.get(ToasterService);
         this.result = {
@@ -85,7 +82,10 @@ export abstract class PagedListingComponentBase<T> implements OnInit, AfterViewI
         };
         this.getPagedResult(req, (result) => {
             this.isLoading = false;
-            this.result = result;
+            this.result = {
+                items: result.items,
+                totalCount: result.totalCount
+            };
             this.totalPages = ((result.totalCount - (result.totalCount % this.pageSize)) / this.pageSize) + 1;
             this.pageNumber = page;
         });
