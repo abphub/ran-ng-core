@@ -11,5 +11,5 @@ export interface IFileDto {
 export interface ILoadRemoteFile {
     url: string;
     providerKey: string;
-    folderName: string;
+    folderToken: string;
 }

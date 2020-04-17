@@ -9,7 +9,7 @@ interface ICkeditor5DownloadFile {
     type: CkeditorType;
     editor: any;
     assetProviderKey: string;
-    assetFolderName: string;
+    assetFolderToken: string;
     dataTransfer: any;
     injector: Injector;
 }
@@ -18,7 +18,7 @@ export class Ckeditor5DownloadFile {
 
     type: CkeditorType;
     assetProviderKey: string;
-    assetFolderName: string;
+    assetFolderToken: string;
     dataTransfer: any;
 
     private editorView: any;
@@ -31,12 +31,12 @@ export class Ckeditor5DownloadFile {
                 throw new Error('ckeditor5上传图片需要[assetProviderKey],请先配置');
             }
 
-            if (!data.assetFolderName) {
-                throw new Error('ckeditor5上传图片需要[assetFolderName],请先配置');
+            if (!data.assetFolderToken) {
+                throw new Error('ckeditor5上传图片需要[assetFolderToken],请先配置');
             }
         }
         this.assetProviderKey = data.assetProviderKey;
-        this.assetFolderName = data.assetFolderName;
+        this.assetFolderToken = data.assetFolderToken;
         this.dataTransfer = data.dataTransfer;
         this.editorView = data.editor.editing.view;
         this.fileService = data.injector.get(FileService);
@@ -74,7 +74,7 @@ export class Ckeditor5DownloadFile {
             this.fileService.loadRemoteFile(({
                 url: src,
                 providerKey: this.assetProviderKey,
-                folderName: this.assetFolderName
+                folderToken: this.assetFolderToken
             })).subscribe(result => {
                 resolve(result);
             });

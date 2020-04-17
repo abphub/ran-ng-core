@@ -63,7 +63,7 @@ export class Ckeditor5Component implements AfterViewInit, ControlValueAccessor {
      * 如果配置，则上传时按照配置之后的上传，
      */
     @Input()
-    assetfolderName: string;
+    assetFolderName: string;
 
     onchange: (newData: any) => void;
     touched: () => void;
@@ -122,7 +122,7 @@ export class Ckeditor5Component implements AfterViewInit, ControlValueAccessor {
                     loader,
                     injector: this.injector,
                     type: this.type,
-                    assetFolderName: this.assetfolderName,
+                    assetFolderToken: this.assetFolderName,
                     assetProviderKey: this.assetProviderKey
                 });
             };
@@ -142,7 +142,7 @@ export class Ckeditor5Component implements AfterViewInit, ControlValueAccessor {
                     type: this.type,
                     editor,
                     assetProviderKey: this.assetProviderKey,
-                    assetFolderName: this.assetfolderName,
+                    assetFolderToken: this.assetFolderName,
                     dataTransfer: data.dataTransfer,
                     injector: this.injector
                 });

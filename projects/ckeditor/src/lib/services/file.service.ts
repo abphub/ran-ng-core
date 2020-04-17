@@ -12,7 +12,7 @@ export class FileService {
     loadRemoteFile(body: ILoadRemoteFile): Observable<IFileDto> {
         const request: Rest.Request<ILoadRemoteFile> = {
             method: 'POST',
-            url: `/api/assets/files/loadRemoteFile?url=${body.url}&providerKey=${body.providerKey}&folderName=${body.folderName}`,
+            url: `/api/assets/files/loadRemoteFile?url=${body.url}&providerKey=${body.providerKey}&folderToken=${body.folderToken}`,
         };
 
         return this.rest.request<ILoadRemoteFile, IFileDto>(request);

@@ -8,7 +8,7 @@ interface ICkeditor5ImageUploadParams {
     type: CkeditorType;
     loader: any;
     assetProviderKey: string;
-    assetFolderName: string;
+    assetFolderToken: string;
 }
 
 export class Ckeditor5ImageUploadAdapter {
@@ -26,14 +26,14 @@ export class Ckeditor5ImageUploadAdapter {
                 throw new Error('ckeditor5上传图片需要[assetProviderKey],请先配置');
             }
 
-            if (!data.assetFolderName) {
-                throw new Error('ckeditor5上传图片需要[assetFolderName],请先配置');
+            if (!data.assetFolderToken) {
+                throw new Error('ckeditor5上传图片需要[assetFolderToken],请先配置');
             }
         }
         this.loader = data.loader;
         this.store = data.injector.get(Store);
         this.rest = data.injector.get(RestService);
-        this.requestUrl = `/api/assets/files/upload?providerKey=${data.assetProviderKey}&folderName=${data.assetFolderName}`;
+        this.requestUrl = `/api/assets/files/upload?providerKey=${data.assetProviderKey}&folderToken=${data.assetFolderToken}`;
     }
 
     upload() {
