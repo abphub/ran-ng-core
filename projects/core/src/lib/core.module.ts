@@ -1,35 +1,35 @@
 import { CommonModule } from '@angular/common';
 import { APP_INITIALIZER, Injector, ModuleWithProviders, NgModule } from '@angular/core';
 import { ReactiveFormsModule } from '@angular/forms';
-import { MatCheckboxModule, MatDialogModule } from '@angular/material';
-import { CheckboxComponent } from './components/checkbox/checkbox.component';
+import { NgForEndDirective } from './directives/ng-for-of-end.direcitve';
 import { DefaultDataPipe } from './pipes/default-data.pipe';
 import { HtmlPipe } from './pipes/innerhtml.pipe';
 import { JoinPipe } from './pipes/join.pipe';
 import { MomentFormatPipe } from './pipes/moment-format.pipe';
+import { NumberToTimePipe } from './pipes/number-time.pipe';
 import { momentInitializer } from './units/moment-initial-utils';
 import { urlInitialUtils } from './units/url-initial-utils';
 
 @NgModule({
     imports: [
         CommonModule,
-        MatCheckboxModule,
-        MatDialogModule,
         ReactiveFormsModule
     ],
     declarations: [
-        CheckboxComponent,
         DefaultDataPipe,
         HtmlPipe,
         JoinPipe,
-        MomentFormatPipe
+        MomentFormatPipe,
+        NumberToTimePipe,
+        NgForEndDirective
     ],
     exports: [
-        CheckboxComponent,
         DefaultDataPipe,
         HtmlPipe,
         JoinPipe,
-        MomentFormatPipe
+        MomentFormatPipe,
+        NumberToTimePipe,
+        NgForEndDirective
     ]
 })
 export class CoreModule {

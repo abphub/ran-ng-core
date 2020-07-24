@@ -1,8 +1,7 @@
 {
   "name": "@ran-ng/ckeditor",
-  "version": "2.0.0-beta.1",
+  "version": "2.0.0",
   "dependencies": {
-    "@ran-ng/assets": "^2.0.0",
     "@ckeditor/ckeditor5-build-decoupled-document": "^12.3.1",
     "@ckeditor/ckeditor5-engine": "^13.2.1"
   },

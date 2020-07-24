@@ -35,7 +35,7 @@ export const environment = {
     }]
   },
   oAuthConfig: {
-    issuer: 'https://localhost:44385',
+    issuer: 'http://192.168.1.138:44341',
     clientId: 'Edms_App',
     dummyClientSecret: '1q2w3e*',
     scope: 'Edms',
@@ -45,7 +45,7 @@ export const environment = {
   },
   apis: {
     default: {
-      url: 'https://localhost:44385',
+      url: 'http://192.168.1.138:44341',
     },
   },
   localization: {

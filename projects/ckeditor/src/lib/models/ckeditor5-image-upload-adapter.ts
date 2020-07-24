@@ -21,7 +21,7 @@ export class Ckeditor5ImageUploadAdapter {
     constructor(
         data: ICkeditor5ImageUploadParams
     ) {
-        if (data.type !== 'base') {
+        if (data.type && data.type !== 'base') {
             if (!data.assetProviderKey) {
                 throw new Error('ckeditor5上传图片需要[assetProviderKey],请先配置');
             }

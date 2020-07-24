@@ -1,0 +1,1 @@
+export * from './ng-for-of-end.direcitve';

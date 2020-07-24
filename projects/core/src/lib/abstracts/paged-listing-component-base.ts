@@ -1,34 +1,29 @@
 import { ABP } from '@abp/ng.core';
-import { ConfirmationService, ToasterService } from '@abp/ng.theme.shared';
-import { AfterViewInit, Injector, OnInit, ViewChild } from '@angular/core';
-import { MatDialog, MatPaginator, MatSort, PageEvent } from '@angular/material';
+import { OnInit, Injector } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 
 /**
- * 如果派生类中实现了OnInit和AfterViewInit,则需要手动执行super.ngOnInit,super.ngAfterViewInit
+ * 如果派生类中实现了OnInit和AfterViewInit,则需要手动执行super.ngOnInit
  */
-export abstract class PagedListingComponentBase<T> implements OnInit, AfterViewInit {
+export abstract class PagedListingComponentBase<T> implements OnInit {
 
-    @ViewChild(MatPaginator, { static: false }) matPaginator: MatPaginator;
-    @ViewChild(MatSort, { static: false }) matSort: MatSort;
+
+    protected router: Router;
+    protected activatedRoute: ActivatedRoute;
 
     isLoading = false;
     result: ABP.PagedResponse<T>;
 
-    public sorting: string;
+    pageIndex = 1;
+    pageSize = 10;
+    pageSizeOptions = [10, 20, 50, 100];
+    sorting: string;
 
-    private pageNumber = 1;
-    public pageSize = 10;
-    public totalPages = 1;
-    public pageSizeOptions = [10, 25, 50, 100, 300, 500];
-
-    protected _matDialog: MatDialog;
-    protected _confirmationService: ConfirmationService;
-    protected _toasterService: ToasterService;
+    enabledQueryParams = false;
 
     constructor(injector: Injector) {
-        this._matDialog = injector.get(MatDialog);
-        this._confirmationService = injector.get(ConfirmationService);
-        this._toasterService = injector.get(ToasterService);
+        this.router = injector.get(Router);
+        this.activatedRoute = injector.get(ActivatedRoute);
         this.result = {
             items: [],
             totalCount: 0
@@ -36,33 +31,33 @@ export abstract class PagedListingComponentBase<T> implements OnInit, AfterViewI
     }
 
     ngOnInit(): void {
-        this.refresh();
+        this.getPagedList();
+
+        this.activatedRoute.queryParams.subscribe(queryParmas => {
+            this.getPagedList(parseInt(queryParmas.pageIndex) || 1);
+        })
     }
 
-    ngAfterViewInit() {
+    getPagedList(pageIndex?: number): void {
+        this.isLoading = true;
+        this.pageIndex = pageIndex > 0 ? pageIndex : 1;
 
-        if (this.matPaginator) {
-            this.matPaginator.page.subscribe((page: PageEvent) => {
-                this.pageSize = page.pageSize;
-                this.getDataPage(page.pageIndex + 1);
-            });
+        if (this.enabledQueryParams && pageIndex > 1) {
+            this.router.navigate([], { queryParams: { pageIndex } })
         }
 
-        if (this.matSort) {
-            this.matSort.sortChange.subscribe((sort: { active: string, direction: string }) => {
-                this.sorting = sort.active + '' + sort.direction;
-                this.refresh();
-            });
-        }
-    }
-
-    refresh(pageNumber?: number): void {
-        if (pageNumber) {
-            this.getDataPage(pageNumber);
-            this.matPaginator.pageIndex = pageNumber;
-            return;
-        }
-        this.getDataPage(this.pageNumber);
+        const request: ABP.PageQueryParams = {
+            sorting: this.sorting,
+            maxResultCount: this.pageSize,
+            skipCount: (this.pageIndex > 0 ? this.pageIndex - 1 : 0) * this.pageSize
+        };
+        this.getPagedResultRequest(request, (result) => {
+            this.isLoading = false;
+            this.result = {
+                items: result.items,
+                totalCount: result.totalCount
+            };
+        });
     }
 
     /**
@@ -71,23 +66,6 @@ export abstract class PagedListingComponentBase<T> implements OnInit, AfterViewI
      * @param successCallback 请求数据
      * @param finishedCallback 请求完数据
      */
-    protected abstract getPagedResult(request: ABP.PageQueryParams, successCallback: (result: ABP.PagedResponse<T>) => void): void;
+    protected abstract getPagedResultRequest(request: ABP.PageQueryParams, successCallback: (result: ABP.PagedResponse<T>) => void): void;
 
-    private getDataPage(page: number): void {
-        this.isLoading = true;
-        const req: ABP.PageQueryParams = {
-            sorting: this.sorting,
-            maxResultCount: this.pageSize,
-            skipCount: (page - 1) * this.pageSize
-        };
-        this.getPagedResult(req, (result) => {
-            this.isLoading = false;
-            this.result = {
-                items: result.items,
-                totalCount: result.totalCount
-            };
-            this.totalPages = ((result.totalCount - (result.totalCount % this.pageSize)) / this.pageSize) + 1;
-            this.pageNumber = page;
-        });
-    }
 }

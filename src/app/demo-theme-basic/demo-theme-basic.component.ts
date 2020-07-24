@@ -26,7 +26,7 @@ const ELEMENT_DATA: PeriodicElement[] = [
     selector: 'demo-theme-basic',
     templateUrl: './demo-theme-basic.component.html'
 })
-export class DemoThemeBasicComponent extends PagedListingComponentBase<any> {
+export class DemoThemeBasicComponent {
 
     isOpen = false;
     pollutant: string;
@@ -35,14 +35,5 @@ export class DemoThemeBasicComponent extends PagedListingComponentBase<any> {
     dataSource = ELEMENT_DATA;
 
     constructor(injector: Injector) {
-        super(injector);
-    }
-
-    protected getPagedResult(request: ɵl.PageQueryParams, successCallback: (result: ɵl.PagedResponse<any>) => void): void {
-        console.log(this.dataSource);
-        successCallback({
-            items: this.dataSource,
-            totalCount: 0
-        });
     }
 }
