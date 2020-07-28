@@ -172,7 +172,7 @@ export class Ckeditor5Component implements AfterViewInit, ControlValueAccessor {
 
     private getToobarConfig(): string[] {
         let toobarConfig = [];
-        if (this.toolbarConfig && this.toolbarConfig.length) {
+        if (this.toolbarConfig) {
             toobarConfig = this.toolbarConfig;
         } else {
             const ckeditorType = this.ckeditorService.getConfig(this.type);

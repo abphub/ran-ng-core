@@ -1,4 +1,4 @@
-import { ConfigState, Rest, RestService } from '@abp/ng.core';
+import { Rest, RestService } from '@abp/ng.core';
 import { Injector } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { CkeditorType } from './../services/ckeditor5.service';

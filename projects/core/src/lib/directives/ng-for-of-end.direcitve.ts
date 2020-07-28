@@ -15,7 +15,9 @@ export class NgForEndDirective {
     public set last(last: boolean) {
         this._last = last;
         if (last) {
-            this.ngForEndChange.emit(last);
+            setTimeout(() => {
+                this.ngForEndChange.emit(last);
+            }, 0);
         }
     }
 }

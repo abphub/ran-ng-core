@@ -17,7 +17,7 @@ export class CkeditorService {
         displayName: '基本',
         type: 'base',
         config: [
-            'undo', 'redo', '|',
+            'undo', 'redo', '|', 'heading',
             'bold', 'italic', 'underline', 'strikethrough', 'link', 'numberedList', 'bulletedList', ,
         ]
     }, {

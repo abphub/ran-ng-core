@@ -34,7 +34,10 @@
                 <p class="border-bottom pb-2">document版</p>
                 <ran-ckeditor5 type="document" formControlName="ckeditorDocumentData"></ran-ckeditor5>
             </div>
-
+            <div class="card-body">
+                <p class="border-bottom pb-2">无config版本</p>
+                <ran-ckeditor5 [toolbarConfig]='[]' formControlName="ckeditorBaseData"></ran-ckeditor5>
+            </div>
         </div>
     </form>
 </ran-page-content>

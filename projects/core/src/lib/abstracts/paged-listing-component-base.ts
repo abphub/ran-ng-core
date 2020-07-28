@@ -31,11 +31,13 @@ export abstract class PagedListingComponentBase<T> implements OnInit {
     }
 
     ngOnInit(): void {
-        this.getPagedList();
-
-        this.activatedRoute.queryParams.subscribe(queryParmas => {
-            this.getPagedList(parseInt(queryParmas.pageIndex) || 1);
-        })
+        if (this.enabledQueryParams) {
+            this.activatedRoute.queryParams.subscribe(queryParmas => {
+                this.getPagedList(parseInt(queryParmas.pageIndex || 1));
+            })
+        } else {
+            this.getPagedList();
+        }
     }
 
     getPagedList(pageIndex?: number): void {

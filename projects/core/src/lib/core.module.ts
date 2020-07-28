@@ -3,7 +3,7 @@ import { APP_INITIALIZER, Injector, ModuleWithProviders, NgModule } from '@angul
 import { ReactiveFormsModule } from '@angular/forms';
 import { NgForEndDirective } from './directives/ng-for-of-end.direcitve';
 import { DefaultDataPipe } from './pipes/default-data.pipe';
-import { HtmlPipe } from './pipes/innerhtml.pipe';
+import { HtmlPipe } from './pipes/html.pipe';
 import { JoinPipe } from './pipes/join.pipe';
 import { MomentFormatPipe } from './pipes/moment-format.pipe';
 import { NumberToTimePipe } from './pipes/number-time.pipe';

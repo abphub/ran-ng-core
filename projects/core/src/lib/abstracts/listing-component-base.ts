@@ -24,7 +24,7 @@ export abstract class ListingComponentBase<T> implements OnInit {
         this.getListResultRequest((items: T[]) => {
             this.result = { items };
             this.isLoading = false;
-        }, () => { });
+        });
     }
 
     /**
@@ -32,6 +32,6 @@ export abstract class ListingComponentBase<T> implements OnInit {
      * @param successCallbak 成功回调
      * @param finishedCallback 完成回调
      */
-    protected abstract getListResultRequest(successCallback: (result: T[]) => void, finishedCallback?: () => void): void;
+    protected abstract getListResultRequest(successCallback: (result: T[]) => void): void;
 
 }
