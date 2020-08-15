@@ -1,4 +1,4 @@
-import { AfterViewInit, Component, ElementRef, forwardRef, Injector, Input, ViewChild, ViewEncapsulation } from '@angular/core';
+import { AfterViewInit, Component, ElementRef, forwardRef, Injector, Input, ViewChild, HostBinding } from '@angular/core';
 import { ControlValueAccessor, NG_VALUE_ACCESSOR } from '@angular/forms';
 import * as DecoupledEditor from '@ckeditor/ckeditor5-build-decoupled-document';
 import '@ckeditor/ckeditor5-build-decoupled-document/build/translations/zh-cn';
@@ -22,7 +22,6 @@ const CKEDITOR_NG_VALUE_ACCESSOR = {
     templateUrl: './ckeditor5.component.html',
     styleUrls: ['./ckeditor5.component.scss'],
     providers: [CKEDITOR_NG_VALUE_ACCESSOR],
-    encapsulation: ViewEncapsulation.None,
 })
 export class Ckeditor5Component implements AfterViewInit, ControlValueAccessor {
 
@@ -44,6 +43,12 @@ export class Ckeditor5Component implements AfterViewInit, ControlValueAccessor {
      */
     @Input()
     toolbarConfig: string[];
+
+    /**
+     * 样式
+     */
+    @Input()
+    contentStyle: {} = {};
 
     /**
      * 上传路径
@@ -101,7 +106,6 @@ export class Ckeditor5Component implements AfterViewInit, ControlValueAccessor {
              * 设置初始值
              */
             editor.setData(this.data || '<p></p>');
-
             /**
              * 添加工具栏
              */
@@ -153,8 +157,6 @@ export class Ckeditor5Component implements AfterViewInit, ControlValueAccessor {
                     if (body) {
                         const modelFragment = editor.data.toModel(body);
                         editor.model.insertContent(modelFragment, editor.model.document.selection);
-                    } else {
-                        console.log(event);
                     }
                 });
             });

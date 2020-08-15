@@ -7,7 +7,8 @@
             </div>
             <div class="card-body">
                 <p class="border-bottom pb-2">ckeditor和toolbar分离</p>
-                <ran-ckeditor5-toolbar class="d-block" #ckeditorToolbar></ran-ckeditor5-toolbar>
+                <ran-ckeditor5-toolbar #ckeditorToolbar selector='mat-sidenav-content' [offsetTop]="64">
+                </ran-ckeditor5-toolbar>
                 <div class="form-group">
                     <label class="col-form-label">标题</label>
                     <input type="text" class="form-control" placeholder="标题">
@@ -22,7 +23,7 @@
             </div>
             <div class="card-body">
                 <p class="border-bottom pb-2">基础版</p>
-                <ran-ckeditor5 formControlName="ckeditorBaseData"></ran-ckeditor5>
+                <ran-ckeditor5 formControlName="ckeditorBaseData" [contentStyle]="{height:'100px'}"></ran-ckeditor5>
             </div>
             <div class="card-body">
                 <p class="border-bottom pb-2">classic版</p>
@@ -32,7 +33,7 @@
             </div>
             <div class="card-body">
                 <p class="border-bottom pb-2">document版</p>
-                <ran-ckeditor5 type="document" formControlName="ckeditorDocumentData"></ran-ckeditor5>
+                <ran-ckeditor5 [type]="1" formControlName="ckeditorDocumentData"></ran-ckeditor5>
             </div>
             <div class="card-body">
                 <p class="border-bottom pb-2">无config版本</p>

@@ -4,8 +4,8 @@
   "lib": {
     "entryFile": "src/public-api.ts",
     "umdModuleIds": {
-      "@ckeditor/ckeditor5-build-decoupled-document": "^12.3.1",
-      "@ckeditor/ckeditor5-engine": "^13.2.1"
+      "@ckeditor/ckeditor5-build-decoupled-document": "^21.0.0",
+      "@ckeditor/ckeditor5-engine": "^21.0.0"
     }
   },
   "whitelistedNonPeerDependencies": [

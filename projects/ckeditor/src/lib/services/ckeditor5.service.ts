@@ -18,7 +18,7 @@ export class CkeditorService {
         type: 'base',
         config: [
             'undo', 'redo', '|', 'heading',
-            'bold', 'italic', 'underline', 'strikethrough', 'link', 'numberedList', 'bulletedList', ,
+            'bold', 'italic', 'underline', 'strikethrough', 'link', 'numberedList', 'bulletedList'
         ]
     }, {
         displayName: '经典',
@@ -26,9 +26,10 @@ export class CkeditorService {
         config: [
             'undo', 'redo',
             'heading', '|',
-            'fontSize', 'fontFamily', '|',
+            'fontSize', 'fontFamily', 'fontColor', 'fontBackgroundColor', '|',
             'bold', 'italic', 'underline', 'strikethrough', 'link',
-            'numberedList', 'bulletedList', 'alignment', 'blockQuote', 'highlight', '|',
+            'numberedList', 'bulletedList', 'alignment', 'blockQuote', '|',
+            'indent', 'outdent', '|',
             'imageUpload', 'mediaEmbed', 'insertTable',
         ]
     }];
@@ -38,7 +39,11 @@ export class CkeditorService {
     }
 
     getConfig(type: CkeditorType): ICkeditorType {
-        const ckeditortype = this.ckeditorTypes.find(m => m.type === type);
-        return ckeditortype ? ckeditortype : this.ckeditorTypes[0];
+        if (typeof type === 'number' && !isNaN(type) && type <= this.ckeditorTypes.length - 1) {
+            return this.ckeditorTypes[type];
+        } else {
+            const ckeditortype = this.ckeditorTypes.find(m => m.type === type);
+            return ckeditortype ? ckeditortype : this.ckeditorTypes[0];
+        }
     }
 }

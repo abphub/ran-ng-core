@@ -26,15 +26,7 @@ export class Ckeditor5DownloadFile {
 
 
     constructor(data: ICkeditor5DownloadFile) {
-        if (data.type && data.type !== 'base') {
-            if (!data.assetProviderKey) {
-                throw new Error('ckeditor5上传图片需要[assetProviderKey],请先配置');
-            }
 
-            if (!data.assetFolderToken) {
-                throw new Error('ckeditor5上传图片需要[assetFolderToken],请先配置');
-            }
-        }
         this.assetProviderKey = data.assetProviderKey;
         this.assetFolderToken = data.assetFolderToken;
         this.dataTransfer = data.dataTransfer;
@@ -47,16 +39,25 @@ export class Ckeditor5DownloadFile {
         const imageElements = this.getImageElements(htmlDocumentView);
         const promises: Promise<void>[] = [];
 
-        for (const item of imageElements) {
-            const src = item.getAttribute('src');
+        if (imageElements.length) {
+            if (!this.assetProviderKey) {
+                throw new Error('ckeditor5上传图片需要[assetProviderKey],请先配置');
+            }
 
-            if (src) {
-                promises.push(this.loadRemoteFile(src).then(result => {
-                    item._setAttribute('src', result.webUrl);
-                }));
+            if (!this.assetFolderToken) {
+                throw new Error('ckeditor5上传图片需要[assetFolderToken],请先配置');
+            }
+
+            for (const item of imageElements) {
+                const src = item.getAttribute('src');
+
+                if (src) {
+                    promises.push(this.loadRemoteFile(src).then(result => {
+                        item._setAttribute('src', result.webUrl);
+                    }));
+                }
             }
         }
-
         return new Promise((resolve) => {
             if (promises.length) {
                 callback();
