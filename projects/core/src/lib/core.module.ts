@@ -7,8 +7,8 @@ import { HtmlPipe } from './pipes/html.pipe';
 import { JoinPipe } from './pipes/join.pipe';
 import { MomentFormatPipe } from './pipes/moment-format.pipe';
 import { NumberToTimePipe } from './pipes/number-time.pipe';
-import { momentInitializer } from './units/moment-initial-utils';
-import { urlInitialUtils } from './units/url-initial-utils';
+import { momentInitializer } from './utils/moment-initial-utils';
+import { urlInitialUtils } from './utils/url-initial-utils';
 
 @NgModule({
     imports: [
