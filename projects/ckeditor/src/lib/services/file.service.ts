@@ -7,6 +7,9 @@ import { ILoadRemoteFile, IFileDto } from '../models/file';
     providedIn: 'root'
 })
 export class FileService {
+
+    apiName = 'RanAssets';
+
     constructor(private rest: RestService) { }
 
     loadRemoteFile(body: ILoadRemoteFile): Observable<IFileDto> {
@@ -15,6 +18,6 @@ export class FileService {
             url: `/api/assets/files/loadRemoteFile?url=${body.url}&providerKey=${body.providerKey}&folderToken=${body.folderToken}`,
         };
 
-        return this.rest.request<ILoadRemoteFile, IFileDto>(request);
+        return this.rest.request<ILoadRemoteFile, IFileDto>(request, { apiName: this.apiName });
     }
 }
