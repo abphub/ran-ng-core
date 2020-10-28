@@ -15,7 +15,6 @@ import { environment } from '../environments/environment';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
-import { RAN_LAYOUTS, ThemeBasicModule } from 'projects/theme-basic/src/public-api';
 
 const LOGGERS = [NgxsLoggerPluginModule.forRoot({ disabled: true })];
 
@@ -26,12 +25,8 @@ const LOGGERS = [NgxsLoggerPluginModule.forRoot({ disabled: true })];
     RanCoreModule.forRoot(),
     CoreModule.forRoot({
       environment,
-      requirements: {
-        layouts: RAN_LAYOUTS,
-      },
     }),
     AppRoutingModule,
-    ThemeBasicModule.forRoot({ theme: 'light' }),
     ThemeSharedModule.forRoot(),
     AccountConfigModule.forRoot({ redirectUrl: '/' }),
     IdentityConfigModule,

@@ -1,7 +1,6 @@
 import { ABP, eLayoutType } from '@abp/ng.core';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
-import { THEME_BASIC_ROUTES } from 'projects/theme-basic/src/public-api';
 
 const routes: Routes = [
   { path: '', redirectTo: '/theme/light/theme-one', pathMatch: 'full' },
@@ -28,13 +27,6 @@ const routes: Routes = [
         name: '::Menu:Core',
         layout: eLayoutType.application,
       } as ABP.FullRoute,
-    },
-  },
-  {
-    path: 'theme',
-    loadChildren: () => import('./demo-theme-basic/demo-theme-basic.module').then(m => m.DemoThemeBasicModule),
-    data: {
-      routes: THEME_BASIC_ROUTES,
     },
   },
   {

@@ -4,8 +4,7 @@ import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CoreModule } from 'projects/core/src/public-api';
 import { DemoCoreRoutingModule } from './demo-core-routing.module';
 import { DemoCoreComponent } from './demo-core.component';
-import { ThemeBasicModule } from 'projects/theme-basic/src/public-api';
-import { MatPaginatorModule } from '@angular/material';
+import { ThemeBasicModule } from '@abp/ng.theme.basic';
 
 
 @NgModule({
@@ -16,10 +15,9 @@ import { MatPaginatorModule } from '@angular/material';
         CoreModule,
         FormsModule,
         ReactiveFormsModule,
-        ThemeBasicModule,
         CommonModule,
+        ThemeBasicModule,
         DemoCoreRoutingModule,
-        MatPaginatorModule
     ]
 })
 export class DemoCoreModule { }
