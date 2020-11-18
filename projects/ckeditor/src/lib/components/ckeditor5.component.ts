@@ -75,7 +75,7 @@ export class Ckeditor5Component implements AfterViewInit, ControlValueAccessor {
 
     data: string;
 
-    ckeditor;
+    public ckeditor: any;
     loading = false;
 
     constructor(

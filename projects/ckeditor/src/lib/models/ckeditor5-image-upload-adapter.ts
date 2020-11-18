@@ -13,6 +13,8 @@ interface ICkeditor5ImageUploadParams {
 
 export class Ckeditor5ImageUploadAdapter {
 
+    apiName = 'RanAssets';
+
     private requestUrl: string;
     private loader: any;
     private store: Store;
@@ -49,7 +51,7 @@ export class Ckeditor5ImageUploadAdapter {
                     body,
                 };
 
-                this.rest.request<FormData, { webUrl: string }>(request).subscribe(result => {
+                this.rest.request<FormData, { webUrl: string }>(request, { apiName: this.apiName }).subscribe(result => {
                     if (!result.webUrl) {
                         throw new Error('ckeditor5上传文件失败，请检查配置后重新上传');
                     }

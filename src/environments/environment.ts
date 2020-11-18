@@ -1,40 +1,69 @@
+// export const environment = {
+//   production: false,
+//   hmr: false,
+//   application: {
+//     name: '网站内容管理系统',
+//     logoUrl: '',
+//   },
+//   oAuthConfig: {
+//     issuer: 'http://{TENANCY_NAME}.account.abpone.com',
+//     clientId: 'Abpone_ConsoleTestApp',
+//     dummyClientSecret: '1q2w3e*',
+//     scope: 'Abpone',
+//     showDebugInformation: true,
+//     oidc: false,
+//     requireHttps: false,
+//   },
+//   apis: {
+//     default: {
+//       url: 'http://{TENANCY_NAME}.account.abpone.com',
+//     },
+//     AbpIdentity: {
+//       url: 'http://{TENANCY_NAME}.account.abpone.com',
+//     },
+//     AbpPermissionManagement: {
+//       url: 'http://{TENANCY_NAME}.account.abpone.com',
+//     },
+//     AbpTenantManagement: {
+//       url: 'http://{TENANCY_NAME}.account.abpone.com',
+//     },
+//     RanSite: {
+//       url: 'http://{TENANCY_NAME}.siteapi.abpone.com',
+//     },
+//     RanField: {
+//       url: 'http://{TENANCY_NAME}.siteapi.abpone.com',
+//     },
+//     RanAssets: {
+//       url: 'http://{TENANCY_NAME}.assets.abpone.com',
+//     }
+//   },
+// };
 export const environment = {
   production: false,
   hmr: false,
   application: {
-    name: '网站内容管理系统',
+    name: '博客系统',
     logoUrl: '',
   },
   oAuthConfig: {
-    issuer: 'http://{TENANCY_NAME}.account.abpone.com',
-    clientId: 'Abpone_ConsoleTestApp',
+    issuer: 'https://localhost:44377',
+    clientId: 'Blogging_ConsoleTestApp',
     dummyClientSecret: '1q2w3e*',
-    scope: 'Abpone',
+    scope: 'Blogging',
     showDebugInformation: true,
     oidc: false,
-    requireHttps: false,
+    requireHttps: true,
   },
   apis: {
     default: {
-      url: 'http://{TENANCY_NAME}.account.abpone.com',
+      rootNamespace: 'Ran.Blogging',
+      url: 'https://localhost:44377',
     },
-    AbpIdentity: {
-      url: 'http://{TENANCY_NAME}.account.abpone.com',
-    },
-    AbpPermissionManagement: {
-      url: 'http://{TENANCY_NAME}.account.abpone.com',
-    },
-    AbpTenantManagement: {
-      url: 'http://{TENANCY_NAME}.account.abpone.com',
-    },
-    RanSite: {
-      url: 'http://{TENANCY_NAME}.siteapi.abpone.com',
-    },
-    RanField: {
-      url: 'http://{TENANCY_NAME}.siteapi.abpone.com',
+    RanBlogging: {
+      url: 'https://localhost:44360',
     },
     RanAssets: {
-      url: 'http://{TENANCY_NAME}.assets.abpone.com',
-    }
+      url: 'https://localhost:44360',
+    },
   },
 };

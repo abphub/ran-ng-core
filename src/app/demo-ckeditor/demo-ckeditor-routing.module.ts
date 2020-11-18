@@ -1,12 +1,12 @@
+import { ApplicationLayoutComponent } from '@abp/ng.theme.basic';
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { DemoCkeditorComponent } from './demo-ckeditor.component';
-import { DynamicLayoutComponent } from '@abp/ng.core';
 
 const routes: Routes = [
     {
         path: 'ckeditor',
-        component: DynamicLayoutComponent,
+        component: ApplicationLayoutComponent,
         children: [{ path: '', component: DemoCkeditorComponent }],
     },
 ];
