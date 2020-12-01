@@ -22,9 +22,10 @@ const LOGGERS = [NgxsLoggerPluginModule.forRoot({ disabled: true })];
 @NgModule({
   declarations: [AppComponent],
   imports: [
-    RanCoreModule.forRoot(),
+    RanCoreModule.forRoot({ configFromJson: true }),
     CoreModule.forRoot({
       environment,
+      skipGetAppConfiguration: true
     }),
     AppRoutingModule,
     ThemeSharedModule.forRoot(),
