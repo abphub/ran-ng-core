@@ -16,13 +16,13 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 
-const LOGGERS = [NgxsLoggerPluginModule.forRoot({ disabled: true })];
+const LOGGERS = [NgxsLoggerPluginModule.forRoot({ disabled: false })];
 
 
 @NgModule({
   declarations: [AppComponent],
   imports: [
-    RanCoreModule.forRoot({ configFromJson: true }),
+    RanCoreModule.forRoot({ configFromJson: 'assets/abpone.json' }),
     CoreModule.forRoot({
       environment,
       skipGetAppConfiguration: true

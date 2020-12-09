@@ -49,6 +49,10 @@
       ],
       "home/*": [
         "dist/home/*"
+      ],
+      "components": [
+        "dist/components/components",
+        "dist/components"
       ]
     }
   }
