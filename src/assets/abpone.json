@@ -1,0 +1,55 @@
+{
+  "multiTenancy": {
+    "multiDomainsFormat": ["http://loca{0}host:4200"]
+  },
+  "environment": {
+    "dev": {
+      "production": false,
+      "application": {
+        "name": "Shuangbaodao",
+        "logoUrl": ""
+      },
+      "oAuthConfig": {
+        "issuer": "https://localhost:44389",
+        "clientId": "Shuangbaodao_App",
+        "dummyClientSecret": "1q2w3e*",
+        "scope": "Shuangbaodao",
+        "showDebugInformation": true,
+        "oidc": false,
+        "requireHttps": true
+      },
+      "apis": {
+        "default": {
+          "url": "https://www.{0}.com"
+        }
+      },
+      "localization": {
+        "defaultResourceName": "Shuangbaodao"
+      }
+    },
+    "prod": {
+      "production": false,
+      "application": {
+        "name": "Shuangbaodao",
+        "logoUrl": ""
+      },
+      "oAuthConfig": {
+        "issuer": "https://localhost:44389",
+        "clientId": "Shuangbaodao_App",
+        "dummyClientSecret": "1q2w3e*",
+        "scope": "Shuangbaodao",
+        "showDebugInformation": true,
+        "oidc": false,
+        "requireHttps": true
+      },
+      "apis": {
+        "default": {
+          "url": "https://localhost:44389"
+        }
+      },
+      "localization": {
+        "defaultResourceName": "Shuangbaodao"
+      }
+    }
+  }
+}
