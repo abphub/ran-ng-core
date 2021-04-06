@@ -16,7 +16,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { SharedModule } from './shared/shared.module';
 
-const LOGGERS = [NgxsLoggerPluginModule.forRoot({ disabled: false })];
+const LOGGERS = [NgxsLoggerPluginModule.forRoot({ disabled: true })];
 
 
 @NgModule({

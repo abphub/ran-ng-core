@@ -11,7 +11,6 @@ export function createTokenParser(format: string) {
     return matches.reduce((acc, v, i) => {
       const key = tokens[i];
       acc[key] = [...(acc[key] || []), v].filter(Boolean);
-      debugger
       return acc;
     }, {} as Record<string, string[]>);
   };

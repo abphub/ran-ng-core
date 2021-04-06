@@ -20,12 +20,6 @@
       "dom"
     ],
     "paths": {
-      "theme-basic": [
-        "dist/theme-basic"
-      ],
-      "theme-basic/*": [
-        "dist/theme-basic/*"
-      ],
       "core": [
         "dist/core"
       ],
@@ -37,18 +31,6 @@
       ],
       "ckeditor/*": [
         "dist/ckeditor/*"
-      ],
-      "spinner": [
-        "dist/spinner"
-      ],
-      "spinner/*": [
-        "dist/spinner/*"
-      ],
-      "home": [
-        "dist/home"
-      ],
-      "home/*": [
-        "dist/home/*"
       ],
       "components": [
         "dist/components/components",

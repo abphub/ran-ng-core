@@ -7,7 +7,7 @@ import { tap } from 'rxjs/operators';
 import { SetAbponeState } from '../actions/abpone.action';
 import { momentDifferentLocales } from '../constants/different-locales';
 import { AbponeService } from '../services/abpone.service';
-import { parseTenantFromUrl } from './multi-tenancy-utils';
+import { MultiTenancyService } from '../services/multi-tenancy.service';
 
 const moment = _moment;
 
@@ -20,13 +20,18 @@ export function abponeUtils(injector: Injector) {
 
         // setEnvironment
         const config = await abponeService.getConfigFromJson();
-        // 存状态
-        store.dispatch(new SetAbponeState(config));
-        if (config.environment) {
-            isDevMode() ? configStateService.dispatchSetEnvironment(config.environment.dev) : configStateService.dispatchSetEnvironment(config.environment.prod);
+
+        if (config) {
+            // 存状态
+            store.dispatch(new SetAbponeState(config));
+
+            if (config.environment) {
+                isDevMode() ? configStateService.dispatchSetEnvironment(config.environment.dev) : configStateService.dispatchSetEnvironment(config.environment.prod);
+            }
         }
 
-        await parseTenantFromUrl(injector);
+        const multiTenancyService = injector.get(MultiTenancyService)
+        await multiTenancyService.parseTenantFromUrl();
 
         return store
             .dispatch(new GetAppConfiguration())

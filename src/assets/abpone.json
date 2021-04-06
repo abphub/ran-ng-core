@@ -1,54 +1,96 @@
 {
   "multiTenancy": {
-    "multiDomainsFormat": ["http://loca{0}host:4200"]
+    "multiDomainsFormat": ["http://{0}.com.cn", "preview.{0}.com.cn", "{0}.limeauto.com.cn"]
   },
   "environment": {
     "dev": {
       "production": false,
       "application": {
-        "name": "Shuangbaodao",
+        "name": "BMS",
         "logoUrl": ""
       },
       "oAuthConfig": {
-        "issuer": "https://localhost:44389",
-        "clientId": "Shuangbaodao_App",
+        "issuer": "https://localhost:44335",
+        "clientId": "Abpone_ConsoleTestApp",
         "dummyClientSecret": "1q2w3e*",
-        "scope": "Shuangbaodao",
+        "scope": "Abpone",
         "showDebugInformation": true,
         "oidc": false,
-        "requireHttps": true
+        "requireHttps": false
       },
       "apis": {
         "default": {
-          "url": "https://www.{0}.com"
+          "url": "https://localhost:44335"
+        },
+        "AbpIdentity": {
+          "url": "https://localhost:44335"
+        },
+        "AbpPermissionManagement": {
+          "url": "https://localhost:44335"
+        },
+        "AbpTenantManagement": {
+          "url": "https://localhost:44335"
+        },
+        "Abpone": {
+          "url": "https://localhost:44323"
+        },
+        "RanSite": {
+          "url": "https://localhost:44323"
+        },
+        "RanField": {
+          "url": "https://localhost:44323"
+        },
+        "RanAssets": {
+          "url": "https://localhost:44323"
+        },
+        "RanBlogging": {
+          "url": "https://localhost:44323"
         }
-      },
-      "localization": {
-        "defaultResourceName": "Shuangbaodao"
       }
     },
     "prod": {
-      "production": false,
+      "production": true,
       "application": {
-        "name": "Shuangbaodao",
+        "name": "BMS",
         "logoUrl": ""
       },
       "oAuthConfig": {
-        "issuer": "https://localhost:44389",
-        "clientId": "Shuangbaodao_App",
+        "issuer": "http://blogis.abpone.com",
+        "clientId": "Abpone_ConsoleTestApp",
         "dummyClientSecret": "1q2w3e*",
-        "scope": "Shuangbaodao",
+        "scope": "Abpone",
         "showDebugInformation": true,
         "oidc": false,
-        "requireHttps": true
+        "requireHttps": false
       },
       "apis": {
         "default": {
-          "url": "https://localhost:44389"
+          "url": "http://blogis.abpone.com"
+        },
+        "AbpIdentity": {
+          "url": "http://blogis.abpone.com"
+        },
+        "AbpPermissionManagement": {
+          "url": "http://blogis.abpone.com"
+        },
+        "AbpTenantManagement": {
+          "url": "http://blogis.abpone.com"
+        },
+        "Abpone": {
+          "url": "http://blogapi.abpone.com"
+        },
+        "RanSite": {
+          "url": "http://blogapi.abpone.com"
+        },
+        "RanField": {
+          "url": "http://blogapi.abpone.com"
+        },
+        "RanAssets": {
+          "url": "http://blogapi.abpone.com"
+        },
+        "RanBlogging": {
+          "url": "http://blogapi.abpone.com"
         }
-      },
-      "localization": {
-        "defaultResourceName": "Shuangbaodao"
       }
     }
   }

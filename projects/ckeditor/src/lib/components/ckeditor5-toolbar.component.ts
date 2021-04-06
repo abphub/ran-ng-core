@@ -41,8 +41,7 @@ export class Ckeditor5ToolbarComponent implements AfterViewInit, OnDestroy {
                 const width = element.offsetWidth;
                 const offsetLeft = this.getElementOffsetLeft(element);
                 const scrollTop = this.getScrollTop(result);
-
-                console.log('offsetTop:' + offsetTop, 'scrollTop:' + scrollTop);
+                // console.log('offsetTop:' + offsetTop, 'scrollTop:' + scrollTop);
 
                 if (scrollTop >= offsetTop) {
                     let style = `position:fixed;`;
